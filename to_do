@@ -1,0 +1,85 @@
+ #include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+readline (const char *prompt); readline will read a line from the terminal and return it, using
+       prompt as a prompt.  If prompt is NULL or the empty string, no
+       prompt is issued.  The line returned is allocated with malloc(3);
+       the caller must free it when finished.  The line returned has the
+       final newline removed, so only the text of the line remains.
+readline returns the text of the line read.  A blank line returns
+       the empty string.  If EOF is encountered while reading a line,
+       and the line is empty, NULL is returned.  If an EOF is read with
+       a non-empty line, it is treated as a newline.
+rl_clear_history
+
+rl_on_new_line
+
+rl_replace_line
+
+rl_redisplay
+
+add_history
+
+printf, malloc, free, write, access, open, read,
+close, fork, wait, waitpid, wait3, wait4,
+
+signal
+
+sigaction
+
+sigemptyset
+
+sigaddset
+
+kill
+
+exit,
+getcwd
+
+chdir
+
+stat
+
+lstat
+
+fstat
+
+unlink, execve,
+dup, dup2, pipe, 
+
+opendir
+
+readdir
+
+closedir,
+
+strerror
+
+perror,
+isatty
+
+ttyname
+
+ttyslot
+
+ioctl
+
+getenv
+
+tcsetattr
+
+tcgetattr
+
+tgetent
+
+tgetflag
+
+tgetnum
+
+tgetstr
+
+tgoto
+
+tputs
+
+gcc -lreadline main.c && ./a.out
