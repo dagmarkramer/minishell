@@ -33,4 +33,4 @@ ${NAME}:	${OBJS} Libft/libft.a
 Libft/libft.a:
 				@${MAKE} -C Libft --no-print-directory
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re
