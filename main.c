@@ -5,11 +5,9 @@
 
 int	main(int argc, char **newenv)
 {
-	char    *prompt;
-	// int		i;
+	char	*prompt;
+	t_mini	mini;
 
-	// i = 0;
-	t_mini mini;
 	if (argc != 1)
 	{
 		printf("Error\nDo not use arguments, a prompt will pop up.");
@@ -17,15 +15,8 @@ int	main(int argc, char **newenv)
 	}
 	while (1)
 	{
-		readline(prompt);
+		printf("%s\n", readline(prompt));
 		getpathoptions(prompt, &mini, newenv);
 	}
-
-    // {
-	
-	// i++;
-	// }
-
-
 	return (0);
 }

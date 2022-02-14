@@ -82,4 +82,4 @@ tgoto
 
 tputs
 
-gcc -lreadline main.c && ./a.out
+gcc -lreadline *.c && ./a.out
