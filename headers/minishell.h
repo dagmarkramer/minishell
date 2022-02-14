@@ -5,6 +5,8 @@
 #  include <stdio.h>
 #  include <readline/readline.h>
 #  include <readline/history.h>
+#  include <stdlib.h>
+#  include "../Libft/libft.h"
 
 typedef struct s_mini
 {
@@ -24,5 +26,6 @@ typedef struct s_mini
 }				t_mini;
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
+void	error_handling(char *errormessage, t_mini *mini);
 
 #endif
