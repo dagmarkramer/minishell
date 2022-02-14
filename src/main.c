@@ -1,7 +1,14 @@
-#include "minishell.h"
+#include "../headers/minishell.h"
 // #  include <stdio.h>
 // #  include <readline/readline.h>
 // #  include <readline/history.h>
+// d
+
+void	error_handling(char *errormessage, t_mini *mini)
+{
+	perror(errormessage);
+	exit(EXIT_FAILURE);
+}
 
 int	main(int argc, char **newenv)
 {
@@ -20,3 +27,4 @@ int	main(int argc, char **newenv)
 	}
 	return (0);
 }
+

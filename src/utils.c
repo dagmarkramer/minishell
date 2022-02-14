@@ -1,4 +1,6 @@
-#include "minishell.h"
+#include "../headers/minishell.h"
+
+// d
 
 void	ft_execute(t_mini *mini, char **newenv)
 {
