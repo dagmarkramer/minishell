@@ -8,7 +8,7 @@
 
 typedef struct s_mini
 {
-	// char	**split;
+	char	**split;
 	char	*ls;
 	char	*options;
 	char	*path;
