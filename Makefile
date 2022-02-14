@@ -22,7 +22,7 @@ libclean:
 fclean:		clean
 				@${RM} ${NAME}
 				$(info ************  minishell Removed)
-				&& ${MAKE} fclean -C Libft --no-print-directory
+				${MAKE} fclean -C Libft --no-print-directory
 
 re:			fclean all
 
