@@ -4,7 +4,8 @@ OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f
 HEADER		= -I headers/
-CFLAGS		= -lreadline -Wall -Werror -Wextra #-g fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra #-g fsanitize=address
+EFLAGS		= -lreadline
 
 all:		${NAME}
 
@@ -27,7 +28,7 @@ fclean:		clean
 re:			fclean all
 
 ${NAME}:	${OBJS} Libft/libft.a
-				@${CC} $(CFLAGS) -o $@ $^
+				@${CC} $(EFLAGS) $(CFLAGS) -o $@ $^
 				$(info ************  minishell Ready!)
 
 Libft/libft.a:
