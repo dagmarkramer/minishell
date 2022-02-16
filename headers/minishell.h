@@ -15,6 +15,7 @@ typedef struct s_mini
 	char	*options;
 	char	*path;
 	char	**path2d;
+	char	*prompt;
 	// char	*hs;
 	// char	*hs2;
 	// char	*hs3;
@@ -26,6 +27,6 @@ typedef struct s_mini
 }				t_mini;
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
-void	error_handling(char *errormessage, t_mini *mini);
+void	error_handling(char *errormessage);
 
 #endif

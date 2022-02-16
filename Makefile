@@ -1,10 +1,10 @@
 NAME		= minishell
-OBJ			= main
+OBJ			= main utils
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f
 HEADER		= -I headers/
-CFLAGS		= -Wall -Werror -Wextra -lreadline #-g fsanitize=address
+CFLAGS		= -lreadline -Wall -Werror -Wextra #-g fsanitize=address
 
 all:		${NAME}
 
@@ -27,7 +27,7 @@ fclean:		clean
 re:			fclean all
 
 ${NAME}:	${OBJS} Libft/libft.a
-				@${CC} -o $@ $^
+				@${CC} $(CFLAGS) -o $@ $^
 				$(info ************  minishell Ready!)
 
 Libft/libft.a:

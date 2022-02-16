@@ -4,7 +4,7 @@
 // #  include <readline/history.h>
 // d
 
-void	error_handling(char *errormessage, t_mini *mini)
+void	error_handling(char *errormessage)
 {
 	perror(errormessage);
 	exit(EXIT_FAILURE);
@@ -12,9 +12,9 @@ void	error_handling(char *errormessage, t_mini *mini)
 
 int	main(int argc, char **newenv)
 {
-	char	*prompt;
 	t_mini	mini;
 
+	mini.prompt = NULL;
 	if (argc != 1)
 	{
 		printf("Error\nDo not use arguments, a prompt will pop up.");
@@ -22,8 +22,8 @@ int	main(int argc, char **newenv)
 	}
 	while (1)
 	{
-		printf("%s\n", readline(prompt));
-		getpathoptions(prompt, &mini, newenv);
+		printf("%s\n", readline(mini.prompt));
+		getpathoptions(mini.prompt, &mini, newenv);
 	}
 	return (0);
 }
