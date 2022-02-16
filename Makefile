@@ -27,7 +27,7 @@ fclean:		clean
 re:			fclean all
 
 ${NAME}:	${OBJS} Libft/libft.a
-				@${CC} -o $@ $^
+				@${CC} ${CFLAGS}-o $@ $^
 				$(info ************  minishell Ready!)
 
 Libft/libft.a:
