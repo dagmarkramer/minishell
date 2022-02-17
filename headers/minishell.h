@@ -28,5 +28,6 @@ typedef struct s_mini
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
 void	error_handling(char *errormessage);
+int		signals(void);
 
 #endif

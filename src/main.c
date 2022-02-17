@@ -15,6 +15,7 @@ int	main(int argc, char **newenv)
 	t_mini	mini;
 
 	mini.prompt = NULL;
+	signals();
 	if (argc != 1)
 	{
 		printf("Error\nDo not use arguments, a prompt will pop up.");
@@ -27,4 +28,3 @@ int	main(int argc, char **newenv)
 	}
 	return (0);
 }
-
