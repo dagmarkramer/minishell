@@ -17,14 +17,8 @@ typedef struct s_mini
 	char	*path;
 	char	**path2d;
 	char	*prompt;
-	// char	*hs;
-	// char	*hs2;
-	// char	*hs3;
+	char	**splitin;
 	char	**args;
-	// int		fd;
-	// char	*extraoptions;
-	// pid_t	cpid;
-	// int		malloc;
 }				t_mini;
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);

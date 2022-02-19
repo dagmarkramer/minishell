@@ -1,10 +1,16 @@
-#include "../headers/minishell.h"
+#include "minishell.h"
 
 void	ms_echo(t_mini *mini)
 {
-	(void)mini;
-	int fd = open("outfile", O_RDWR | O_CREAT, 0666);		
-	dup2(fd, 1);
-	printf("bye");
-	printf("bye");
+	if (!ft_strncmp(mini->splitin[1], "-n", ft_strlen(mini->splitin[1])))
+	{
+		printf("%s", mini->splitin[2]);
+		free (mini->splitin[1]);
+		free (mini->splitin[2]);
+	}
+	else
+	{
+		printf("%s\n", mini->splitin[1]);
+		free (mini->splitin[1]);
+	}
 }
