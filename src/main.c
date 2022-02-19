@@ -15,8 +15,8 @@ void	ms_next(t_mini *mini)
 		mini->splitin = ft_split(mini->prompt, ' ');
 		if (!ft_strncmp(mini->splitin[0], "echo", ft_strlen(mini->splitin[0])))
 			ms_echo(mini);
-		free (mini->splitin[0]);
-		free (mini->splitin);
+		free(mini->splitin[0]);
+		free(mini->splitin);
 }
 
 int	main(int argc, char **argv, char **newenv)

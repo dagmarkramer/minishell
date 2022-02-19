@@ -15,9 +15,9 @@ void    newline_handler(int signum)
 // need to remove with backspaceprint (del??)
 void    nothing_handler(int signum)
 {
-    write(1, "\b\b", 2);
-    write(1, "  ", 2);
-    write(1, "\b\b", 2);
+    // write(1, "\b\b", 2);
+    // write(1, "  ", 2);
+    // write(1, "\b\b", 2);
     (void)signum;
 }
 
