@@ -1,5 +1,5 @@
 NAME		= minishell
-OBJ			= main utils signals
+OBJ			= main utils signals commands
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f

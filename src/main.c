@@ -10,10 +10,12 @@ void	error_handling(char *errormessage)
 	exit(EXIT_FAILURE);
 }
 
-int	main(int argc, char **newenv)
+int	main(int argc, char **argv, char **newenv)
 {
 	t_mini	mini;
 
+	(void)argv;
+	(void)newenv;
 	mini.prompt = NULL;
 	signals();
 	if (argc != 1)
@@ -23,8 +25,9 @@ int	main(int argc, char **newenv)
 	}
 	while (1)
 	{
-		printf("%s\n", readline(mini.prompt));
-		getpathoptions(mini.prompt, &mini, newenv);
+		mini.prompt = readline("hi");
+		ms_echo(&mini);
+		// getpathoptions(mini.prompt, &mini, newenv);
 	}
 	return (0);
 }

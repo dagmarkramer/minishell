@@ -7,6 +7,7 @@
 #  include <readline/history.h>
 #  include <stdlib.h>
 #  include "../Libft/libft.h"
+#  include <fcntl.h>
 
 typedef struct s_mini
 {
@@ -19,7 +20,7 @@ typedef struct s_mini
 	// char	*hs;
 	// char	*hs2;
 	// char	*hs3;
-	// char	**args;
+	char	**args;
 	// int		fd;
 	// char	*extraoptions;
 	// pid_t	cpid;
@@ -29,5 +30,6 @@ typedef struct s_mini
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
 void	error_handling(char *errormessage);
 int		signals(void);
-
+void	ft_execute(t_mini *mini, char **newenv);
+void	ms_echo(t_mini *mini);
 #endif
