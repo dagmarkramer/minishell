@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **newenv)
 	}
 	while (1)
 	{
-		mini.prompt = readline("Oud Getrouwd Shell :\t");
+		mini.prompt = readline("Oud Getrouwd Shell : ");
 		if (mini.prompt == 0)
 			break ;
 		// printf("%s\n", mini.prompt);
