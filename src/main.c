@@ -10,6 +10,15 @@ void	error_handling(char *errormessage)
 	exit(EXIT_FAILURE);
 }
 
+void	ms_next(t_mini *mini)
+{
+		mini->splitin = ft_split(mini->prompt, ' ');
+		if (!ft_strncmp(mini->splitin[0], "echo", ft_strlen(mini->splitin[0])))
+			ms_echo(mini);
+		free (mini->splitin[0]);
+		free (mini->splitin);
+}
+
 int	main(int argc, char **argv, char **newenv)
 {
 	t_mini	mini;
@@ -29,12 +38,8 @@ int	main(int argc, char **argv, char **newenv)
 		if (mini.prompt == 0)
 			break ;
 		// printf("%s\n", mini.prompt);
-		mini.splitin = ft_split(mini.prompt, ' ');
-		if (!ft_strncmp(mini.splitin[0], "echo", ft_strlen(mini.splitin[0])))
-			ms_echo(&mini);
-		free (mini.splitin[0]);
-		free (mini.splitin);
+		ms_next(&mini);
 	}
-	printf("\b\b  \b\bexit\n");
+	printf("\b\bexit\n");
 	return (0);
 }
