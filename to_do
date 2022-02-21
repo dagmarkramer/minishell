@@ -34,7 +34,13 @@ sigaddset
 kill
 
 exit,
-getcwd
+getcwd(char *buf, size_t size); copies the absolute pathname of the current working
+     directory into the memory referenced by buf and returns a pointer to buf.
+     The size argument is the size, in bytes, of the array referenced by buf
+Upon successful completion, a pointer to the pathname is returned.  Other-
+     wise a NULL pointer is returned and the global variable errno is set to
+     indicate the error.  In addition, getwd() copies the error message associ-
+     ated with errno into the memory referenced by buf.
 
 chdir
 
@@ -47,7 +53,13 @@ fstat
 unlink, execve,
 dup, dup2, pipe, 
 
-opendir
+#include <dirent.h>
+opendir(const char *filename); opens the directory named by filename, associates a
+     directory stream with it and returns a pointer to be used to identify the
+     directory stream in subsequent operations.  The pointer NULL is returned if
+     filename cannot be accessed, or if it cannot malloc(3) enough memory to
+     hold the whole thing, and sets the global variable errno to indicate the
+     error.
 
 readdir
 
@@ -58,13 +70,16 @@ strerror
 perror,
 isatty
 
-ttyname
+ttyname get name of associated terminal (tty) from
+     file descriptor
 
 ttyslot
 
 ioctl
 
-getenv
+getenv(const char *name);obtains the current value of the environment vari-
+     able, name.  The application should not modify the string pointed to by the
+     getenv() function.
 
 tcsetattr
 

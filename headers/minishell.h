@@ -8,6 +8,8 @@
 #  include <stdlib.h>
 #  include "libft.h"
 #  include <fcntl.h>
+#  include <limits.h>
+#  include <dirent.h>
 
 extern int g_global;
 
@@ -28,4 +30,11 @@ void	error_handling(char *errormessage);
 int		signals(void);
 void	ft_execute(t_mini *mini, char **newenv);
 void	ms_echo(t_mini *mini);
+void	ms_pwd(t_mini *mini);
+void	ms_cd(t_mini *mini);
+void	ms_export(t_mini *mini);
+void	ms_unset(t_mini *mini);
+void	ms_env(t_mini *mini);
+void	ms_exit(t_mini *mini);
+
 #endif
