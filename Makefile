@@ -4,7 +4,7 @@ OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f
 HEADER		= -I headers/
-CFLAGS		= -Wall -Werror -Wextra #-g fsanitize=address
+CFLAGS		= #-g fsanitize=address
 EFLAGS		= -lreadline
 
 all:		${NAME}
