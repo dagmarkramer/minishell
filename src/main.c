@@ -41,7 +41,6 @@ int	main(int argc, char **argv, char **newenv)
 	(void)argv;
 	(void)newenv;
 	mini.input = NULL;
-	rl_catch_signals = 0;
 	signals();
 	mini.environ = newenv;
 	if (argc != 1)
@@ -52,11 +51,11 @@ int	main(int argc, char **argv, char **newenv)
 	while (1)
 	{
 		mini.input = readline("Oud Getrouwd Shell : ");
-		if (mini.input == 0)
+		if (mini.input == 0 || !ft_strncmp(mini.input, "exit", 5))
 			break ;
 		if (mini.input[0] != 0)
 			ms_next(&mini);
 	}
-	printf("\b\bexit\n");
+	printf("exit\n");
 	return (0);
 }
