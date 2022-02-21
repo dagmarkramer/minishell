@@ -4,8 +4,8 @@ OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f
 HEADER		= -I headers/
-CFLAGS		= #-g fsanitize=address
-EFLAGS		= -lreadline
+CFLAGS		= -g -fsanitize=address
+EFLAGS		= -lreadline -lncurses
 
 all:		${NAME}
 
