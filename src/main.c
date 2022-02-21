@@ -4,6 +4,8 @@
 // #  include <readline/history.h>
 // d
 
+int	g_global = 0;
+
 void	error_handling(char *errormessage)
 {
 	perror(errormessage);
@@ -35,10 +37,11 @@ int	main(int argc, char **argv, char **newenv)
 	while (1)
 	{
 		mini.prompt = readline("Oud Getrouwd Shell : ");
-		if (mini.prompt == 0)
+		if (mini.prompt == 0 && g_global == 0)
 			break ;
-		// printf("%s\n", mini.prompt);
-		ms_next(&mini);
+		if (g_global == 0 && mini.prompt[0] != 0)
+			ms_next(&mini);
+		g_global = 0;
 	}
 	printf("\b\bexit\n");
 	return (0);

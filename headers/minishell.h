@@ -6,8 +6,10 @@
 #  include <readline/readline.h>
 #  include <readline/history.h>
 #  include <stdlib.h>
-#  include "../Libft/libft.h"
+#  include "libft.h"
 #  include <fcntl.h>
+
+extern int g_global;
 
 typedef struct s_mini
 {
