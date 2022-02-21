@@ -1,10 +1,4 @@
-#include "../headers/minishell.h"
-// #  include <stdio.h>
-// #  include <readline/readline.h>
-// #  include <readline/history.h>
-// d
-
-int	g_global = 0;
+#include "minishell.h"
 
 void	error_handling(char *errormessage)
 {
@@ -21,7 +15,7 @@ void	ms_next(t_mini *mini)
 	// 	int i;
 	// 	while()
 	// }
-		mini->splitin = ft_split(mini->prompt, ' ');
+		mini->splitin = ft_split(mini->input, ' ');
 		if (!ft_strncmp(mini->splitin[0], "echo", ft_strlen(mini->splitin[0])))
 			ms_echo(mini);
 		if (!ft_strncmp(mini->splitin[0], "pwd", ft_strlen(mini->splitin[0])))
@@ -46,7 +40,8 @@ int	main(int argc, char **argv, char **newenv)
 
 	(void)argv;
 	(void)newenv;
-	mini.prompt = NULL;
+	mini.input = NULL;
+	rl_catch_signals = 0;
 	signals();
 	if (argc != 1)
 	{
@@ -55,12 +50,11 @@ int	main(int argc, char **argv, char **newenv)
 	}
 	while (1)
 	{
-		mini.prompt = readline("Oud Getrouwd Shell : ");
-		if (mini.prompt == 0 && g_global == 0)
+		mini.input = readline("Oud Getrouwd Shell : ");
+		if (mini.input == 0)
 			break ;
-		if (g_global == 0 && mini.prompt[0] != 0)
+		if (mini.input[0] != 0)
 			ms_next(&mini);
-		g_global = 0;
 	}
 	printf("\b\bexit\n");
 	return (0);

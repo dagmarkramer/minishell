@@ -17,7 +17,7 @@ void	ft_execute(t_mini *mini, char **newenv)
 		pathjoined = ft_strjoin(pathjoined, mini->ls);
 		if (!pathjoined)
 			error_handling("malloc");
-		execve(pathjoined, &mini->prompt, newenv);
+		execve(pathjoined, &mini->input, newenv);
 	}
 	exit (127);
 }

@@ -3,15 +3,16 @@ OBJ			= main utils signals commands
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f
-HEADER		= -I headers/
-CFLAGS		= #-g fsanitize=address
-EFLAGS		= -lreadline
+HEADER		= -I headers/ 
+RL_I		= -I $$HOME/.brew/opt/readline/include
+CFLAGS		= -Wall -Wextra #-Werror#-g fsanitize=address
+LFLAGS		= -lreadline -L $$HOME/.brew/opt/readline/lib
 
 all:		${NAME}
 
 obj/%.o:	src/%.c
 				@mkdir -p $(dir $@)
-				$(CC) -c $(CFLAGS) $(HEADER) -o $@ $<
+				$(CC) $(CFLAGS) $(RL_I) $(HEADER) -c -o $@ $<
 
 clean:
 				@${RM} ${OBJS} \
@@ -28,7 +29,7 @@ fclean:		clean
 re:			fclean all
 
 ${NAME}:	${OBJS} Libft/libft.a
-				@${CC} $(EFLAGS) $(CFLAGS) -o $@ $^
+				@${CC} $(OBJS) Libft/libft.a $(CFLAGS) -o $@ $(LFLAGS) 
 				$(info ************  minishell Ready!)
 
 Libft/libft.a:

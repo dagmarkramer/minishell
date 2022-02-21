@@ -3,15 +3,13 @@
 
 // #  include <stdlib.h>
 #  include <stdio.h>
-#  include <readline/readline.h>
-#  include <readline/history.h>
+#  include "readline/readline.h"
+#  include "readline/history.h"
 #  include <stdlib.h>
 #  include "libft.h"
 #  include <fcntl.h>
 #  include <limits.h>
 #  include <dirent.h>
-
-extern int g_global;
 
 typedef struct s_mini
 {
@@ -20,7 +18,7 @@ typedef struct s_mini
 	char	*options;
 	char	*path;
 	char	**path2d;
-	char	*prompt;
+	char	*input;
 	char	**splitin;
 	char	**args;
 }				t_mini;
