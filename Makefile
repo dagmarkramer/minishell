@@ -3,16 +3,10 @@ OBJ			= main utils signals commands
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f
-<<<<<<< HEAD
 HEADER		= -I headers/ 
 RL_I		= -I $$HOME/.brew/opt/readline/include
-CFLAGS		= -Wall -Wextra #-Werror#-g fsanitize=address
-LFLAGS		= -lreadline -L $$HOME/.brew/opt/readline/lib
-=======
-HEADER		= -I headers/
-CFLAGS		= -g -fsanitize=address
-EFLAGS		= -lreadline -lncurses
->>>>>>> 3b534b8286fb884f3edd2c0564f7848149ff7353
+CFLAGS		= -Wall -Wextra -Werror#-g fsanitize=address
+LFLAGS		= -lreadline -lncurses -L $$HOME/.brew/opt/readline/lib
 
 all:		${NAME}
 

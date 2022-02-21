@@ -6,6 +6,14 @@ void	error_handling(char *errormessage)
 	exit(EXIT_FAILURE);
 }
 
+void	ms_redirect(t_mini *mini, char *c)
+{
+	(void)mini;
+	(void)c;
+	// if (c == "<")
+	// 	dup
+}
+
 void	ms_next(t_mini *mini)
 {
 
@@ -30,6 +38,8 @@ void	ms_next(t_mini *mini)
 			ms_env(mini);
 		if (!ft_strncmp(mini->splitin[0], "exit", ft_strlen(mini->splitin[0])))
 			ms_exit(mini);
+		if (!ft_strncmp(mini->splitin[0], "<", ft_strlen(mini->splitin[0])))
+			ms_redirect(mini, "<");
 		free(mini->splitin[0]);
 		free(mini->splitin);
 }
