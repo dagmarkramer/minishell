@@ -44,7 +44,7 @@ Upon successful completion, a pointer to the pathname is returned.  Other-
 
 chdir
 
-stat
+stat: obtains information about the file pointed to by path
 
 lstat
 
@@ -85,6 +85,8 @@ tcsetattr
 
 tcgetattr
 
+#include <curses.h>
+#include <term.h>
 tgetent
 
 tgetflag
@@ -97,4 +99,8 @@ tgoto
 
 tputs
 
-gcc -lreadline *.c && ./a.out
+gcc -lreadline -lncurses src/*.c Libft/*.c -I headers/ && ./a.out
+
+set: see local variables
+
+rm -fsanitize=addres van makefile

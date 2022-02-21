@@ -10,6 +10,9 @@
 #  include <fcntl.h>
 #  include <limits.h>
 #  include <dirent.h>
+#  include <termios.h>
+#  include <curses.h>
+#  include <term.h>
 
 typedef struct s_mini
 {
@@ -21,6 +24,7 @@ typedef struct s_mini
 	char	*input;
 	char	**splitin;
 	char	**args;
+	char 	**environ;
 }				t_mini;
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);

@@ -43,6 +43,7 @@ int	main(int argc, char **argv, char **newenv)
 	mini.input = NULL;
 	rl_catch_signals = 0;
 	signals();
+	mini.environ = newenv;
 	if (argc != 1)
 	{
 		printf("Error\nDo not use arguments, a prompt will pop up.\n");

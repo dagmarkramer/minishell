@@ -34,8 +34,27 @@ void	ms_pwd(t_mini *mini)
 
 void	ms_export(t_mini *mini)
 {
-	(void)mini;
-	printf("%s\n", getenv(NULL));
+	static char termbuf[50];
+	char *term;
+	extern char *tgetstr(), *getenv();
+	char entry[1024];
+
+	term = getenv("PATH");
+	printf("%s\n", term);
+	// term = NULL;
+	if (tgetent(termbuf, term) != 1)
+		return;
+	char *loc = termbuf;
+	printf("%s\n", tgetstr("a", &loc));
+	// int fd = open("/Users/dkramer/MINISHELLfolder/minishell", O_RDWR | O_NOCTTY | O_NDELAY);
+	// // (void)mini;
+	// // printf("%s\n", getenv(NULL));
+	// struct termios  config;
+	// if(tcgetattr(fd, &config) < 0) 
+	// 	return ;
+	// config.c_lflag |= (unsigned long)mini->splitin[1];
+	// if(tcsetattr(fd, TCSAFLUSH, &config) < 0)
+	// 	return ;
 }
 
 void	ms_unset(t_mini *mini)
@@ -45,7 +64,14 @@ void	ms_unset(t_mini *mini)
 
 void	ms_env(t_mini *mini)
 {
+	int	i;
 
+	i = 0;
+	while (mini->environ[i])
+	{
+		printf("%s\n", mini->environ[i]);
+		i++;
+	}
 }
 
 void	ms_exit(t_mini *mini)
