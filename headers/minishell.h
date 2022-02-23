@@ -29,7 +29,7 @@ typedef struct s_mini
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
 void	error_handling(char *errormessage);
-int		signals(void);
+int		ms_signals(void);
 void	ft_execute(t_mini *mini, char **newenv);
 void	ms_echo(t_mini *mini);
 void	ms_pwd(t_mini *mini);

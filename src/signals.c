@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include "minishell.h"
 
-void	newline_handler(int signum)
+static void	newline_handler(int signum)
 {
 	write(1, "\n", 1);
 	rl_on_new_line();
@@ -11,13 +11,13 @@ void	newline_handler(int signum)
 	(void)signum;
 }
 
-void	nothing_handler(int signum)
+static void	nothing_handler(int signum)
 {
 	(void)signum;
 	rl_redisplay();
 }
 
-int signals(void)
+int ms_signals(void)
 {
 	rl_catch_signals = 0;
 	signal(SIGINT, newline_handler);

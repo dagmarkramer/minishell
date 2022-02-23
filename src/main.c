@@ -51,7 +51,7 @@ int	main(int argc, char **argv, char **newenv)
 	(void)argv;
 	mini.input = NULL;
 	mini.environ = newenv;
-	signals();
+	ms_signals();
 	if (argc != 1)
 	{
 		printf("Error\nDo not use arguments, a prompt will pop up.\n");
