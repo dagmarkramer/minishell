@@ -13,6 +13,8 @@
 #  include <termios.h>
 #  include <curses.h>
 #  include <term.h>
+#  include <signal.h>
+#  include <unistd.h>
 
 typedef struct s_mini
 {

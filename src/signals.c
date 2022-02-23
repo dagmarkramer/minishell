@@ -1,5 +1,3 @@
-#include <signal.h>
-#include <unistd.h>
 #include "minishell.h"
 
 static void	newline_handler(int signum)

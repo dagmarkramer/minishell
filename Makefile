@@ -1,5 +1,7 @@
 NAME		= minishell
-OBJ			= main utils signals commands
+OBJ			= main utils signals commands #\
+				tokenizer/tokenizer \
+				tokenizer/utils
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f
@@ -33,6 +35,6 @@ ${NAME}:	${OBJS} Libft/libft.a
 				$(info ************  minishell Ready!)
 
 Libft/libft.a:
-				@${MAKE} -C Libft --no-print-directory
+				@${MAKE} bonus -C Libft --no-print-directory
 
 .PHONY: all clean fclean re
