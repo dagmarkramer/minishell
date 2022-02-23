@@ -2,17 +2,32 @@
 
 void	ms_echo(t_mini *mini)
 {
+	int	i;
+	
 	if (!ft_strncmp(mini->splitin[1], "-n", ft_strlen(mini->splitin[1])))
 	{
-		printf("%s", mini->splitin[2]);
-		free (mini->splitin[1]);
-		free (mini->splitin[2]);
+		i = 2;
+		while (mini->splitin[i])
+		{
+			printf("%s", mini->splitin[i]);
+			if (mini->splitin[i + 1])
+				printf(" ");
+			i++;
+		}
 	}
 	else
 	{
-		printf("%s\n", mini->splitin[1]);
-		free (mini->splitin[1]);
+		i = 1;
+		while (mini->splitin[i])
+		{
+			printf("%s", mini->splitin[i]);
+			if (mini->splitin[i + 1])
+				printf(" ");
+			i++;
+		}
+		printf("\n");
 	}
+	free2darr(mini);
 }
 
 // relative path: the hierarchical path that locates a file or folder on a file system starting from the current directory
@@ -20,7 +35,7 @@ void	ms_echo(t_mini *mini)
 void	ms_cd(t_mini *mini)
 {
 	chdir(mini->splitin[1]);
-	free (mini->splitin[1]);
+	free2darr(mini);
 }
 
 void	ms_pwd(t_mini *mini)
@@ -30,11 +45,14 @@ void	ms_pwd(t_mini *mini)
 	(void)mini;
 	getcwd(buf, sizeof(buf));
 	printf("%s\n", buf);
+	free2darr(mini);
 }
 
 void	ms_export(t_mini *mini)
 {
 	(void)mini;
+
+	free2darr(mini);
 	// static char termbuf[50];
 	// char *term;
 	// extern char *tgetstr(), *getenv();
@@ -61,6 +79,8 @@ void	ms_export(t_mini *mini)
 void	ms_unset(t_mini *mini)
 {
 	(void)mini;
+
+	free2darr(mini);
 }
 
 void	ms_env(t_mini *mini)
@@ -73,9 +93,6 @@ void	ms_env(t_mini *mini)
 		printf("%s\n", mini->environ[i]);
 		i++;
 	}
+	free2darr(mini);
 }
 
-void	ms_exit(t_mini *mini)
-{
-	(void)mini;
-}

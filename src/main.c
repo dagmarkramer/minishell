@@ -3,15 +3,59 @@
 void	error_handling(char *errormessage)
 {
 	perror(errormessage);
-	exit(EXIT_FAILURE);
+}
+
+void	free2darr(t_mini *mini)
+{
+	int	i;
+
+	i = 0;
+	while (mini->splitin[i])
+	{
+		free (mini->splitin[i]);
+		i++;
+	}
+	free (mini->splitin);
 }
 
 void	ms_redirect(t_mini *mini, char *c)
 {
+	int	fd;
+	struct stat *buf;
+	int	ret;
+	int	i;
+	char	*line;
+
 	(void)mini;
-	(void)c;
-	// if (c == "<")
-	// 	dup2
+	if (!ft_strncmp(">>", c, ft_strlen("c")))
+	{
+		fd = open("outfile", O_WRONLY | O_APPEND);
+		if (fd == -1)
+			error_handling("outfile");
+		if (dup2(fd, 0) == -1)
+			error_handling("dup2() error");
+	}
+	else if (!ft_strncmp("<", c, ft_strlen("c")))
+	{
+		printf("hi");
+		fd = open("infile", O_RDONLY);
+		if (fd == -1)
+			error_handling("infile");
+		if (dup2(fd, 1) == -1)
+			error_handling("dup2() error");
+	}
+	else if (!ft_strncmp(">", c, ft_strlen("c")))
+	{
+		printf("hi2");
+		fd = open("outfile",  O_WRONLY | O_CREAT, 0666);
+		if (fd == -1)
+			error_handling("outfile");
+		if (dup2(fd, 0) == -1)
+			error_handling("dup2() error");
+	}
+
+	free2darr(mini);
+	
 }
 
 void	ms_next(t_mini *mini)
@@ -24,24 +68,29 @@ void	ms_next(t_mini *mini)
 	// 	while()
 	// }
 		mini->splitin = ft_split(mini->input, ' ');
-		if (!ft_strncmp(mini->splitin[0], "echo", ft_strlen(mini->splitin[0])))
-			ms_echo(mini);
-		if (!ft_strncmp(mini->splitin[0], "pwd", ft_strlen(mini->splitin[0])))
-			ms_pwd(mini);
-		if (!ft_strncmp(mini->splitin[0], "cd", ft_strlen(mini->splitin[0])))
-			ms_cd(mini);
-		if (!ft_strncmp(mini->splitin[0], "export", ft_strlen(mini->splitin[0])))
-			ms_export(mini);
-		if (!ft_strncmp(mini->splitin[0], "unset", ft_strlen(mini->splitin[0])))
-			ms_unset(mini);
-		if (!ft_strncmp(mini->splitin[0], "env", ft_strlen(mini->splitin[0])))
-			ms_env(mini);
-		if (!ft_strncmp(mini->splitin[0], "exit", ft_strlen(mini->splitin[0])))
-			ms_exit(mini);
-		if (!ft_strncmp(mini->splitin[0], "<", ft_strlen(mini->splitin[0])))
-			ms_redirect(mini, "<");
-		free(mini->splitin[0]);
-		free(mini->splitin);
+		// if (!ft_strncmp(mini->splitin[0], "echo", ft_strlen(mini->splitin[0])))
+		// {
+		// 	ms_echo(mini);
+		// 	return ;
+		// }
+		// if (!ft_strncmp(mini->splitin[0], "pwd", ft_strlen(mini->splitin[0])))
+		// 	ms_pwd(mini);
+		// if (!ft_strncmp(mini->splitin[0], "cd", ft_strlen(mini->splitin[0])))
+		// 	ms_cd(mini);
+		// if (!ft_strncmp(mini->splitin[0], "export", ft_strlen(mini->splitin[0])))
+		// 	ms_export(mini);
+		// if (!ft_strncmp(mini->splitin[0], "unset", ft_strlen(mini->splitin[0])))
+		// 	ms_unset(mini);
+		// if (!ft_strncmp(mini->splitin[0], "env", ft_strlen(mini->splitin[0])))
+		// 	ms_env(mini);
+		// if (!ft_strncmp(mini->splitin[0], "exit", ft_strlen(mini->splitin[0])))
+		// 	ms_exit(mini);
+		// if (!ft_strncmp(mini->splitin[0], "<", ft_strlen(mini->splitin[0])))
+		// 	ms_redirect(mini, "<");
+		// if (!ft_strncmp(mini->splitin[0], ">", ft_strlen(mini->splitin[0])))
+		// 	ms_redirect(mini, ">");
+		if (!ft_strncmp(mini->splitin[0], ">>", ft_strlen(mini->splitin[0])))
+			ms_redirect(mini, ">>");
 }
 
 int	main(int argc, char **argv, char **newenv)

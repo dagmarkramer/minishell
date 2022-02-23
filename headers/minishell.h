@@ -13,6 +13,7 @@
 #  include <termios.h>
 #  include <curses.h>
 #  include <term.h>
+#  include <sys/stat.h>
 
 typedef struct s_mini
 {
@@ -37,6 +38,6 @@ void	ms_cd(t_mini *mini);
 void	ms_export(t_mini *mini);
 void	ms_unset(t_mini *mini);
 void	ms_env(t_mini *mini);
-void	ms_exit(t_mini *mini);
+void	free2darr(t_mini *mini);
 
 #endif
