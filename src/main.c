@@ -63,8 +63,12 @@ int	main(int argc, char **argv, char **newenv)
 		if (mini.input == 0 || !ft_strncmp(mini.input, "exit", 5))
 			break ;
 		if (mini.input[0] != 0)
+		{
+			add_history(mini.input);
 			ms_next(&mini);
+		}
 	}
+	rl_clear_history();
 	printf("exit\n");
 	return (0);
 }
