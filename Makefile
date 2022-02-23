@@ -5,7 +5,7 @@ CC			= gcc
 RM			= rm -f
 HEADER		= -I headers/ 
 RL_I		= -I $$HOME/.brew/opt/readline/include
-CFLAGS		= -Wall -Wextra -Werror#-g fsanitize=address
+CFLAGS		= -Wall -Wextra #-Werror#-g fsanitize=address
 LFLAGS		= -lreadline -lncurses -L $$HOME/.brew/opt/readline/lib
 
 all:		${NAME}

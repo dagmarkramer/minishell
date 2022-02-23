@@ -49,11 +49,9 @@ int	main(int argc, char **argv, char **newenv)
 	t_mini	mini;
 
 	(void)argv;
-	(void)newenv;
 	mini.input = NULL;
-	rl_catch_signals = 0;
-	signals();
 	mini.environ = newenv;
+	signals();
 	if (argc != 1)
 	{
 		printf("Error\nDo not use arguments, a prompt will pop up.\n");
@@ -62,11 +60,15 @@ int	main(int argc, char **argv, char **newenv)
 	while (1)
 	{
 		mini.input = readline("Oud Getrouwd Shell : ");
-		if (mini.input == 0)
+		if (mini.input == 0 || !ft_strncmp(mini.input, "exit", 5))
 			break ;
 		if (mini.input[0] != 0)
+		{
+			add_history(mini.input);
 			ms_next(&mini);
+		}
 	}
-	printf("\b\bexit\n");
+	rl_clear_history();
+	printf("exit\n");
 	return (0);
 }
