@@ -11,7 +11,7 @@ void	ms_redirect(t_mini *mini, char *c)
 	(void)mini;
 	(void)c;
 	// if (c == "<")
-	// 	dup
+	// 	dup2
 }
 
 void	ms_next(t_mini *mini)
