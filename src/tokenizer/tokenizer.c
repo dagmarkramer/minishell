@@ -30,23 +30,25 @@ int		ms_find(char *in, char *c, int offset)
 			return (i + offset);
 		i++;
 	}
-	return (-1);
+	return (i);
 }
 
-char	*word_finder()
+char	*ms_word_finder(char *input)
 {
 	int	tmp;
 	int	tmp2;
 
 	tmp = ms_find(input, "\'\"", 0);
-	if (tmp != -1)
+	if (input[tmp] != 0)
 	{
 		if (input[tmp] == '\'')
 			tmp2 = ms_find(input, "\'", tmp + 1);
 		else
 			tmp2 = ms_find(input, "\"", tmp + 1);
-		if (tmp2 == -1)
-			return (PANNENKOEK);
+		while (input[tmp2] != 0 && !ft_isspace(input[tmp2]))
+			tmp2++;
+		while (tmp != 0 && !ft_isspace(input[tmp]))
+			tmp--;
 		// input[tmp] - input[tmp2] = een word;
 	}
 }
