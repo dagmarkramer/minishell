@@ -1,6 +1,6 @@
 NAME		= minishell
-OBJ			= main utils signals commands #\
-				tokenizer/tokenizer \
+OBJ			= main utils signals commands \
+				tokenizer/tokenizer #\
 				tokenizer/utils
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc

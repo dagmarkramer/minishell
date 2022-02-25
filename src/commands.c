@@ -3,8 +3,12 @@
 char	*environment_variables(t_mini *mini)
 {
 	char	*str;
+	int	i;
+	int	a;
 
-	str = getenv(&mini->splitin[i][a + 1])//getenv from after $ sign
+	i = 1;
+	a = 0;
+	str = getenv(&mini->splitin[i][a + 1]);//getenv from after $ sign
 	if (!str)
 		return (NULL);
 	return (str);

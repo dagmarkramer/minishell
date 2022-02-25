@@ -67,7 +67,7 @@ void	ms_next(t_mini *mini, char **newenv)
 	// 	int i;
 	// 	while()
 	// }
-		mini->splitin = ft_split(mini->input, ' ');
+		mini->splitin = ms_tokenizer(mini->input);
 		if (!ft_strncmp(mini->splitin[0], "echo", ft_strlen(mini->splitin[0])))
 		{
 			ms_echo(mini, newenv);
