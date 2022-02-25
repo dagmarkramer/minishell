@@ -30,6 +30,13 @@ typedef struct s_mini
 	char 	**environ;
 }				t_mini;
 
+typedef struct	s_token
+{
+	int		token_id;
+	char	form;
+	char	**word;
+}				t_token;
+
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
 void	error_handling(char *errormessage);
 int		ms_signals(void);
