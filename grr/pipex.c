@@ -6,7 +6,7 @@
 /*   By: dkramer <dkramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 19:31:23 by dkramer       #+#    #+#                 */
-/*   Updated: 2022/02/05 16:41:46 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/02/25 17:01:50 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	main(int argc, char *argv[], char **newenv)
 	t_pipex	*pipex;
 
 	pipex = malloc(sizeof(t_pipex));
-	if (argc != 5)
-		exit(EXIT_FAILURE);
+	// if (argc != 5)
+	// 	exit(EXIT_FAILURE);
 	if (pipe(pipefd) == -1)
 		error_handling("pipe", pipex);
 	pipex->cpid = fork();
