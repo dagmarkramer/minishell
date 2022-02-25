@@ -1,17 +1,38 @@
 #include "minishell.h"
 
+char	*environment_variables(t_mini *mini)
+{
+	char	*str;
+
+	str = getenv(&mini->splitin[i][a + 1])//getenv from after $ sign
+	if (!str)
+		return (NULL);
+	return (str);
+}
+
 void	ms_echo(t_mini *mini)
 {
 	int	i;
+	int	a;
 	
+	a = 0;
 	if (!ft_strncmp(mini->splitin[1], "-n", ft_strlen(mini->splitin[1])))
 	{
 		i = 2;
 		while (mini->splitin[i])
 		{
-			printf("%s", mini->splitin[i]);
-			if (mini->splitin[i + 1])
-				printf(" ");
+			if (!getenv(&mini->splitin[i][a + 1]))
+			{
+				printf("%s", mini->splitin[i]);
+				if (mini->splitin[i + 1])
+					printf(" ");
+			}
+			else
+			{
+				printf("%s", getenv(&mini->splitin[i][a + 1]));
+				if (mini->splitin[i + 1])
+					printf(" ");
+			}
 			i++;
 		}
 	}
@@ -20,9 +41,18 @@ void	ms_echo(t_mini *mini)
 		i = 1;
 		while (mini->splitin[i])
 		{
-			printf("%s", mini->splitin[i]);
-			if (mini->splitin[i + 1])
-				printf(" ");
+			if (!getenv(&mini->splitin[i][a + 1]))
+			{
+				printf("%s", mini->splitin[i]);
+				if (mini->splitin[i + 1])
+					printf(" ");
+			}
+			else
+			{
+				printf("%s", getenv(&mini->splitin[i][a + 1]));
+				if (mini->splitin[i + 1])
+					printf(" ");
+			}
 			i++;
 		}
 		printf("\n");

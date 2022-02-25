@@ -34,7 +34,7 @@ void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
 void	error_handling(char *errormessage);
 int		ms_signals(void);
 void	ft_execute(t_mini *mini, char **newenv);
-void	ms_echo(t_mini *mini);
+void	ms_echo(t_mini *mini, char **newenv);
 void	ms_pwd(t_mini *mini);
 void	ms_cd(t_mini *mini);
 void	ms_export(t_mini *mini);

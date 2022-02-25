@@ -1,0 +1,12 @@
+Makefile
+infile
+libft
+out
+outfile
+pipex
+pipex.c
+pipex.dSYM
+pipex.h
+pipex.o
+utils.c
+utils.o

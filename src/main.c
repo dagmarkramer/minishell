@@ -21,10 +21,10 @@ void	free2darr(t_mini *mini)
 void	ms_redirect(t_mini *mini, char *c)
 {
 	int	fd;
-	struct stat *buf;
-	int	ret;
-	int	i;
-	char	*line;
+	// struct stat *buf;
+	// int	ret;
+	// int	i;
+	// char	*line;
 
 	(void)mini;
 	if (!ft_strncmp(">>", c, ft_strlen("c")))
@@ -58,7 +58,7 @@ void	ms_redirect(t_mini *mini, char *c)
 	
 }
 
-void	ms_next(t_mini *mini)
+void	ms_next(t_mini *mini, char **newenv)
 {
 
 	// function [] = {
@@ -68,11 +68,11 @@ void	ms_next(t_mini *mini)
 	// 	while()
 	// }
 		mini->splitin = ft_split(mini->input, ' ');
-		// if (!ft_strncmp(mini->splitin[0], "echo", ft_strlen(mini->splitin[0])))
-		// {
-		// 	ms_echo(mini);
-		// 	return ;
-		// }
+		if (!ft_strncmp(mini->splitin[0], "echo", ft_strlen(mini->splitin[0])))
+		{
+			ms_echo(mini, newenv);
+			return ;
+		}
 		// if (!ft_strncmp(mini->splitin[0], "pwd", ft_strlen(mini->splitin[0])))
 		// 	ms_pwd(mini);
 		// if (!ft_strncmp(mini->splitin[0], "cd", ft_strlen(mini->splitin[0])))
@@ -114,7 +114,7 @@ int	main(int argc, char **argv, char **newenv)
 		if (mini.input[0] != 0)
 		{
 			add_history(mini.input);
-			ms_next(&mini);
+			ms_next(&mini, newenv);
 		}
 	}
 	rl_clear_history();
