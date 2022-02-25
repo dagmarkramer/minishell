@@ -19,41 +19,37 @@
 // 					grep "a | a"
 // 								>> outfile
 
-int		ms_find(char *in, char *c, int offset)
-{
-	int	i;
+word splitting on tabs spaces newlines and pipes and redirections
+find pipes and split on them with info
+find redirections 
+environ vars expanded
+take care of
+de quoting "" and ''
 
-	i = 0
-	while (in[i])
-	{
-		if (in[i] == c[0] || in[i] == c[1])
-			return (i + offset);
-		i++;
-	}
-	return (i);
+
+void	me_add_token(t_list **tokens, int start, int end)
+{
+	
 }
 
-char	*ms_word_finder(char *input)
+void	ms_find_word(char *input, t_list **tokens)
 {
-	int	tmp;
-	int	tmp2;
+	int		w_start;
+	int		w_end;
+	char	tmp;
 
-	tmp = ms_find(input, "\'\"", 0);
-	if (input[tmp] != 0)
+	w_start = 0;
+	w_end = 0;
+	while (input[w_end])
 	{
-		if (input[tmp] == '\'')
-			tmp2 = ms_find(input, "\'", tmp + 1);
-		else
-			tmp2 = ms_find(input, "\"", tmp + 1);
-		while (input[tmp2] != 0 && !ft_isspace(input[tmp2]))
-			tmp2++;
-		while (tmp != 0 && !ft_isspace(input[tmp]))
-			tmp--;
-		// input[tmp] - input[tmp2] = een word;
+		w_end = ms_find_offset(input, "\"\' \t\n|><", w_start + 1);
+		ms_add_token(tokens, w_start, w_end);
+		w_start = w_end + 1;
+		if (input[w_start] == 0)
+			break ;
 	}
-}
 
-char	**ms_devide(char *input)
+}
 
 t_token	*ms_tokenizer(char *input)
 {
