@@ -34,7 +34,7 @@ typedef struct	s_token
 {
 	int		token_id;
 	char	form;
-	char	**word;
+	char	*word;
 }				t_token;
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
@@ -48,6 +48,12 @@ void	ms_export(t_mini *mini);
 void	ms_unset(t_mini *mini);
 void	ms_env(t_mini *mini);
 void	free2darr(t_mini *mini);
-t_token	*ms_tokenizer(char *input);
+
+t_list	*ms_tokenizer(char *input);
+
+void	ms_del_token(void *incomming);
+int		ms_lstadd_token(t_list **tokens, char *word);
+int		ms_find_offset(char *in, char *delimiters, int offset);
+int		ms_skip_chars(char *in, char *to_skip, int offset);
 
 #endif

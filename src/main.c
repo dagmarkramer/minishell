@@ -67,10 +67,10 @@ void	ms_next(t_mini *mini, char **newenv)
 	// 	int i;
 	// 	while()
 	// }
-		mini->splitin = ms_tokenizer(mini->input);
+		// mini->splitin = ms_tokenizer(mini->input);
 		if (!ft_strncmp(mini->splitin[0], "echo", ft_strlen(mini->splitin[0])))
 		{
-			ms_echo(mini, newenv);
+			// ms_echo(mini, newenv);
 			return ;
 		}
 		// if (!ft_strncmp(mini->splitin[0], "pwd", ft_strlen(mini->splitin[0])))
@@ -91,6 +91,25 @@ void	ms_next(t_mini *mini, char **newenv)
 		// 	ms_redirect(mini, ">");
 		if (!ft_strncmp(mini->splitin[0], ">>", ft_strlen(mini->splitin[0])))
 			ms_redirect(mini, ">>");
+}
+
+void	ms_print_word(void *ptr)
+{
+	t_token	*token;
+
+	token = (t_token *)ptr;
+	printf("%s\n", token->word);
+}
+
+void	ms_one_row(t_mini *data)
+{
+	t_list	*tokens;
+
+	tokens = 0;
+	tokens = ms_tokenizer(data->input);
+	if (tokens == NULL)
+		return ;
+	ft_lstiter(tokens, ms_print_word);
 }
 
 int	main(int argc, char **argv, char **newenv)
@@ -114,7 +133,8 @@ int	main(int argc, char **argv, char **newenv)
 		if (mini.input[0] != 0)
 		{
 			add_history(mini.input);
-			ms_next(&mini, newenv);
+			ms_one_row(&mini);
+			// ms_next(&mini, newenv);
 		}
 	}
 	rl_clear_history();
