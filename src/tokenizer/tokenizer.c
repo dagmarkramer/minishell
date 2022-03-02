@@ -49,9 +49,9 @@ int	ms_add_tokens(t_list **tokens, char *input)
 	i = 0;
 	while (input[i])
 	{
-		start = ms_skip_chars(input, " \t\n", i);	// this is different now not 0 but i instead
+		start = ms_skip_chars(input, " \t\n", i);
 		i = start;
-		i = ms_find_word_end(input, i, 0); // did i do this right?
+		i = ms_find_word_end(input, i, 0);
 		new_word = ms_claim_word(input, start, i - start);
 		if (new_word == NULL)
 			return (1);
