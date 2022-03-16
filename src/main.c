@@ -110,6 +110,7 @@ void	ms_one_row(t_mini *data)
 	if (tokens == NULL)
 		return ;
 	ft_lstiter(tokens, ms_print_word);
+	
 }
 
 int	main(int argc, char **argv, char **newenv)

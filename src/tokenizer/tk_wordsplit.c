@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "tokenizer.h"
 
 int	ms_find_word_end(char *input, int i, char state)
 {
@@ -60,17 +60,4 @@ int	ms_add_tokens(t_list **tokens, char *input)
 		start = i;
 	}
 	return (0);
-}
-
-t_list	*ms_tokenizer(char *input)
-{
-	t_list	*tokens;
-
-	tokens = 0;
-	if (ms_add_tokens(&tokens, input))
-	{
-		ft_lstclear(&tokens, ms_del_token);
-		// ms_new_prompt();
-	}
-	return (tokens);
 }
