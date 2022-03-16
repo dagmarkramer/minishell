@@ -1,7 +1,8 @@
 NAME		= minishell
 OBJ			= main utils signals commands \
-				tokenizer/tokenizer \
-				tokenizer/utils
+				tokenizer/tk_tokenizer \
+				tokenizer/tk_utils \
+				tokenizer/tk_wordsplit
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f

@@ -23,6 +23,7 @@ t_list	*ms_tokenizer(char *input);
 void	ms_del_token(void *incomming);
 int		ms_lstadd_token(t_list **tokens, char *word);
 int		ms_find_offset(char *in, char *delimiters, int offset);
+int		ms_add_tokens(t_list **tokens, char *input);
 int		ms_skip_chars(char *in, char *to_skip, int offset);
 
 #endif
