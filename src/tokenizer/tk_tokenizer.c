@@ -9,8 +9,7 @@ t_list	*ms_tokenizer(char *input)
 	{
 		ft_lstclear(&tokens, ms_del_token);
 		return (NULL);
-		// ms_new_prompt(); or we can return NULL and catch that on function call
 	}
-	
+	// tk_name_tokens(tokens);
 	return (tokens);
 }

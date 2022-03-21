@@ -116,6 +116,7 @@ void	ms_one_row(t_mini *data)
 int	main(int argc, char **argv, char **newenv)
 {
 	t_mini	mini;
+	extern char**environ;
 
 	(void)argv;
 	mini.input = NULL;

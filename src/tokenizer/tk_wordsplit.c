@@ -48,7 +48,7 @@ int	ms_add_tokens(t_list **tokens, char *input)
 	while (input[i])
 	{
 		start = ms_skip_chars(input, " \t\n", i);
-		if (ft_strchr("|<>", input[start]))		// added this
+		if (ft_strchr("|<>", input[start]))		// added this for pipechars and redirections
 			i = start + 1;
 		else
 			i = ms_find_word_end(input, start, 0);

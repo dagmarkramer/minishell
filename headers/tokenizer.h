@@ -6,7 +6,6 @@
 typedef enum 	e_token_id
 {
 	Pipe,
-	Nbr,
 	Str,
 	Heredoc,
 	Redirection
