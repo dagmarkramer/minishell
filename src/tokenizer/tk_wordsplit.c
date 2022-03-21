@@ -19,12 +19,8 @@ int	ms_find_word_end(char *input, int i, char state)
 	else
 	{
 		i = ms_find_offset(input, "\"\' \t\n|><", i);
-		if (input[i] == '\0')
+		if (input[i] == '\0' || ft_strchr(" \t\n|<>", input[i]))
 			return (i);
-		if (ft_strchr(" \t\n", input[i]))
-			return (i);
-		if (ft_strchr("|<>", input[i]))
-			return (i + 1);
 		return (ms_find_word_end(input, i + 1, input[i]));
 	}
 }
@@ -52,11 +48,13 @@ int	ms_add_tokens(t_list **tokens, char *input)
 	while (input[i])
 	{
 		start = ms_skip_chars(input, " \t\n", i);
-		i = ms_find_word_end(input, start, 0);
+		if (ft_strchr("|<>", input[start]))		// added this
+			i = start + 1;
+		else
+			i = ms_find_word_end(input, start, 0);
 		if (i == start)
 			return (0);
 		new_word = ms_claim_word(input, start, i - start);
-		printf("printf : %i\n", i - start);
 		if (new_word == NULL)
 			return (1);
 		if(ms_lstadd_token(tokens, new_word))
