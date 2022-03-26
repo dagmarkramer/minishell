@@ -1,5 +1,7 @@
 #include "tokenizer.h"
 
+
+// add options for all redirection types not just heredoc
 void	tk_name_token(void *in)
 {
 	t_token		*token;

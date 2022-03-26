@@ -27,7 +27,7 @@ cleanft:
 				@${MAKE} clean -C Libft --no-print-directory
 
 fclean:		clean
-				${MAKE} fclean -C Libft --no-print-directory
+				@${MAKE} fclean -C Libft --no-print-directory
 				@${RM} ${NAME}
 				$(info ************  minishell Removed)
 

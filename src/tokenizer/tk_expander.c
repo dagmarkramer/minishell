@@ -3,14 +3,14 @@
 // working on this need to take care of env first!!
 
 // using a global for env is ok?
-char	*tk_replace_env(char *word, int dollar)
+char	*tk_replace_env(char *word, int dollar, t_list *env)
 {
 	char	*result;
 	char	*key;
 	char	*value;
 
 	key = ft_substr(word, dollar, ft_strclen(&word[dollar], ' '));
-	value = ms_getenv(key, /* list */);			// herer needs my own version of getenv, is not malloced
+	value = ms_getenv(key, env);
 
 
 	// malloc word-len plus env-len
@@ -20,7 +20,7 @@ char	*tk_replace_env(char *word, int dollar)
 	// strdup to get a clean string (maybe ot needed just small excess allocation)
 }
 
-char	*tk_expander(char *word)
+char	*tk_expander(char *word, t_list *env)
 {
 	int	state;
 	int	i;
@@ -35,7 +35,7 @@ char	*tk_expander(char *word)
 				state = 1;
 			if (word[i] == '$')
 			{
-				word = tk_repace_env(word, i);
+				word = tk_repace_env(word, i, env);
 				i--;
 			}	
 		}
@@ -47,10 +47,10 @@ char	*tk_expander(char *word)
 	return (word);
 }
 
-void	tk_expand_env(void *in)
+void	tk_expand_env(void *in, t_list *env) // env lst made in ms_init needed!
 {
 	t_list	*token;
 
 	token = (t_list *)in;
-	token->word = tk_expander(token->word);
+	token->word = tk_expander(token->word, env);
 }
