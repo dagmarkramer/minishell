@@ -18,7 +18,7 @@ char	*ft_strcdup(const char *s1, char c)
 	char	*copy;
 
 	i = 0;
-	copy = (char *)malloc(sizeof(*s1) * (ft_strclen(s1, c) + 1));
+	copy = (char *)malloc(sizeof(*s1) * (ft_strclen((char *)s1, c) + 1));
 	if (copy == NULL)
 	{
 		return (NULL);

@@ -58,7 +58,7 @@ void	ms_redirect(t_mini *mini, char *c)
 	
 }
 
-void	ms_next(t_mini *mini, char **newenv)
+void	ms_next(t_mini *mini)
 {
 
 	// function [] = {
@@ -155,7 +155,7 @@ int	main(int argc, char **argv, char **newenv)
 		{
 			add_history(mini.input);
 			ms_one_row(&mini);
-			// ms_next(&mini, newenv);
+			// ms_next(&mini);
 		}
 	}
 	ms_exit(&mini);
