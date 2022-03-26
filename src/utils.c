@@ -2,6 +2,36 @@
 
 // d
 
+int	ft_strclen(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	return (i);
+}
+
+char	*ft_strcdup(const char *s1, char c)
+{
+	int		i;
+	char	*copy;
+
+	i = 0;
+	copy = (char *)malloc(sizeof(*s1) * (ft_strclen(s1, c) + 1));
+	if (copy == NULL)
+	{
+		return (NULL);
+	}
+	while (s1[i] != '\0' && s1[i] != c)
+	{
+		copy[i] = s1[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
+}
+
 void	ft_execute(t_mini *mini, char **newenv)
 {
 	int		i;

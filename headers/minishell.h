@@ -18,6 +18,12 @@
 #  include <sys/stat.h>
 #  include "tokenizer.h"
 
+typedef	struct s_keyval
+{
+	char	*key;
+	char	*value;
+}				t_keyval;
+
 typedef struct s_mini
 {
 	char	**split;
@@ -29,7 +35,16 @@ typedef struct s_mini
 	char	**splitin;
 	char	**args;
 	char 	**environ;
+	t_list	*env;
 }				t_mini;
+
+// utils
+int		ft_strclen(char *str, char c);
+char	*ft_strcdup(const char *s1, char c);
+
+void	ms_del_keyval(void *in);
+t_list	*ms_init_env(char **environ);
+
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
 void	error_handling(char *errormessage);

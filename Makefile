@@ -2,7 +2,8 @@ NAME		= minishell
 OBJ			= main utils signals commands \
 				tokenizer/tk_tokenizer \
 				tokenizer/tk_utils \
-				tokenizer/tk_wordsplit
+				tokenizer/tk_wordsplit \
+				environment/ms_init_env
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f

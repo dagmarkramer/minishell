@@ -106,6 +106,7 @@ void	ms_one_row(t_mini *data)
 	t_list	*tokens;
 
 	tokens = 0;
+	// data->env = ms_init_env(data->environ);
 	tokens = ms_tokenizer(data->input);
 	if (tokens == NULL)
 		return ;
@@ -113,20 +114,38 @@ void	ms_one_row(t_mini *data)
 	
 }
 
-int	main(int argc, char **argv, char **newenv)
+int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 {
-	t_mini	mini;
-	extern char**environ;
+	// extern char**environ;
 
 	(void)argv;
-	mini.input = NULL;
-	mini.environ = newenv;
-	ms_signals();
+	mini->input = NULL;
+	mini->environ = newenv;
 	if (argc != 1)
 	{
 		printf("Error\nDo not use arguments, a prompt will pop up.\n");
 		return (1);
 	}
+	mini->env = ms_init_env(newenv);
+	if (mini->env == NULL)
+		return (1);
+	ms_signals();
+	return (0);
+}
+
+void	ms_exit(t_mini *mini)
+{
+	ft_lstclear(&mini->env, ms_del_keyval);
+	rl_clear_history();
+	printf("exit\n");
+}
+
+int	main(int argc, char **argv, char **newenv)
+{
+	t_mini	mini;
+
+	if (ms_init(&mini, argc, argv, newenv))
+		return (1);
 	while (1)
 	{
 		mini.input = readline("Oud Getrouwd Shell : ");
@@ -139,7 +158,6 @@ int	main(int argc, char **argv, char **newenv)
 			// ms_next(&mini, newenv);
 		}
 	}
-	rl_clear_history();
-	printf("exit\n");
+	ms_exit(&mini);
 	return (0);
 }
