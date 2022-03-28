@@ -12,6 +12,16 @@ int	ft_strclen(char *str, char c)
 	return (i);
 }
 
+int	ft_strslen(char *str, char *check)
+{
+	int i;
+
+	i = 0;
+	while (ft_strchr(check, str[i]))
+		i++;
+	return (i);
+}
+
 char	*ft_strcdup(const char *s1, char c)
 {
 	int		i;

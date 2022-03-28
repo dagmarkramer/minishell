@@ -9,15 +9,22 @@ char	*tk_replace_env(char *word, int dollar, t_list *env)
 	char	*key;
 	char	*value;
 
-	key = ft_substr(word, dollar, ft_strclen(&word[dollar], ' '));
+	key = ft_substr(word, dollar, ft_strslen(&word[dollar], " \t\n")); // more options than just space!!
 	value = ms_getenv(key, env);
 
-
-	// malloc word-len plus env-len
+	result = malloc(sizeof(char) * (ft_strlen(word) + ft_strlen(value)));
+	if (result == NULL)
+		// error!
+	
+							// malloc word-len plus env-len
 	// write first part to result
+	ft_memcpy(result, word, dollar);
 	// write env part to result
+	ft_memcpy(&result[dollar], value, ft_strlen(value));
 	// write second part to result ft_strclen(&word[dollar], ' ')
-	// strdup to get a clean string (maybe ot needed just small excess allocation)
+	ft_memcpy(&result[dollar + ft_strlen(value)], /* after the env var $env in word string */)
+	// // strdup to get a clean string (maybe ot needed just small excess allocation) // not needed
+	return (result);
 }
 
 char	*tk_expander(char *word, t_list *env)
