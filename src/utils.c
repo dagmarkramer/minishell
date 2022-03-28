@@ -2,6 +2,18 @@
 
 // d
 
+void	ft_strcpy(char *dst, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+}
+
 int	ft_strclen(char *str, char c)
 {
 	int i;
