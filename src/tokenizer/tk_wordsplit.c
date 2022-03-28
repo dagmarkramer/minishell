@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "tokenizer.h"
 
 int	ms_find_word_end(char *input, int i, char state)
 {
@@ -19,12 +19,8 @@ int	ms_find_word_end(char *input, int i, char state)
 	else
 	{
 		i = ms_find_offset(input, "\"\' \t\n|><", i);
-		if (input[i] == '\0')
+		if (input[i] == '\0' || ft_strchr(" \t\n|<>", input[i]))
 			return (i);
-		if (ft_strchr(" \t\n", input[i]))
-			return (i);
-		if (ft_strchr("|<>", input[i]))
-			return (i + 1);
 		return (ms_find_word_end(input, i + 1, input[i]));
 	}
 }
@@ -34,9 +30,11 @@ char	*ms_claim_word(char *input, int start, int size)
 	char	*new_word;
 
 	new_word = malloc(size + 1);
-	new_word[size] = 0;
 	if (new_word == NULL)
 		return (NULL);
+	new_word[size] = 0;
+	if (size == 0)
+		return (new_word);
 	return(ft_memcpy(new_word, &input[start], size));
 }
 
@@ -50,8 +48,12 @@ int	ms_add_tokens(t_list **tokens, char *input)
 	while (input[i])
 	{
 		start = ms_skip_chars(input, " \t\n", i);
-		i = start;
-		i = ms_find_word_end(input, i, 0);
+		if (ft_strchr("|<>", input[start]))		// added this for pipechars and redirections
+			i = start + 1;
+		else
+			i = ms_find_word_end(input, start, 0);
+		if (i == start)
+			return (0);
 		new_word = ms_claim_word(input, start, i - start);
 		if (new_word == NULL)
 			return (1);
@@ -60,17 +62,4 @@ int	ms_add_tokens(t_list **tokens, char *input)
 		start = i;
 	}
 	return (0);
-}
-
-t_list	*ms_tokenizer(char *input)
-{
-	t_list	*tokens;
-
-	tokens = 0;
-	if (ms_add_tokens(&tokens, input))
-	{
-		ft_lstclear(&tokens, ms_del_token);
-		// ms_new_prompt();
-	}
-	return (tokens);
 }

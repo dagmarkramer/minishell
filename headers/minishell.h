@@ -16,6 +16,13 @@
 #  include <signal.h>
 #  include <unistd.h>
 #  include <sys/stat.h>
+#  include "tokenizer.h"
+
+typedef	struct s_keyval
+{
+	char	*key;
+	char	*value;
+}				t_keyval;
 
 typedef struct s_mini
 {
@@ -28,14 +35,16 @@ typedef struct s_mini
 	char	**splitin;
 	char	**args;
 	char 	**environ;
+	t_list	*env;
 }				t_mini;
 
-typedef struct	s_token
-{
-	int		token_id;
-	char	form;
-	char	*word;
-}				t_token;
+// utils
+int		ft_strclen(char *str, char c);
+char	*ft_strcdup(const char *s1, char c);
+
+void	ms_del_keyval(void *in);
+t_list	*ms_init_env(char **environ);
+
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
 void	error_handling(char *errormessage);
@@ -48,12 +57,5 @@ void	ms_export(t_mini *mini);
 void	ms_unset(t_mini *mini);
 void	ms_env(t_mini *mini);
 void	free2darr(t_mini *mini);
-
-t_list	*ms_tokenizer(char *input);
-
-void	ms_del_token(void *incomming);
-int		ms_lstadd_token(t_list **tokens, char *word);
-int		ms_find_offset(char *in, char *delimiters, int offset);
-int		ms_skip_chars(char *in, char *to_skip, int offset);
 
 #endif

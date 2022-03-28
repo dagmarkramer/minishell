@@ -1,7 +1,9 @@
 NAME		= minishell
 OBJ			= main utils signals commands \
-				tokenizer/tokenizer \
-				tokenizer/utils
+				tokenizer/tk_tokenizer \
+				tokenizer/tk_utils \
+				tokenizer/tk_wordsplit \
+				environment/ms_init_env
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f
@@ -25,7 +27,7 @@ cleanft:
 				@${MAKE} clean -C Libft --no-print-directory
 
 fclean:		clean
-				${MAKE} fclean -C Libft --no-print-directory
+				@${MAKE} fclean -C Libft --no-print-directory
 				@${RM} ${NAME}
 				$(info ************  minishell Removed)
 
