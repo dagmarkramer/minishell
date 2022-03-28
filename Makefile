@@ -3,7 +3,8 @@ OBJ			= main utils signals commands \
 				tokenizer/tk_tokenizer \
 				tokenizer/tk_utils \
 				tokenizer/tk_wordsplit \
-				environment/ms_init_env
+				environment/ms_init_env \
+				environment/sort_alfa
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f

@@ -57,5 +57,6 @@ void	ms_export(t_mini *mini);
 void	ms_unset(t_mini *mini);
 void	ms_env(t_mini *mini);
 void	free2darr(t_mini *mini);
+void    sort_alfa(t_list *env);
 
 #endif

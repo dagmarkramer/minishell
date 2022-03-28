@@ -140,12 +140,25 @@ void	ms_exit(t_mini *mini)
 	printf("exit\n");
 }
 
+void    ft_printlst(t_list *lst)
+{
+    while (lst)
+    {
+        printf("data : %s\n", (char *)((t_keyval *)lst->content)->key);
+        lst = lst->next;
+    }
+}
+
 int	main(int argc, char **argv, char **newenv)
 {
 	t_mini	mini;
 
 	if (ms_init(&mini, argc, argv, newenv))
 		return (1);
+	ft_printlst(mini.env);
+	sort_alfa(mini.env);
+	ft_printlst(mini.env);
+	
 	while (1)
 	{
 		mini.input = readline("Oud Getrouwd Shell : ");

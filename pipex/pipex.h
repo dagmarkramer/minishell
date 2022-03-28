@@ -6,7 +6,7 @@
 /*   By: dkramer <dkramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 20:18:17 by dkramer       #+#    #+#                 */
-/*   Updated: 2022/02/05 13:51:22 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/03/28 14:00:59 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef struct s_pipex
 	char	*hs2;
 	char	*hs3;
 	char	**args;
-	int		fd;
+	int		fdin;
+	int		fdout;
 	char	*extraoptions;
 	pid_t	cpid;
 	int		malloc;
