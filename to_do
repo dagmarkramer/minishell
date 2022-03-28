@@ -104,3 +104,5 @@ gcc -lreadline -lncurses src/*.c Libft/*.c -I headers/ && ./a.out
 set: see local variables
 
 rm -fsanitize=addres van makefile
+
+pipefd3 = pipefd2
