@@ -6,7 +6,7 @@
 /*   By: dkramer <dkramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 19:31:23 by dkramer       #+#    #+#                 */
-/*   Updated: 2022/03/09 13:16:04 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/03/28 12:09:03 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	main(int argc, char **argv, char **newenv)
 		if (pipe(pipefd[i]) == -1)
 			error_handling("pipe", pipex);
 		pipex->cpid = fork();
-		if (pipex->cpid == -1)
+		if (pipex->cpid == -1)0
 			error_handling("fork", pipex);
 		if (pipex->cpid == 0)
 			childprocess(pipefd[i], argv, newenv, pipex, c);
