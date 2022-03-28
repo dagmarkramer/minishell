@@ -39,11 +39,14 @@ typedef struct s_mini
 }				t_mini;
 
 // utils
+void	ft_strcpy(char *dst, char *src);
 int		ft_strclen(char *str, char c);
+int		ft_strslen(char *str, char *check);
 char	*ft_strcdup(const char *s1, char c);
 
 void	ms_del_keyval(void *in);
 t_list	*ms_init_env(char **environ);
+char	*ms_getenv(char *key, t_list *envlst);
 
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);

@@ -25,4 +25,8 @@ int		ms_find_offset(char *in, char *delimiters, int offset);
 int		ms_add_tokens(t_list **tokens, char *input);
 int		ms_skip_chars(char *in, char *to_skip, int offset);
 
+void	tk_expand_env(void *in, t_list *env);
+
+void	tk_name_tokens(t_list *tokens);
+
 #endif

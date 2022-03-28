@@ -2,12 +2,34 @@
 
 // d
 
+void	ft_strcpy(char *dst, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+}
+
 int	ft_strclen(char *str, char c)
 {
 	int i;
 
 	i = 0;
 	while (str[i] && str[i] != c)
+		i++;
+	return (i);
+}
+
+int	ft_strslen(char *str, char *check)
+{
+	int i;
+
+	i = 0;
+	while (ft_strchr(check, str[i]))
 		i++;
 	return (i);
 }
