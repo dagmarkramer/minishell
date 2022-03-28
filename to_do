@@ -106,3 +106,13 @@ set: see local variables
 rm -fsanitize=addres van makefile
 
 pipefd3 = pipefd2
+
+
+
+to do :		make a function to go over tokenlst and find double redirections for append mode and heredoc and add them together
+
+move testing to next sprint
+
+make export and env?
+
+move on and complete lexer

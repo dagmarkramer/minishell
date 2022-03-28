@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-t_list	*ms_keyval_lst_add(char *key, char *value)
+t_list	*ev_keyval_lst_add(char *key, char *value)
 {
 	t_list		*new;
 	t_keyval	*keyval;
@@ -27,7 +27,7 @@ t_list	*ms_keyval_lst_add(char *key, char *value)
 	return (new);
 }
 
-t_list	*ms_single_env_to_lst(char *env)
+t_list	*ev_single_env_to_lst(char *env)
 {
 	char *key;
 	char *value;
@@ -45,10 +45,10 @@ t_list	*ms_single_env_to_lst(char *env)
 		free(key);
 		return (NULL);
 	}
-	return (ms_keyval_lst_add(key, value));
+	return (ev_keyval_lst_add(key, value));
 }
 
-void	ms_del_keyval(void *in)
+void	ev_del_keyval(void *in)
 {
 	t_keyval	*keyval;
 
@@ -58,7 +58,7 @@ void	ms_del_keyval(void *in)
 	free(keyval);
 }
 
-t_list	*ms_init_env(char **environ)
+t_list	*ev_init_env(char **environ)
 {
 	int		i;
 	t_list	*new;
@@ -68,10 +68,10 @@ t_list	*ms_init_env(char **environ)
 	new = NULL;
 	while (environ[i])
 	{
-		tmp = ms_single_env_to_lst(environ[i]);
+		tmp = ev_single_env_to_lst(environ[i]);
 		if (tmp == NULL)
 		{
-			ft_lstclear(&new, ms_del_keyval);
+			ft_lstclear(&new, ev_del_keyval);
 			return (NULL);
 		}
 		ft_lstadd_back(&new, tmp);

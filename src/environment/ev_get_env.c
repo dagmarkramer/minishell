@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char	*ms_getenv(char *key, t_list *envlst)
+char	*ev_getenv(char *key, t_list *envlst)
 {
 	t_keyval	*keyval;
 

@@ -17,6 +17,7 @@
 #  include <unistd.h>
 #  include <sys/stat.h>
 #  include "tokenizer.h"
+#  include "ms_environ.h"
 
 typedef	struct s_keyval
 {
@@ -44,10 +45,6 @@ int		ft_strclen(char *str, char c);
 int		ft_strslen(char *str, char *check);
 char	*ft_strcdup(const char *s1, char c);
 
-void	ms_del_keyval(void *in);
-t_list	*ms_init_env(char **environ);
-char	*ms_getenv(char *key, t_list *envlst);
-
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
 void	error_handling(char *errormessage);
@@ -60,6 +57,5 @@ void	ms_export(t_mini *mini);
 void	ms_unset(t_mini *mini);
 void	ms_env(t_mini *mini);
 void	free2darr(t_mini *mini);
-void    sort_alfa(t_list *env);
 
 #endif

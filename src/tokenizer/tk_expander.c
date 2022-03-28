@@ -11,7 +11,7 @@ char	*tk_replace_env(char *word, int dollar, t_list *env)
 	char	*value;
 
 	key = ft_substr(word, dollar, ft_strslen(&word[dollar], " \t\n")); // more options than just space!!
-	value = ms_getenv(key, env);
+	value = ev_getenv(key, env);
 
 	// malloc word-len plus env-len
 	result = malloc(sizeof(char) * (ft_strlen(word) + ft_strlen(value)));

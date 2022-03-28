@@ -1,14 +1,14 @@
 #include "minishell.h"
 #include "libft.h"
 
-void    sort_alfa(t_list *env)
+void    ev_sort_alfa(t_list *env)
 {
     t_list  *lst1;
     t_list  *lst2;
     t_list  *temp;
 
     lst1 = env;
-    temp = 0;
+    temp = NULL;
     while (lst1)
     {
         lst2 = lst1->next;

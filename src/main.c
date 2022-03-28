@@ -126,7 +126,7 @@ int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 		printf("Error\nDo not use arguments, a prompt will pop up.\n");
 		return (1);
 	}
-	mini->env = ms_init_env(newenv);
+	mini->env = ev_init_env(newenv);
 	if (mini->env == NULL)
 		return (1);
 	ms_signals();
@@ -135,7 +135,7 @@ int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 
 void	ms_exit(t_mini *mini)
 {
-	ft_lstclear(&mini->env, ms_del_keyval);
+	ft_lstclear(&mini->env, ev_del_keyval);
 	rl_clear_history();
 	printf("exit\n");
 }
@@ -156,7 +156,7 @@ int	main(int argc, char **argv, char **newenv)
 	if (ms_init(&mini, argc, argv, newenv))
 		return (1);
 	ft_printlst(mini.env);
-	sort_alfa(mini.env);
+	ev_sort_alfa(mini.env);
 	ft_printlst(mini.env);
 	
 	while (1)
