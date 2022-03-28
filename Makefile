@@ -3,8 +3,7 @@ OBJ			= main utils signals commands \
 				tokenizer/tk_tokenizer \
 				tokenizer/tk_utils \
 				tokenizer/tk_wordsplit \
-				environment/ms_init_env \
-				environment/sort_alfa
+				environment/sort_alfa \
 				tokenizer/tk_name_tokens \
 				tokenizer/tk_expander \
 				environment/ms_init_env \
