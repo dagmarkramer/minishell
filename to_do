@@ -113,6 +113,6 @@ to do :		make a function to go over tokenlst and find double redirections for ap
 
 move testing to next sprint
 
-make export and env?
+make export and env unset
 
 move on and complete lexer

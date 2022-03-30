@@ -84,49 +84,35 @@ void	ms_pwd(t_mini *mini)
 
 void	ms_export(t_mini *mini)
 {
-	(void)mini;
+	char **split;
+	char **exportvar;
 
-	free2darr(mini);
-	// static char termbuf[50];
-	// char *term;
-	// extern char *tgetstr(), *getenv();
-	// char entry[1024];
-
-	// term = getenv("PATH");
-	// printf("%s\n", term);
-	// // term = NULL;
-	// if (tgetent(termbuf, term) != 1)
-	// 	return;
-	// char *loc = termbuf;
-	// printf("%s\n", tgetstr("a", &loc));
-	// // int fd = open("/Users/dkramer/MINISHELLfolder/minishell", O_RDWR | O_NOCTTY | O_NDELAY);
-	// // // (void)mini;
-	// // // printf("%s\n", getenv(NULL));
-	// // struct termios  config;
-	// // if(tcgetattr(fd, &config) < 0) 
-	// // 	return ;
-	// // config.c_lflag |= (unsigned long)mini->splitin[1];
-	// // if(tcsetattr(fd, TCSAFLUSH, &config) < 0)
-	// // 	return ;
+	split = ft_split(mini->input, ' ');
+	ev_sort_alfa(mini->env);
+	if (split[1])
+	{
+		exportvar = ft_split(split[1], '=');
+		ev_add_env(exportvar[0], exportvar[1], &mini->env);
+	}
+	else
+		ft_printlst(mini->env, "export");
 }
 
 void	ms_unset(t_mini *mini)
 {
-	(void)mini;
+	char **split;
+	char **exportvar;
 
-	free2darr(mini);
+	split = ft_split(mini->input, ' ');
+	if (split[1])
+	{
+		exportvar = ft_split(split[1], '=');
+		ev_rem_env(exportvar[0], &mini->env);
+	}
 }
 
 void	ms_env(t_mini *mini)
 {
-	int	i;
-
-	i = 0;
-	while (mini->environ[i])
-	{
-		printf("%s\n", mini->environ[i]);
-		i++;
-	}
-	free2darr(mini);
+	ft_printlst(mini->env, "env");
 }
 

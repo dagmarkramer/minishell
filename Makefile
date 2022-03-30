@@ -14,7 +14,11 @@ CC			= gcc
 RM			= rm -f
 HEADER		= -I headers/ 
 RL_I		= -I $$HOME/.brew/opt/readline/include
+<<<<<<< HEAD
 CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
+=======
+CFLAGS		= -Wall -Wextra -g -fsanitize=address#-Werror
+>>>>>>> 7c634f456e4e39b32832c566f461074a67c8a1fa
 LFLAGS		= -lreadline -lncurses -L $$HOME/.brew/opt/readline/lib
 LIBFT		= Libft/libft.a
 
