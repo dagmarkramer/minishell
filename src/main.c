@@ -98,7 +98,7 @@ void	ms_print_word(void *ptr)
 	t_token	*token;
 
 	token = (t_token *)ptr;
-	printf("%s\n", token->word);
+	// printf("%s\n", token->word);
 }
 
 void	ms_one_row(t_mini *data)
@@ -140,11 +140,24 @@ void	ms_exit(t_mini *mini)
 	printf("exit\n");
 }
 
-void    ft_printlst(t_list *lst)
+void    ft_printlst(t_list *lst, char *env)
 {
     while (lst)
     {
-        printf("data : %s\n", (char *)((t_keyval *)lst->content)->key);
+		if (!ft_strncmp("export", env, ft_strlen("export")))
+		{
+			printf("%s", "declare -x ");
+        	printf("%s", (char *)((t_keyval *)lst->content)->key);
+			printf("%s", "=\"");
+        	printf("%s", (char *)((t_keyval *)lst->content)->value);
+			printf("%s\n", "\"");
+		}
+		if (!ft_strncmp("env", env, ft_strlen("env")))
+		{
+			printf("%s", (char *)((t_keyval *)lst->content)->key);
+			printf("%s", "=");
+        	printf("%s\n", (char *)((t_keyval *)lst->content)->value);
+		}
         lst = lst->next;
     }
 }
@@ -155,9 +168,10 @@ int	main(int argc, char **argv, char **newenv)
 
 	if (ms_init(&mini, argc, argv, newenv))
 		return (1);
-	ft_printlst(mini.env);
-	ev_sort_alfa(mini.env);
-	ft_printlst(mini.env);
+	
+	// ft_printlst(mini.env);
+	// ev_sort_alfa(mini.env);
+	// ft_printlst(mini.env);
 	
 	while (1)
 	{
@@ -168,6 +182,11 @@ int	main(int argc, char **argv, char **newenv)
 		{
 			add_history(mini.input);
 			ms_one_row(&mini);
+			// mini.splitin = ms_tokenizer(mini.input);
+			if (!ft_strncmp(mini.input, "env", ft_strlen("env")))
+				ms_env(&mini);
+			if (!ft_strncmp(mini.input, "export", ft_strlen("export")))
+				ms_export(&mini);
 			// ms_next(&mini);
 		}
 	}
