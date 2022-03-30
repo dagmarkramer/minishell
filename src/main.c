@@ -107,11 +107,10 @@ void	ms_one_row(t_mini *data)
 
 	tokens = 0;
 	// data->env = ms_init_env(data->environ);
-	tokens = ms_tokenizer(data->input);
+	tokens = ms_tokenizer(data->input, data->env);
 	if (tokens == NULL)
 		return ;
 	ft_lstiter(tokens, ms_print_word);
-	
 }
 
 int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
