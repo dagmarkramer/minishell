@@ -8,7 +8,9 @@ typedef enum 	e_token_id
 	Pipe,
 	Str,
 	Heredoc,
-	Redirection
+	Read,
+	Write,
+	Append
 }				t_token_id;
 
 typedef struct	s_token

@@ -62,7 +62,7 @@ char	*tk_expander(char *word, t_list *env)
 	return (word);
 }
 
-void	tk_expand_env(void *in, t_list *env) // env lst made in ms_init needed!
+void	tk_expand_env(void *in, t_list *env) // env lst made in ms_init needed! maybe put both pointers in a struct together
 {
 	t_token	*token;
 
