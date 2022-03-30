@@ -187,6 +187,8 @@ int	main(int argc, char **argv, char **newenv)
 				ms_env(&mini);
 			if (!ft_strncmp(mini.input, "export", ft_strlen("export")))
 				ms_export(&mini);
+			if (!ft_strncmp(mini.input, "unset", ft_strlen("unset")))
+				ms_unset(&mini);
 			// ms_next(&mini);
 		}
 	}

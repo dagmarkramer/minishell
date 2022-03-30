@@ -100,11 +100,15 @@ void	ms_export(t_mini *mini)
 
 void	ms_unset(t_mini *mini)
 {
-	(void)mini;
+	char **split;
+	char **exportvar;
 
-	// free2darr(mini);
-	ev_del_keyval(void *in)
-
+	split = ft_split(mini->input, ' ');
+	if (split[1])
+	{
+		exportvar = ft_split(split[1], '=');
+		ev_rem_env(exportvar[0], &mini->env);
+	}
 }
 
 void	ms_env(t_mini *mini)
