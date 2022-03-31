@@ -41,7 +41,7 @@ void	ms_next(t_mini *mini)
 	// 	ms_redirect(mini, ">>");
 }
 
-void	ms_print_word(void *ptr)	// mag blijven
+void	ms_print_word(void *ptr)
 {
 	t_token	*token;
 
@@ -49,7 +49,7 @@ void	ms_print_word(void *ptr)	// mag blijven
 	printf("%s\n", token->word);
 }
 
-void	ms_one_row(t_mini *data)	// mag blijven
+void	ms_one_row(t_mini *data)
 {
 	t_list	*tokens;
 
@@ -59,7 +59,7 @@ void	ms_one_row(t_mini *data)	// mag blijven
 	ft_lstiter(tokens, ms_print_word);
 }
 
-int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)	// mag blijven
+int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 {
 	// extern char**environ;
 
@@ -78,14 +78,14 @@ int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)	// mag blijven
 	return (0);
 }
 
-void	ms_exit(t_mini *mini)	// mag blijven
+void	ms_exit(t_mini *mini)
 {
 	ft_lstclear(&mini->env, ev_del_keyval);
 	rl_clear_history();
 	printf("exit\n");
 }
 
-int	main(int argc, char **argv, char **newenv)	// mag blijven
+int	main(int argc, char **argv, char **newenv)
 {
 	t_mini	mini;
 
