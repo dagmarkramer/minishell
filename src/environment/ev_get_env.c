@@ -7,7 +7,7 @@ char	*ev_getenv(char *key, t_list *envlst)
 	while (envlst != NULL)
 	{
 		keyval = (t_keyval *)envlst->content;
-		if (ft_strncmp(key, keyval->key, ft_strlen(key)) == 0)
+		if (ft_strncmp(key, keyval->key, 1 + ft_strlen(key)) == 0)
 			return (keyval->value);
 		envlst = envlst->next;
 	}

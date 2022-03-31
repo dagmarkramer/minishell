@@ -58,7 +58,7 @@ void	ms_redirect(t_mini *mini, char *c)
 	
 }
 
-void	ms_next(t_mini *mini)
+void	ms_next(t_mini *mini)	// mag blijven
 {
 
 	// function [] = {
@@ -93,27 +93,25 @@ void	ms_next(t_mini *mini)
 			ms_redirect(mini, ">>");
 }
 
-void	ms_print_word(void *ptr)
+void	ms_print_word(void *ptr)	// mag blijven
 {
 	t_token	*token;
 
 	token = (t_token *)ptr;
-	// printf("%s\n", token->word);
+	printf("%s\n", token->word);
 }
 
-void	ms_one_row(t_mini *data)
+void	ms_one_row(t_mini *data)	// mag blijven
 {
 	t_list	*tokens;
 
-	tokens = 0;
-	// data->env = ms_init_env(data->environ);
 	tokens = ms_tokenizer(data->input, data->env);
 	if (tokens == NULL)
 		return ;
 	ft_lstiter(tokens, ms_print_word);
 }
 
-int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
+int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)	// mag blijven
 {
 	// extern char**environ;
 
@@ -132,36 +130,14 @@ int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 	return (0);
 }
 
-void	ms_exit(t_mini *mini)
+void	ms_exit(t_mini *mini)	// mag blijven
 {
 	ft_lstclear(&mini->env, ev_del_keyval);
 	rl_clear_history();
 	printf("exit\n");
 }
 
-void    ft_printlst(t_list *lst, char *env)
-{
-    while (lst)
-    {
-		if (!ft_strncmp("export", env, ft_strlen("export")))
-		{
-			printf("%s", "declare -x ");
-        	printf("%s", (char *)((t_keyval *)lst->content)->key);
-			printf("%s", "=\"");
-        	printf("%s", (char *)((t_keyval *)lst->content)->value);
-			printf("%s\n", "\"");
-		}
-		if (!ft_strncmp("env", env, ft_strlen("env")))
-		{
-			printf("%s", (char *)((t_keyval *)lst->content)->key);
-			printf("%s", "=");
-        	printf("%s\n", (char *)((t_keyval *)lst->content)->value);
-		}
-        lst = lst->next;
-    }
-}
-
-int	main(int argc, char **argv, char **newenv)
+int	main(int argc, char **argv, char **newenv)	// mag blijven
 {
 	t_mini	mini;
 
@@ -182,12 +158,12 @@ int	main(int argc, char **argv, char **newenv)
 			add_history(mini.input);
 			ms_one_row(&mini);
 			// mini.splitin = ms_tokenizer(mini.input);
-			if (!ft_strncmp(mini.input, "env", ft_strlen("env")))
-				ms_env(&mini);
-			if (!ft_strncmp(mini.input, "export", ft_strlen("export")))
-				ms_export(&mini);
-			if (!ft_strncmp(mini.input, "unset", ft_strlen("unset")))
-				ms_unset(&mini);
+			// if (!ft_strncmp(mini.input, "env", ft_strlen("env"))) // plus 1? for null terminator '\0'
+			// 	ms_env(&mini);
+			// if (!ft_strncmp(mini.input, "export", ft_strlen("export")))
+			// 	ms_export(&mini);
+			// if (!ft_strncmp(mini.input, "unset", ft_strlen("unset")))
+				// ms_unset(&mini);
 			// ms_next(&mini);
 		}
 	}
