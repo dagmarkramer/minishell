@@ -18,79 +18,27 @@ void	free2darr(t_mini *mini)
 	free (mini->splitin);
 }
 
-void	ms_redirect(t_mini *mini, char *c)
+void	ms_next(t_mini *mini)
 {
-	int	fd;
-	// struct stat *buf;
-	// int	ret;
-	// int	i;
-	// char	*line;
-
-	(void)mini;
-	if (!ft_strncmp(">>", c, ft_strlen("c")))
-	{
-		fd = open("outfile", O_WRONLY | O_APPEND);
-		if (fd == -1)
-			error_handling("outfile");
-		if (dup2(fd, 0) == -1)
-			error_handling("dup2() error");
-	}
-	else if (!ft_strncmp("<", c, ft_strlen("c")))
-	{
-		printf("hi");
-		fd = open("infile", O_RDONLY);
-		if (fd == -1)
-			error_handling("infile");
-		if (dup2(fd, 1) == -1)
-			error_handling("dup2() error");
-	}
-	else if (!ft_strncmp(">", c, ft_strlen("c")))
-	{
-		printf("hi2");
-		fd = open("outfile",  O_WRONLY | O_CREAT, 0666);
-		if (fd == -1)
-			error_handling("outfile");
-		if (dup2(fd, 0) == -1)
-			error_handling("dup2() error");
-	}
-
-	free2darr(mini);
-	
-}
-
-void	ms_next(t_mini *mini)	// mag blijven
-{
-
-	// function [] = {
-	// 	"echo" = &ms_ech(mini);
-	// 	"pwd" = dhhd;
-	// 	int i;
-	// 	while()
-	// }
-		// mini->splitin = ms_tokenizer(mini->input);
-		if (!ft_strncmp(mini->splitin[0], "echo", ft_strlen(mini->splitin[0])))
-		{
-			// ms_echo(mini, newenv);
-			return ;
-		}
-		// if (!ft_strncmp(mini->splitin[0], "pwd", ft_strlen(mini->splitin[0])))
-		// 	ms_pwd(mini);
-		// if (!ft_strncmp(mini->splitin[0], "cd", ft_strlen(mini->splitin[0])))
-		// 	ms_cd(mini);
-		// if (!ft_strncmp(mini->splitin[0], "export", ft_strlen(mini->splitin[0])))
-		// 	ms_export(mini);
-		// if (!ft_strncmp(mini->splitin[0], "unset", ft_strlen(mini->splitin[0])))
-		// 	ms_unset(mini);
-		// if (!ft_strncmp(mini->splitin[0], "env", ft_strlen(mini->splitin[0])))
-		// 	ms_env(mini);
-		// if (!ft_strncmp(mini->splitin[0], "exit", ft_strlen(mini->splitin[0])))
-		// 	ms_exit(mini);
-		// if (!ft_strncmp(mini->splitin[0], "<", ft_strlen(mini->splitin[0])))
-		// 	ms_redirect(mini, "<");
-		// if (!ft_strncmp(mini->splitin[0], ">", ft_strlen(mini->splitin[0])))
-		// 	ms_redirect(mini, ">");
-		if (!ft_strncmp(mini->splitin[0], ">>", ft_strlen(mini->splitin[0])))
-			ms_redirect(mini, ">>");
+	//return error check
+	if (!ft_strncmp(mini->input, "env", ft_strlen("env"))) // plus 1? for null terminator '\0'
+		ms_env(mini);
+	if (!ft_strncmp(mini->input, "export", ft_strlen("export")))
+		ms_export(mini);
+	if (!ft_strncmp(mini->input, "unset", ft_strlen("unset")))
+		ms_unset(mini);
+	if (!ft_strncmp(mini->input, "echo", ft_strlen("echo")))
+		ms_echo(mini);
+	if (!ft_strncmp(mini->input, "pwd", ft_strlen("pwd")))
+		ms_pwd(mini);
+	if (!ft_strncmp(mini->input, "cd", ft_strlen("cd")))
+		ms_cd(mini);
+	// if (!ft_strncmp(mini->splitin[0], "<", ft_strlen(mini->splitin[0])))
+	// 	ms_redirect(mini, "<");
+	// if (!ft_strncmp(mini->splitin[0], ">", ft_strlen(mini->splitin[0])))
+	// 	ms_redirect(mini, ">");
+	// if (!ft_strncmp(mini->splitin[0], ">>", ft_strlen(mini->splitin[0])))
+	// 	ms_redirect(mini, ">>");
 }
 
 void	ms_print_word(void *ptr)	// mag blijven
@@ -143,11 +91,6 @@ int	main(int argc, char **argv, char **newenv)	// mag blijven
 
 	if (ms_init(&mini, argc, argv, newenv))
 		return (1);
-	
-	// ft_printlst(mini.env);
-	// ev_sort_alfa(mini.env);
-	// ft_printlst(mini.env);
-	
 	while (1)
 	{
 		mini.input = readline("Oud Getrouwd Shell : ");
@@ -157,14 +100,7 @@ int	main(int argc, char **argv, char **newenv)	// mag blijven
 		{
 			add_history(mini.input);
 			ms_one_row(&mini);
-			// mini.splitin = ms_tokenizer(mini.input);
-			// if (!ft_strncmp(mini.input, "env", ft_strlen("env"))) // plus 1? for null terminator '\0'
-			// 	ms_env(&mini);
-			// if (!ft_strncmp(mini.input, "export", ft_strlen("export")))
-			// 	ms_export(&mini);
-			// if (!ft_strncmp(mini.input, "unset", ft_strlen("unset")))
-				// ms_unset(&mini);
-			// ms_next(&mini);
+			ms_next(&mini);
 		}
 	}
 	ms_exit(&mini);
