@@ -31,5 +31,6 @@ void	tk_expand_env(void *in, t_list *env);
 void	tk_expand_all(t_list *tokens, t_list *env);
 
 void	tk_name_tokens(t_list *tokens);
+void	tk_remove_quotes(void *token);
 
 #endif

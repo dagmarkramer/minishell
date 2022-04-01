@@ -12,6 +12,7 @@ t_list	*ms_tokenizer(char *input, t_list *env)
 	}
 	tk_name_tokens(tokens);
 	tk_expand_all(tokens, env);
+	ft_lstiter(tokens, tk_remove_quotes);
 	//lexer?
 	return (tokens);
 }

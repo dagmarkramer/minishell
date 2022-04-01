@@ -5,6 +5,7 @@ OBJ			= main utils signals commands \
 				tokenizer/tk_wordsplit \
 				tokenizer/tk_name_tokens \
 				tokenizer/tk_expander \
+				tokenizer/tk_remove_quotes \
 				environment/ev_sort_alfa \
 				environment/ev_init_env \
 				environment/ev_add_env \

@@ -5,6 +5,11 @@ void	error_handling(char *errormessage)
 	perror(errormessage);
 }
 
+void	perror_handling(char *err_msg)
+{
+	error_handling(err_msg);
+}
+
 void	free2darr(t_mini *mini)
 {
 	int	i;
@@ -61,8 +66,6 @@ void	ms_one_row(t_mini *data)
 
 int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 {
-	// extern char**environ;
-
 	(void)argv;
 	mini->input = NULL;
 	mini->environ = newenv;
