@@ -61,4 +61,6 @@ void	free2darr(t_mini *mini);
 void    ft_printlst(t_list *lst, char *env);
 int		ev_rem_env(char *key, t_list **envlst);
 
+void	ms_line_executer(t_mini *data);
+
 #endif

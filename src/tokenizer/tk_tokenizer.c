@@ -1,7 +1,7 @@
 /*
- * This function is used to call all the subroutines needed
- * to tokenize and prepare the tokenized words further before executing.
- * 
+ *	This function turns the input string into tokens
+ *	it uses the same rules as bash for splitting up words but
+ *	changes closes quotes instead of giving a newline when quotes are unclused at the end
  */
 
 
@@ -20,8 +20,5 @@ t_list	*ms_tokenizer(char *input, t_list *env)
 		return (NULL);
 	}
 	tk_name_tokens(tokens);
-	// tk_expand_all(tokens, env);
-	ft_lstiter(tokens, tk_remove_quotes);
-	//lexer?		is this a correct combo of tokens or do I give an error?
 	return (tokens);
 }

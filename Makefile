@@ -1,5 +1,6 @@
 NAME		= minishell
 OBJ			= main utils signals commands \
+ms_line_executer \
 				tokenizer/tk_tokenizer \
 				tokenizer/tk_utils \
 				tokenizer/tk_wordsplit \
