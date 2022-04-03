@@ -58,6 +58,7 @@ void	ms_one_row(t_mini *data)
 {
 	t_list	*tokens;
 
+	data->input = tk_expander(data->input, data->env);
 	tokens = ms_tokenizer(data->input, data->env);
 	if (tokens == NULL)
 		return ;

@@ -1,3 +1,9 @@
+/*
+ * Removes the quotes from a tokenized word.
+ * This function can be called in lstiter for a linked list
+ * with t_token as value for the content pointer.
+ */
+
 #include "minishell.h"
 
 void	tk_remove_quotes(void *token)
