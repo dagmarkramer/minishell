@@ -1,6 +1,10 @@
-#include "../headers/minishell.h"
+#include "minishell.h"
 
-// d
+void	ft_malloc_fail_check(void *status)
+{
+	if (status == NULL)
+		exit(4);
+}
 
 
 void    ft_printlst(t_list *lst, char *env)
