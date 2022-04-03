@@ -45,14 +45,30 @@ int		ev_rem_env(char *key, t_list **env)
 	{
 		if (!ft_strncmp((char *)((t_keyval *)(*env)->content)->key, key, ft_strlen((char *)((t_keyval *)(*env)->content)->key)))
 		{
-			tmp = (*env)->next;
-			ev_del_keyval((*env)->content);
-			free(*env);
-			*env = tmp;
+			tmp = *env;
+			*env = (*env)->next;
+			ev_del_keyval(tmp->content);
+			free(tmp);
+			return (1);
 		}
 		env = &((*env)->next);
-		*env = (*env)->next;
+		// *env = (*env)->next;
 	}
-
 	return (0);
 }
+
+	// t_list	*tmp;
+	// while (env && *env)
+	// {
+	// 	if (!ft_strncmp((char *)((t_keyval *)(*env)->content)->key, key, ft_strlen((char *)((t_keyval *)(*env)->content)->key)))
+	// 	{
+	// 		tmp = *env
+	// 		*env = (*env)->next;
+	// 		free(tmp);
+	// 		ev_del_keyval(tmp->content);
+	// 		return (1);
+	// 	}
+	// 	env = &((*env)->next);
+	// 	// *env = (*env)->next;
+	// }
+	// return (0);
