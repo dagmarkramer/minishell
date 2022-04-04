@@ -16,7 +16,7 @@
  *	error message is written inside this function
  */
 
-// na > (of andere redirection) altijd een string
+// na > (of andere redirection) altijd een string		>> < << heredoc
 // na | altijd niet een pipe
 // na string mag alles
 // anders error
@@ -31,6 +31,7 @@ int	lx_error(char *token)
 	write(2, "syntax error near unexpected token `", ft_strlen("syntax error near unexpected token `"));
 	write(2, token, ft_strlen(token));
 	write(2, "'\n", 2);
+<<<<<<< HEAD
 	return (0);
 }
 
@@ -70,6 +71,9 @@ int	ms_parser(t_list **tokens)
 	// parser_init(&pipes);
 	// ft_printpipes(pipes);
 	return (0);
+=======
+	return (7);
+>>>>>>> e85e887a1108ad2053225f8e199952fad00ad542
 }
 
 int	ms_lexer(t_list *tokens)

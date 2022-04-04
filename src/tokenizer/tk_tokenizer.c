@@ -19,6 +19,6 @@ t_list	*ms_tokenizer(char *input, t_list *env)
 		ft_lstclear(&tokens, ms_del_token);
 		return (NULL);
 	}
-	tk_name_tokens(tokens);
+	ft_lstiter(tokens, tk_name_token);
 	return (tokens);
 }

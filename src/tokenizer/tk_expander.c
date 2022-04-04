@@ -1,9 +1,6 @@
 #include "tokenizer.h"
 #include "minishell.h"
 
-// working on this need to take care of env first!!
-
-// using a global for env is ok?
 char	*tk_replace_env(char *word, int dollar, t_list *env)
 {
 	char	*result;
@@ -42,8 +39,11 @@ char	*tk_expander(char *word, t_list *env)
 				state = 1;
 			if (word[i] == '$')
 			{
-				word = tk_replace_env(word, i, env);
-				i--;
+				if (!(i - 3 >= 0 && word[i - 3] == '<' && word[i - 2] == '<'))
+				{
+					word = tk_replace_env(word, i, env);
+					i--;
+				}
 			}	
 		}
 		else
