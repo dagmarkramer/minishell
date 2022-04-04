@@ -19,5 +19,7 @@ void	ms_line_executer(t_mini *data)
 	// tk_expand_all(tokens, data->env);
 	ft_lstiter(tokens, tk_remove_quotes);
 	ft_lstiter(tokens, ms_print_word);
+	ms_lexer(tokens);
+	ms_parser(&tokens);
 	// go to execution
 }

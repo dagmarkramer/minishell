@@ -6,7 +6,7 @@
 /*   By: dkramer <dkramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 19:31:23 by dkramer       #+#    #+#                 */
-/*   Updated: 2022/04/04 12:03:02 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/04/04 14:56:04 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "pipex.h"
 #include <fcntl.h>
 #include <sys/errno.h>
+#include "minishell.h"
 
 typedef struct s_list{
 	char **arg;
@@ -167,3 +168,44 @@ int	main(int argc, char **argv, char **newenv)
 
 	return (0);
 }
+
+
+
+//define input & output (in this sequence)
+//output = stdout
+//pipe before: stdin = pipefd; pipe after: stdout = pipefd;
+//< input in loop, > output in loop, >> output in loop append, << input in loop (cat <<eof1 <<stop <<stoppp have to close eof1 and stop to start writing in and close stoppp)
+// command as input
+
+// overwrite stdin / stdout:
+// pipe before:
+// stdin = pipefd;
+
+
+
+
+// typedef struct s_list{
+// 	char **arg;
+// 	int pipes[2];
+// 	int type;
+// } t_list;
+
+typedef struct	s_pipe
+{
+	bool	pipe_before;
+	bool	pipe_after;
+	int		input_fd;
+	int		output_fd;
+	// char	*input_fn;
+	// char	*output_fn;
+	// char	*append_fn;
+	// char	*heredoc_fn;
+	char	**tokens;
+	int		pipe_fd[2];
+}				t_pipe;
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}				t_list;
