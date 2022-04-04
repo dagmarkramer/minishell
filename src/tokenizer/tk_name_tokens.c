@@ -9,6 +9,10 @@ void	tk_name_token(void *in)
 	word = token->word;
 	if (word[0] == '|')
 		token->id = Pipe;
+	else if (word[0] == '<' && word[1] == '<')
+		token->id = Heredoc;
+	else if (word[0] == '>' && word[1] == '>')
+		token->id = Append;
 	else if (word[0] == '<')
 		token->id = Read;
 	else if (word[0] == '>')
@@ -47,5 +51,5 @@ void	tk_find_appends_and_heredoc(t_list *tokens)
 void	tk_name_tokens(t_list *tokens)
 {
 	ft_lstiter(tokens, tk_name_token);
-	tk_find_appends_and_heredoc(tokens);
+	// tk_find_appends_and_heredoc(tokens);
 }

@@ -1,3 +1,5 @@
+#include "tokenizer.h"
+
 /*
  *	Change a part of a list into an **array.
  *	Good on paper but not what we need for minishell.
