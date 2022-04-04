@@ -20,36 +20,3 @@ void	tk_name_token(void *in)
 	else
 		token->id = Str;
 }
-
-void	tk_find_appends_and_heredoc(t_list *tokens)
-{
-	t_list	*tmp;
-	while (tokens != NULL && tokens->next != NULL)
-	{
-		if (((t_token *)tokens->content)->word[0] == '<'
-			&& ((t_token *)tokens->next->content)->word[0] == '<')
-		{
-			tmp = tokens->next;
-			tokens->next = tokens->next->next;
-			ms_del_token(tmp->content);
-			free(tmp);
-			((t_token *)tokens->content)->id = Heredoc;
-		}
-		else if (((t_token *)tokens->content)->word[0] == '>'
-			&& ((t_token *)tokens->next->content)->word[0] == '>')
-		{
-			tmp = tokens->next;
-			tokens->next = tokens->next->next;
-			ms_del_token(tmp->content);
-			free(tmp);
-			((t_token *)tokens->content)->id = Append;
-		}
-		tokens = tokens->next;
-	}
-}
-
-void	tk_name_tokens(t_list *tokens)
-{
-	ft_lstiter(tokens, tk_name_token);
-	// tk_find_appends_and_heredoc(tokens);
-}

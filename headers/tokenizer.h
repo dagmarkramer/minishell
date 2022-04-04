@@ -32,6 +32,7 @@ void	tk_expand_all(t_list *tokens, t_list *env);
 char	*tk_expander(char *word, t_list *env);
 
 void	tk_name_tokens(t_list *tokens);
+void	tk_name_token(void *in);
 void	tk_remove_quotes(void *token);
 
 #endif
