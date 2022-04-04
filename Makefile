@@ -1,10 +1,12 @@
 NAME		= minishell
 OBJ			= main utils signals commands \
+ms_line_executer \
 				tokenizer/tk_tokenizer \
 				tokenizer/tk_utils \
 				tokenizer/tk_wordsplit \
 				tokenizer/tk_name_tokens \
 				tokenizer/tk_expander \
+				tokenizer/tk_remove_quotes \
 				environment/ev_sort_alfa \
 				environment/ev_init_env \
 				environment/ev_add_env \

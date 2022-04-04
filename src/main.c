@@ -5,6 +5,11 @@ void	error_handling(char *errormessage)
 	perror(errormessage);
 }
 
+void	perror_handling(char *err_msg)
+{
+	error_handling(err_msg);
+}
+
 void	free2darr(t_mini *mini)
 {
 	int	i;
@@ -41,28 +46,8 @@ void	ms_next(t_mini *mini)
 	// 	ms_redirect(mini, ">>");
 }
 
-void	ms_print_word(void *ptr)
-{
-	t_token	*token;
-
-	token = (t_token *)ptr;
-	printf("%s\n", token->word);
-}
-
-void	ms_one_row(t_mini *data)
-{
-	t_list	*tokens;
-
-	tokens = ms_tokenizer(data->input, data->env);
-	if (tokens == NULL)
-		return ;
-	ft_lstiter(tokens, ms_print_word);
-}
-
 int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 {
-	// extern char**environ;
-
 	(void)argv;
 	mini->input = NULL;
 	mini->environ = newenv;
@@ -99,7 +84,7 @@ int	main(int argc, char **argv, char **newenv)
 		if (mini.input[0] != 0)
 		{
 			add_history(mini.input);
-			ms_one_row(&mini);
+			ms_line_executer(&mini);
 			ms_next(&mini);
 		}
 	}

@@ -40,6 +40,7 @@ typedef struct s_mini
 }				t_mini;
 
 // utils
+void	ft_malloc_fail_check(void *status);
 void	ft_strcpy(char *dst, char *src);
 int		ft_strclen(char *str, char c);
 int		ft_strslen(char *str, char *check);
@@ -60,5 +61,7 @@ void	free2darr(t_mini *mini);
 
 void    ft_printlst(t_list *lst, char *env);
 int		ev_rem_env(char *key, t_list **envlst);
+
+void	ms_line_executer(t_mini *data);
 
 #endif
