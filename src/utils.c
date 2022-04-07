@@ -12,8 +12,6 @@ void	ft_malloc_fail_check(void *status)
 		ft_disruptive_exit("malloc fail", 333);
 }
 
-<<<<<<< HEAD
-=======
 void    ft_printpipes(t_list *lst)
 {
     while (lst)
@@ -60,7 +58,6 @@ void    ft_printtokens(t_list *lst)
     }
 }
 
->>>>>>> d60009187557a21f5f7b4710f4219951e8f8a40c
 void    ft_printlst(t_list *lst, char *env)
 {
     while (lst)
