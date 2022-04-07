@@ -40,6 +40,7 @@ typedef struct s_mini
 }				t_mini;
 
 // utils
+void	ft_disruptive_exit(char *exit_status, int exit_int);
 void	ft_malloc_fail_check(void *status);
 void	ft_strcpy(char *dst, char *src);
 int		ft_strclen(char *str, char c);
