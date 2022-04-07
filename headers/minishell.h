@@ -18,6 +18,8 @@
 #  include <sys/stat.h>
 #  include "tokenizer.h"
 #  include "ms_environ.h"
+#  include <stdbool.h>
+#  include "lexer.h"
 
 typedef	struct s_keyval
 {
@@ -64,5 +66,8 @@ void    ft_printlst(t_list *lst, char *env);
 int		ev_rem_env(char *key, t_list **envlst);
 
 void	ms_line_executer(t_mini *data);
+int		ms_lexer(t_list *tokens);
+void    ft_printtokens(t_list *lst);
+void    ft_printpipes(t_list *lst);
 
 #endif

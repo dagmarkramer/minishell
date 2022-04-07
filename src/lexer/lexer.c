@@ -20,7 +20,7 @@
 // na | altijd niet een pipe
 // na string mag alles
 // anders error
-// mag niet beginnen met een pipe
+// //mag niet beginnen met een pipe
 
 
 
@@ -31,15 +31,71 @@ int	lx_error(char *token)
 	write(2, "syntax error near unexpected token `", ft_strlen("syntax error near unexpected token `"));
 	write(2, token, ft_strlen(token));
 	write(2, "'\n", 2);
+<<<<<<< HEAD
+	return (0);
+}
+
+
+// typedef struct	s_pipe
+// {
+// 	bool	pipe_before;
+// 	bool	pipe_after;
+// 	int		input_fd;
+// 	int		output_fd;
+// 	// char	*input_fn;
+// 	// char	*output_fn;
+// 	// char	*append_fn;
+// 	// char	*heredoc_fn;
+// 	char	**tokens;
+// 	int		pipe_fd[2];
+// }				t_pipe;
+
+int	ms_parser(t_list **tokens)
+{
+	t_list *pipes;
+	bool	pipe_before;
+	// bool	pipe_after;
+
+	pipe_before = false;
+	ms_lstadd_pipe(&pipes, pipe_before);
+	while ((*tokens) && (*tokens)->next)
+	{
+		if (((t_token *)(*tokens)->content)->id == Pipe)
+		{
+			pipe_before = true;
+			ms_lstadd_pipe(&pipes, pipe_before);
+        	// printf("%d\n", (int)((t_pipe *)pipes->content)->pipe_before);
+		}
+		(*tokens) = (*tokens)->next;
+	}
+	// parser_init(&pipes);
+	// ft_printpipes(pipes);
+	return (0);
+=======
 	return (7);
+>>>>>>> e85e887a1108ad2053225f8e199952fad00ad542
 }
 
 int	ms_lexer(t_list *tokens)
 {
+	// ft_printtokens(tokens);
 	if (((t_token *)tokens->content)->id == Pipe)
 		return(lx_error("|"));
 	while (tokens && tokens->next)
 	{
-		
+		if (((t_token *)tokens->content)->id == Heredoc && ((t_token *)tokens->next->content)->id != Str)
+			return(lx_error("<<"));
+		if (((t_token *)tokens->content)->id == Write && ((t_token *)tokens->next->content)->id != Str)
+			return(lx_error(">"));
+		if (((t_token *)tokens->content)->id == Read && ((t_token *)tokens->next->content)->id != Str)
+			return(lx_error("<"));
+		if (((t_token *)tokens->content)->id == Append && ((t_token *)tokens->next->content)->id != Str)
+			return(lx_error(">>"));
+		if (((t_token *)tokens->content)->id == Pipe && ((t_token *)tokens->next->content)->id == Pipe)
+			return(lx_error("|"));
+		tokens = tokens->next;
 	}
+	if (((t_token *)tokens->content)->id != Str)
+		return(lx_error("newline"));
+	return (0);
 }

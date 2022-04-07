@@ -10,7 +10,9 @@ ms_line_executer \
 				environment/ev_sort_alfa \
 				environment/ev_init_env \
 				environment/ev_add_env \
-				environment/ev_get_env
+				environment/ev_get_env \
+				lexer/lexer \
+				lexer/lexer_utils
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f

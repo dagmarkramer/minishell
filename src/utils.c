@@ -12,6 +12,55 @@ void	ft_malloc_fail_check(void *status)
 		ft_disruptive_exit("malloc fail", 333);
 }
 
+<<<<<<< HEAD
+=======
+void    ft_printpipes(t_list *lst)
+{
+    while (lst)
+    {
+		// if (!ft_strncmp("export", env, ft_strlen("export")))
+		// {
+			// printf("%s", "declare -x ");
+		// if 
+        printf("%d\n", (int)((t_pipe *)lst->content)->pipe_before);
+			// printf("%s", "=\"");
+        	// printf("%s", (char *)((t_keyval *)lst->content)->value);
+			// printf("%s\n", "\"");
+		// }
+		// if (!ft_strncmp("env", env, ft_strlen("env")))
+		// {
+		// 	printf("%s", (char *)((t_keyval *)lst->content)->key);
+		// 	printf("%s", "=");
+        // 	printf("%s\n", (char *)((t_keyval *)lst->content)->value);
+		// }
+        lst = lst->next;
+    }
+}
+
+void    ft_printtokens(t_list *lst)
+{
+    while (lst)
+    {
+		// if (!ft_strncmp("export", env, ft_strlen("export")))
+		// {
+			// printf("%s", "declare -x ");
+		// if 
+        printf("%d\n", ((t_token *)lst->content)->id);
+			// printf("%s", "=\"");
+        	// printf("%s", (char *)((t_keyval *)lst->content)->value);
+			// printf("%s\n", "\"");
+		// }
+		// if (!ft_strncmp("env", env, ft_strlen("env")))
+		// {
+		// 	printf("%s", (char *)((t_keyval *)lst->content)->key);
+		// 	printf("%s", "=");
+        // 	printf("%s\n", (char *)((t_keyval *)lst->content)->value);
+		// }
+        lst = lst->next;
+    }
+}
+
+>>>>>>> d60009187557a21f5f7b4710f4219951e8f8a40c
 void    ft_printlst(t_list *lst, char *env)
 {
     while (lst)
