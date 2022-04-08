@@ -34,7 +34,7 @@ char	*ft_stradd_with_newline(char *str1, char *str2)
 }
 
 void	child_process(int writefd)
- {
+{
 	char	*line;
 	char	*final_product;
 	char	*tmp;
@@ -48,22 +48,21 @@ void	child_process(int writefd)
 	{
 		gnl_return = get_next_line(0, &line);
 		if (gnl_return == -1)
-		{
-			close(writefd);
 			exit(1);
-		}
-		// add the line to return value
+		if (ft_strcmp(line, delimiter) == 0)
+			exit(0);
 		tmp = final_product;
 		final_product = ft_stradd_with_newline(final_product, line);
 		ft_malloc_fail_check(final_product);
 		free(line);
+		free(tmp);
 	}
 	ft_putstr_fd(final_product, writefd);
 	exit(0);
- }
+}
 
- int	ms_heredoc(char *delimiter)
- {
+int	ms_heredoc(char *delimiter)
+{
 	int[2]	pipefd;
 	pid_t	pid;
 	int		status;
@@ -78,10 +77,12 @@ void	child_process(int writefd)
 		close(pipefd[READ]);
 		child_process(pipefd[WRITE]);
 	}
-	else
-		waitpid(pid, &status, 0);
 	close(pipefd[WRITE]);
+	waitpid(pid, &status, 0);
 	if(WIFSIGNALED(status))
 		close(pipefd[READ]);
+	if(WEXITSTATUS(status) == 1)
+		ms_disruptive_exit("gnl failed", 44);
 	return (pipefd[READ]);
- }
+}
+ 
