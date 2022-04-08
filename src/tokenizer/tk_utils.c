@@ -1,4 +1,4 @@
-#include "tokenizer.h"
+#include "minishell.h"
 
 // ft_lstclear(tokens, ms_del_token);
 void	ms_del_token(void *incomming)
@@ -18,16 +18,10 @@ int	ms_lstadd_token(t_list **tokens, char *word)
 	if (word == NULL)
 		return (1);
 	n_token = malloc(sizeof(t_token));
-	if (n_token == NULL)
-		return (1);
+	ft_malloc_fail_check(n_token);
 	n_token->word = word;
 	new = ft_lstnew((void *)n_token);
-	if (new == NULL)
-	{
-		free(word);
-		free(n_token);
-		return (1);
-	}
+	ft_malloc_fail_check(new);
 	ft_lstadd_back(tokens, new);
 	return (0);
 }

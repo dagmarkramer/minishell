@@ -1,9 +1,15 @@
 #include "minishell.h"
 
+void	ft_disruptive_exit(char *exit_status, int exit_int)
+{
+	ft_putendl(exit_status);
+	exit(exit_int);
+}
+
 void	ft_malloc_fail_check(void *status)
 {
 	if (status == NULL)
-		exit(4);
+		ft_disruptive_exit("malloc fail", 333);
 }
 
 void    ft_printpipes(t_list *lst)

@@ -18,7 +18,8 @@ char	*tk_replace_env(char *word, int dollar, t_list *env)
 	ft_malloc_fail_check(result);
 	ft_memcpy(result, word, dollar);
 	ft_memcpy(&result[dollar], value, ft_strlen(value));
-	ft_strcpy(&result[dollar + ft_strlen(value)], &word[dollar + ft_strslen(&word[dollar], " \t\n")]);
+	ft_strcpy(&result[dollar + ft_strlen(value)],
+		&word[dollar + ft_strslen(&word[dollar], " \t\n")]);
 	free(key);
 	free(word);
 	return (result);
@@ -40,10 +41,9 @@ char	*tk_expander(char *word, t_list *env)
 			if (word[i] == '$')
 			{
 				if (!(i - 3 >= 0 && word[i - 3] == '<' && word[i - 2] == '<'))
-				{
 					word = tk_replace_env(word, i, env);
+				if (!(i - 3 >= 0 && word[i - 3] == '<' && word[i - 2] == '<'))
 					i--;
-				}
 			}	
 		}
 		else
