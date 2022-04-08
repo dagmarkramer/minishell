@@ -27,7 +27,7 @@ void	ms_line_executer(t_mini *data)
 	
 	if (ms_lexer(tokens))
 	{
-		ms_countpipes(tokens, data);
+		ms_count(tokens, data);
 		ms_parser(&tokens, data);
 	}
 	// go to execution

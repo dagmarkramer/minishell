@@ -92,16 +92,18 @@ int	ms_parser(t_list **tokens, t_mini *mini)
 	return (0);
 }
 
-void	ms_countpipes(t_list *tokens, t_mini *mini)
+void	ms_count(t_list *tokens, t_mini *mini)
 {
 	mini->pipes = 0;
+	mini->tokens = 0;
 	while (tokens && tokens->next)
 	{
 		if (((t_token *)tokens->content)->id == Pipe)
 			mini->pipes++;
+		mini->tokens++;
 		tokens = tokens->next;
 	}
-	printf ("%d\n", mini->pipes);
+	// printf ("%d\n", mini->pipes);
 }
 
 int	ms_lexer(t_list *tokens)
