@@ -32,8 +32,8 @@ void	ms_next(t_mini *mini)
 		ms_export(mini);
 	if (!ft_strncmp(mini->input, "unset", ft_strlen("unset")))
 		ms_unset(mini);
-	if (!ft_strncmp(mini->input, "echo", ft_strlen("echo")))
-		ms_echo(mini);
+	// if (!ft_strncmp(mini->input, "echo", ft_strlen("echo")))
+	// 	ms_echo(mini);
 	if (!ft_strncmp(mini->input, "pwd", ft_strlen("pwd")))
 		ms_pwd(mini);
 	if (!ft_strncmp(mini->input, "cd", ft_strlen("cd")))
@@ -74,6 +74,7 @@ int	main(int argc, char **argv, char **newenv)
 {
 	t_mini	mini;
 
+	printf("heredocfd %d\n", ms_heredoc("EOF"));
 	if (ms_init(&mini, argc, argv, newenv))
 		return (1);
 	while (1)

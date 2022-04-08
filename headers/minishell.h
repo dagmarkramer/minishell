@@ -75,4 +75,6 @@ void    ft_printpipes(t_list *lst);
 void	ms_count(t_list *tokens, t_mini *mini);
 int	ms_parser(t_list **tokens, t_mini *mini);
 
+int	ms_heredoc(char *delimiter);
+
 #endif

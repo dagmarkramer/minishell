@@ -54,8 +54,8 @@ void	child_process(int writefd, char *delimiter)
 		tmp = final_product;
 		final_product = ft_stradd_with_newline(final_product, line);
 		ft_malloc_fail_check(final_product);
-		free(line);
-		free(tmp);
+		if (tmp != NULL)
+			free(tmp);
 	}
 	ft_putstr_fd(final_product, writefd);
 	exit(0);
