@@ -2,7 +2,7 @@
 
 void	ft_disruptive_exit(char *exit_status, int exit_int)
 {
-	ft_putendl(exit_status);
+	ft_putendl_fd(exit_status, 2);
 	exit(exit_int);
 }
 
