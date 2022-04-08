@@ -1,6 +1,6 @@
 NAME		= minishell
 OBJ			= main utils signals commands \
-				ms_line_executer ft_list_x_to_array\
+				ms_line_executer ft_list_x_to_array heredoc\
 				tokenizer/tk_tokenizer \
 				tokenizer/tk_utils \
 				tokenizer/tk_wordsplit \
