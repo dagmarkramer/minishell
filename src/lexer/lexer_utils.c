@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	ms_lstadd_pipe(t_list **pipes, bool pipebefore)
+int	ms_lstadd_pipe(t_list **pipes, int pipebefore,  int pipeafter)
 {
 	t_list	*new;
 	t_pipe	*pipe;
@@ -9,6 +9,7 @@ int	ms_lstadd_pipe(t_list **pipes, bool pipebefore)
 	if (pipe == NULL)
 		return (1);
 	pipe->pipe_before = pipebefore;
+	pipe->pipe_after = pipeafter;
 	new = ft_lstnew((void *)pipe);
 	if (new == NULL)
 	{
@@ -16,6 +17,6 @@ int	ms_lstadd_pipe(t_list **pipes, bool pipebefore)
 		return (1);
 	}
 	ft_lstadd_back(pipes, new);
-    printf("%d\n", (int)((t_pipe *)(* pipes)->content)->pipe_before);
+    // printf("%d\n", (int)((t_pipe *)(* pipes)->content)->pipe_before);
 	return (0);
 }

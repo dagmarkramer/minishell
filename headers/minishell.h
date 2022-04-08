@@ -39,6 +39,7 @@ typedef struct s_mini
 	char	**args;
 	char 	**environ;
 	t_list	*env;
+	int		pipes;
 }				t_mini;
 
 // utils
@@ -69,5 +70,7 @@ void	ms_line_executer(t_mini *data);
 int		ms_lexer(t_list *tokens);
 void    ft_printtokens(t_list *lst);
 void    ft_printpipes(t_list *lst);
+void	ms_countpipes(t_list *tokens, t_mini *mini);
+int	ms_parser(t_list **tokens, t_mini *mini);
 
 #endif

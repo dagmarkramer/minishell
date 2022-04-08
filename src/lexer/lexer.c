@@ -49,28 +49,59 @@ int	lx_error(char *token)
 // 	int		pipe_fd[2];
 // }				t_pipe;
 
-int	ms_parser(t_list **tokens)
+
+int	ms_parser(t_list **tokens, t_mini *mini)
 {
 	t_list *pipes;
-	bool	pipe_before;
+	int	pipe_before;
+	int pipe_after;
+	// char	**tokenarr;
+	int		i;
 	// bool	pipe_after;
-
-	pipe_before = false;
-	ms_lstadd_pipe(&pipes, pipe_before);
+	i = 0;
+	pipes = 0;
+	pipe_before = 0;
+	pipe_after = 0;
+	printf ("%d\n", mini->pipes);
+	if (mini->pipes > 0)
+		pipe_after = 1;
+	ms_lstadd_pipe(&pipes, pipe_before, pipe_after);
+	char **str;
+	str = token_list_to_array((*tokens), 10);
+	printf("%s\n", str[0]);
 	while ((*tokens) && (*tokens)->next)
 	{
+		// while (((t_token *)(*tokens)->content)->id != Pipe)
+		// 	(*tokens) = (*tokens)->next;
 		if (((t_token *)(*tokens)->content)->id == Pipe)
 		{
-			pipe_before = true;
-			ms_lstadd_pipe(&pipes, pipe_before);
+			i++;
+			if (mini->pipes - i > 0)
+				pipe_after = 1;
+			pipe_before = 1;
+			// tokenarr = token_list_to_array((*tokens), int n)
+			ms_lstadd_pipe(&pipes, pipe_before, pipe_after);
+			
         	// printf("%d\n", (int)((t_pipe *)pipes->content)->pipe_before);
 		}
+		pipe_after = 0;
 		(*tokens) = (*tokens)->next;
 	}
 	// parser_init(&pipes);
-	// ft_printpipes(pipes);
+	ft_printpipes(pipes);
 	return (0);
-	return (7);
+}
+
+void	ms_countpipes(t_list *tokens, t_mini *mini)
+{
+	mini->pipes = 0;
+	while (tokens && tokens->next)
+	{
+		if (((t_token *)tokens->content)->id == Pipe)
+			mini->pipes++;
+		tokens = tokens->next;
+	}
+	printf ("%d\n", mini->pipes);
 }
 
 int	ms_lexer(t_list *tokens)
@@ -94,5 +125,5 @@ int	ms_lexer(t_list *tokens)
 	}
 	if (((t_token *)tokens->content)->id != Str)
 		return(lx_error("newline"));
-	return (0);
+	return (1);
 }

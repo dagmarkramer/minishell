@@ -33,5 +33,6 @@ char	*tk_expander(char *word, t_list *env);
 
 void	tk_name_token(void *in);
 void	tk_remove_quotes(void *token);
+char	**token_list_to_array(t_list *tokens, int n);
 
 #endif

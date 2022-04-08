@@ -24,10 +24,12 @@ void	ms_line_executer(t_mini *data)
 	// tk_expand_all(tokens, data->env);
 	ft_lstiter(tokens, tk_remove_quotes);
 	ft_lstiter(tokens, ms_print_word);
-	ms_lexer(tokens);
-	ms_parser(&tokens);
-
-	// go_execute();
+	
+	if (ms_lexer(tokens))
+	{
+		ms_countpipes(tokens, data);
+		ms_parser(&tokens, data);
+	}
 	// go to execution
 	// free everything in the linked token list
 	ft_lstclear(&tokens, ms_del_token);
