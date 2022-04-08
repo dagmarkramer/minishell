@@ -1,6 +1,7 @@
 NAME		= minishell
 OBJ			= main utils signals \
 				commands/commands \
+				commands/echo \
 				ms_line_executer ft_list_x_to_array heredoc\
 				tokenizer/tk_tokenizer \
 				tokenizer/tk_utils \

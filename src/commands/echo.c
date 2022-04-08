@@ -69,7 +69,7 @@ void	ms_echo(char **array)
 	int	i;
 	int	p;
 
-	i = 0;
+	i = 1;
 	p = 1;
 	if (ft_strncmp(array[0], "echo", 5) != 0)
 		return ;
@@ -77,9 +77,11 @@ void	ms_echo(char **array)
 	{
 		p = 2;
 		while (array[1][i])
+		{
 			if (array[1][i] != 'n')
 				p = 1;
-		i++;
+			i++;
+		}
 	}
 	if (p == 1)
 	{
@@ -87,6 +89,6 @@ void	ms_echo(char **array)
 		write(1, "\n", 1);
 	}
 	else
-		eo_printarray(&array[1]);
-	free2darr(array);
+		eo_printarray(&array[2]);
+	// free2darr(array);
 }

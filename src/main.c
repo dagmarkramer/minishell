@@ -74,7 +74,6 @@ int	main(int argc, char **argv, char **newenv)
 {
 	t_mini	mini;
 
-	printf("heredocfd %d\n", ms_heredoc("EOF"));
 	if (ms_init(&mini, argc, argv, newenv))
 		return (1);
 	while (1)
