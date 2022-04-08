@@ -22,8 +22,8 @@ char	**token_list_to_array(t_list *tokens, int n)
 
 	i = 0;
 	array = malloc(sizeof(char *) * (n + 1));
-	t_malloc_fail_check(array);
-	array[n] = '\0';
+	ft_malloc_fail_check(array);
+	array[n] = NULL;
 	while (i < n && tokens != NULL)
 	{
 		array[i] = ((t_token *)tokens->content)->word;

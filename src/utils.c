@@ -8,13 +8,19 @@ void	ft_malloc_fail_check(void *status)
 
 void    ft_printpipes(t_list *lst)
 {
+	int i = 0;
     while (lst)
     {
 		// if (!ft_strncmp("export", env, ft_strlen("export")))
 		// {
 			// printf("%s", "declare -x ");
 		// if 
-        printf("%d\n", (int)((t_pipe *)lst->content)->pipe_before);
+		bool yes;
+		yes = true;
+		printf("yes = %d\n", yes);
+        printf("before , %d = %d\n", i, (int)((t_pipe *)lst->content)->pipe_before);
+        printf("after  , %d = %d\n", i, (int)((t_pipe *)lst->content)->pipe_after);
+		i++;
 			// printf("%s", "=\"");
         	// printf("%s", (char *)((t_keyval *)lst->content)->value);
 			// printf("%s\n", "\"");
