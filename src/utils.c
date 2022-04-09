@@ -68,7 +68,7 @@ void    ft_printlst(t_list *lst, char *env)
 {
     while (lst)
     {
-		if (!ft_strncmp("export", env, ft_strlen("export")))
+		if (!ft_strncmp("export", env, 1 + ft_strlen("export")))
 		{
 			printf("%s", "declare -x ");
         	printf("%s", (char *)((t_keyval *)lst->content)->key);
