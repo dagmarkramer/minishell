@@ -6,7 +6,7 @@
 /*   By: dkramer <dkramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/31 12:39:04 by dkramer       #+#    #+#                 */
-/*   Updated: 2022/04/07 15:58:22 by obult         ########   odam.nl         */
+/*   Updated: 2022/04/09 14:50:09 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,7 @@ int				ft_intstrchr(const char *s, int mode);
 char			*ft_strdup(const char *s1);
 
 int	get_next_line(int fd, char **line);
+int	ph_atoi(const char *nptr, int *error);
+int	ft_arraylen(void **arr);
 
 #endif
