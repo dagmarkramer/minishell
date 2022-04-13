@@ -25,11 +25,15 @@ void	ms_line_executer(t_mini *data)
 	ft_lstiter(tokens, tk_remove_quotes);
 	ft_lstiter(tokens, ms_print_word);
 	
-	if (ms_lexer(tokens))
+	if (ms_lexer(tokens) == 0)
 	{
-		ms_count(tokens, data);
-		// ms_parser(&tokens, data);
+		ft_lstclear(&tokens, ms_del_token);
+		return ;
 	}
+	ms_count(tokens, data);
+	// if (data->pipes == 0)
+	// 	ex_nopipes();
+	ms_parser(&tokens, data);
 	// go to execution
 	// free everything in the linked token list
 	ft_lstclear(&tokens, ms_del_token);
