@@ -28,7 +28,7 @@ void	ms_line_executer(t_mini *data)
 	if (ms_lexer(tokens))
 	{
 		ms_count(tokens, data);
-		ms_parser(&tokens, data);
+		// ms_parser(&tokens, data);
 	}
 	// go to execution
 	// free everything in the linked token list
