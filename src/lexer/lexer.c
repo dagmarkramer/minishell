@@ -53,41 +53,68 @@ int	lx_error(char *token)
 int	ms_parser(t_list **tokens, t_mini *mini)
 {
 	t_list *pipes;
-	int	pipe_before;
-	int pipe_after;
-	// char	**tokenarr;
 	int		i;
-	// bool	pipe_after;
+	int		c;
+	int		a;
+	char	**new;
+	
 	i = 0;
+	a = 0;
+	c = 0;
 	pipes = 0;
-	pipe_before = 0;
-	pipe_after = 0;
-	printf ("%d\n", mini->pipes);
+	mini->pipe_before = 0;
+	mini->pipe_after = 0;
+	mini->tokenarr = malloc(sizeof(char *) * (1 + 1));
 	if (mini->pipes > 0)
-		pipe_after = 1;
-	ms_lstadd_pipe(&pipes, pipe_before, pipe_after);
-	char **str;
-	str = token_list_to_array((*tokens), 10);
-	printf("%s\n", str[0]);
+		mini->pipe_after = 1;
+	new = get_args_exec((*tokens));
+	if (!new)
+		ft_disruptive_exit("malloc fail", 333);
+	while (new[c])
+	{
+		mini->tokenarr[a] = ft_strdup(new[c]);
+		if (!mini->tokenarr[a])
+			ft_disruptive_exit("malloc fail", 333);
+		a++;
+		c++;
+	}
+	mini->tokenarr[a] = NULL;
+	ms_lstadd_pipe(&pipes, mini);
+	// char	**new;
+	// ft_print2darr(new);
 	while ((*tokens) && (*tokens)->next)
 	{
-		// while (((t_token *)(*tokens)->content)->id != Pipe)
-		// 	(*tokens) = (*tokens)->next;
 		if (((t_token *)(*tokens)->content)->id == Pipe)
 		{
 			i++;
 			if (mini->pipes - i > 0)
-				pipe_after = 1;
-			pipe_before = 1;
-			// tokenarr = token_list_to_array((*tokens), int n)
-			ms_lstadd_pipe(&pipes, pipe_before, pipe_after);
-			
-        	// printf("%d\n", (int)((t_pipe *)pipes->content)->pipe_before);
+				mini->pipe_after = 1;
+			mini->pipe_before = 1;
+			new = get_args_exec((*tokens));
+			if (!new)
+				ft_disruptive_exit("malloc fail", 333);
+			a = 0;
+			c = 0;
+			// while (mini->tokenarr[a])
+			// {
+			// 	free(mini->tokenarr[a]);
+			// 	a++;
+			// }
+			while (new[c])
+			{
+				mini->tokenarr[a] = ft_strdup(new[c]);
+				if (!mini->tokenarr[a])
+					ft_disruptive_exit("malloc fail", 333);
+				a++;
+				c++;
+			}
+			mini->tokenarr[a] = NULL;
+			ms_lstadd_pipe(&pipes, mini);
+			// ft_print2darr(new);
 		}
-		pipe_after = 0;
+		mini->pipe_after = 0;
 		(*tokens) = (*tokens)->next;
 	}
-	// parser_init(&pipes);
 	ft_printpipes(pipes);
 	return (0);
 }
@@ -95,7 +122,7 @@ int	ms_parser(t_list **tokens, t_mini *mini)
 void	ms_count(t_list *tokens, t_mini *mini)
 {
 	mini->pipes = 0;
-	mini->tokens = 0;
+	mini->tokens = 1;
 	while (tokens && tokens->next)
 	{
 		if (((t_token *)tokens->content)->id == Pipe)

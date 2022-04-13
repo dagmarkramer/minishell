@@ -1,5 +1,19 @@
 #include "minishell.h"
 
+void	ft_print2darr(char **array)
+{
+	int	i;
+
+	i = 0;
+	printf("%s\n", "start");
+	while (array && array[i])
+	{
+		printf("%s\n", array[i]);
+		i++;
+	}
+	printf("%s\n", "end");
+}
+
 void	ft_disruptive_exit(char *exit_status, int exit_int)
 {
 	ft_putendl_fd(exit_status, 2);
@@ -26,6 +40,7 @@ void    ft_printpipes(t_list *lst)
 		printf("yes = %d\n", yes);
         printf("before , %d = %d\n", i, (int)((t_pipe *)lst->content)->pipe_before);
         printf("after  , %d = %d\n", i, (int)((t_pipe *)lst->content)->pipe_after);
+		printf("token , %s \n", (char *)((t_pipe *)lst->content)->tokens[0]);
 		i++;
 			// printf("%s", "=\"");
         	// printf("%s", (char *)((t_keyval *)lst->content)->value);

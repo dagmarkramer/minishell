@@ -41,6 +41,13 @@ typedef struct s_mini
 	t_list	*env;
 	int		pipes;
 	int		tokens;
+	int		saveplace;
+	bool	pipe_before;
+	bool	pipe_after;
+	int		input_fd;
+	int		output_fd;
+	char	**tokenarr;
+	int		pipe_fd[2];
 }				t_mini;
 
 // utils
@@ -71,7 +78,11 @@ void	ms_line_executer(t_mini *data);
 int		ms_lexer(t_list *tokens);
 void    ft_printtokens(t_list *lst);
 void    ft_printpipes(t_list *lst);
+void	ft_print2darr(char **array);
 void	ms_count(t_list *tokens, t_mini *mini);
 int	ms_parser(t_list **tokens, t_mini *mini);
+int		count_words(t_list *tokens);
+char	**get_args_exec(t_list *tokens);
+int		ms_lstadd_pipe(t_list **pipes, t_mini *mini);
 
 #endif
