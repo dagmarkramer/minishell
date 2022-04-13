@@ -37,28 +37,28 @@ void	free2darr(t_mini *mini)
 	free (mini->splitin);
 }
 
-void	ms_next(t_mini *mini)
-{
-	//return error check
-	if (!ft_strncmp(mini->input, "env", ft_strlen("env"))) // plus 1? for null terminator '\0'
-		ms_env(mini);
-	if (!ft_strncmp(mini->input, "export", ft_strlen("export")))
-		ms_export(mini);
-	if (!ft_strncmp(mini->input, "unset", ft_strlen("unset")))
-		ms_unset(mini);
-	// if (!ft_strncmp(mini->input, "echo", ft_strlen("echo")))
-	// 	ms_echo(mini);
-	if (!ft_strncmp(mini->input, "pwd", ft_strlen("pwd")))
-		ms_pwd(mini);
-	if (!ft_strncmp(mini->input, "cd", ft_strlen("cd")))
-		ms_cd(mini);
-	// if (!ft_strncmp(mini->splitin[0], "<", ft_strlen(mini->splitin[0])))
-	// 	ms_redirect(mini, "<");
-	// if (!ft_strncmp(mini->splitin[0], ">", ft_strlen(mini->splitin[0])))
-	// 	ms_redirect(mini, ">");
-	// if (!ft_strncmp(mini->splitin[0], ">>", ft_strlen(mini->splitin[0])))
-	// 	ms_redirect(mini, ">>");
-}
+// void	ms_next(t_mini *mini)
+// {
+// 	//return error check
+// 	if (!ft_strncmp(mini->input, "env", ft_strlen("env"))) // plus 1? for null terminator '\0'
+// 		ms_env(mini);
+// 	if (!ft_strncmp(mini->input, "export", ft_strlen("export")))
+// 		ms_export(mini);
+// 	if (!ft_strncmp(mini->input, "unset", ft_strlen("unset")))
+// 		ms_unset(mini);
+// 	// if (!ft_strncmp(mini->input, "echo", ft_strlen("echo")))
+// 	// 	ms_echo(mini);
+// 	if (!ft_strncmp(mini->input, "pwd", ft_strlen("pwd")))
+// 		ms_pwd(mini);
+// 	if (!ft_strncmp(mini->input, "cd", ft_strlen("cd")))
+// 		ms_cd(mini);
+// 	// if (!ft_strncmp(mini->splitin[0], "<", ft_strlen(mini->splitin[0])))
+// 	// 	ms_redirect(mini, "<");
+// 	// if (!ft_strncmp(mini->splitin[0], ">", ft_strlen(mini->splitin[0])))
+// 	// 	ms_redirect(mini, ">");
+// 	// if (!ft_strncmp(mini->splitin[0], ">>", ft_strlen(mini->splitin[0])))
+// 	// 	ms_redirect(mini, ">>");
+// }
 
 int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 {
@@ -99,7 +99,7 @@ int	main(int argc, char **argv, char **newenv)
 		{
 			add_history(mini.input);
 			ms_line_executer(&mini);
-			ms_next(&mini);
+			// ms_next(&mini);
 		}
 	}
 	ms_exit_cleanup(&mini);
