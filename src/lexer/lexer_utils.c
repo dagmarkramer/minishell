@@ -67,6 +67,7 @@ char	**get_args_exec(t_list *tokens)
 		if (!new[i])
 			ft_disruptive_exit("malloc fail", 333);
 		tokens = tokens->next;
+		printf("%s\n", new[i]);
 		i++;
 	}
 	new[i] = NULL;
