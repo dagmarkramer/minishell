@@ -10,7 +10,7 @@ OBJ			= main utils signals heredoc \
 				environment/ev_add_env \
 				environment/ev_get_env \
 				lexer/lexer \
-				lexer/lexer_utils pipes/p_parser \
+				pipes/p_parser \
 				pipes/p_parserutils
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
