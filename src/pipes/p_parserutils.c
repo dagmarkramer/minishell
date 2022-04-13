@@ -1,25 +1,5 @@
 #include "minishell.h"
 
-// int		count_words(char **array)
-// {
-// 	int	a;
-// 	int	words;
-
-// 	a = 0;
-// 	words = 0;
-// 	while (array[a])
-// 	{
-// 		if (ft_strncmp("|", array[a], 1))
-// 			a++;
-// 		if (ft_strncmp(">", array[a], 1) || ft_strncmp("<", array[a], 1) || ft_strncmp(">>", array[a], 1) || ft_strncmp("<<", array[a], 1))
-// 		{
-// 			a++;
-
-// 			countwords
-// 		}
-// 	}
-// }
-
 int		count_words(t_list *tokens)
 {
 	int	words;
@@ -49,7 +29,6 @@ char	**get_args_exec(t_list *tokens)
 	char	**new;
 
 	i = 0;
-	printf("%d\n", count_words(tokens));
 	new = malloc(sizeof(char *) * (count_words(tokens) + 1));
 	if (((t_token *)tokens->content)->id == Pipe)
 		tokens = tokens->next;
@@ -67,14 +46,13 @@ char	**get_args_exec(t_list *tokens)
 		if (!new[i])
 			ft_disruptive_exit("malloc fail", 333);
 		tokens = tokens->next;
-		printf("%s\n", new[i]);
 		i++;
 	}
 	new[i] = NULL;
 	return (new);
 }
 
-void	parser_init(t_pipe **pipe, t_mini *mini)
+void	parser_init(t_pipe **pipe, t_mini *mini, char **tokenarr)
 {
 	int	i;
 	int	a;
@@ -83,19 +61,10 @@ void	parser_init(t_pipe **pipe, t_mini *mini)
 	a = 0;
 	(*pipe)->pipe_before = mini->pipe_before;
 	(*pipe)->pipe_after = mini->pipe_after;
-	(*pipe)->tokens = malloc(sizeof(char *) * (1 + 1));
-	while (mini->tokenarr[i] && (*pipe)->tokens[a])
-	{
-		printf("|%s|\n", mini->tokenarr[i]);
-		(*pipe)->tokens[a] = ft_strdup(mini->tokenarr[i]);
-		if (!(*pipe)->tokens[a])
-			ft_disruptive_exit("malloc fail", 333);
-		i++;
-		a++;
-	}
+	(*pipe)->tokens = tokenarr;
 }
 
-int	ms_lstadd_pipe(t_list **pipes, t_mini *mini)
+int	ms_lstadd_pipe(t_list **pipes, t_mini *mini, char **tokenarr)
 {
 	t_list	*new;
 	t_pipe	*pipe;
@@ -103,7 +72,7 @@ int	ms_lstadd_pipe(t_list **pipes, t_mini *mini)
 	pipe = malloc(sizeof(t_pipe));
 	if (pipe == NULL)
 		ft_disruptive_exit("malloc fail", 333);
-	parser_init(&pipe, mini);
+	parser_init(&pipe, mini, tokenarr);
 	new = ft_lstnew((void *)pipe);
 	if (new == NULL)
 	{
@@ -111,6 +80,5 @@ int	ms_lstadd_pipe(t_list **pipes, t_mini *mini)
 		ft_disruptive_exit("malloc fail", 333);
 	}
 	ft_lstadd_back(pipes, new);
-    // printf("%d\n", (int)((t_pipe *)(* pipes)->content)->pipe_before);
 	return (0);
 }
