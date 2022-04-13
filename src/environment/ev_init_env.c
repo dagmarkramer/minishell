@@ -29,9 +29,9 @@ t_list	*ev_keyval_lst_add(char *key, char *value)
 
 t_list	*ev_single_env_to_lst(char *env)
 {
-	char *key;
-	char *value;
-	int	i;
+	char	*key;
+	char	*value;
+	int		i;
 
 	i = 0;
 	key = ft_strcdup(env, '=');

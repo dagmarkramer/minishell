@@ -1,7 +1,8 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-// #  include <stdlib.h>
+# define READ 0
+# define WRITE 1
 #  include <stdio.h>
 #  include "readline/readline.h"
 #  include "readline/history.h"
@@ -58,17 +59,28 @@ int		ft_strclen(char *str, char c);
 int		ft_strslen(char *str, char *check);
 char	*ft_strcdup(const char *s1, char c);
 
+//	buildins
+void	ms_cd(char **array);
+void	ms_echo(char **array);
+void	ms_env(t_mini *mini, char **array);
+void	ms_exit(char **array);
+void	ms_export(t_mini *mini, char **array);
+void	ms_pwd(char **array);
+void	ms_unset(t_mini *mini);
+
 
 void	getpathoptions(char *prompt, t_mini *mini, char **newenv);
 void	error_handling(char *errormessage);
 int		ms_signals(void);
 void	ft_execute(t_mini *mini, char **newenv);
-void	ms_echo(t_mini *mini);
-void	ms_pwd(t_mini *mini);
-void	ms_cd(t_mini *mini);
-void	ms_export(t_mini *mini);
-void	ms_unset(t_mini *mini);
-void	ms_env(t_mini *mini);
+// void	ms_echo(t_mini *mini);
+// void	ms_pwd(t_mini *mini);
+// void	ms_cd(t_mini *mini);
+// void	ms_export(t_mini *mini);
+// void	ms_unset(t_mini *mini);
+// void	ms_env(t_mini *mini);
+
+
 void	free2darr(t_mini *mini);
 
 void    ft_printlst(t_list *lst, char *env);
@@ -84,5 +96,7 @@ int	ms_parser(t_list **tokens, t_mini *mini);
 int		count_words(t_list *tokens);
 char	**get_args_exec(t_list *tokens);
 int		ms_lstadd_pipe(t_list **pipes, t_mini *mini);
+
+int	ms_heredoc(char *delimiter);
 
 #endif

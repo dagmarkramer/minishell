@@ -1,12 +1,10 @@
 NAME		= minishell
-OBJ			= main utils signals commands \
-				ms_line_executer ft_list_x_to_array\
-				tokenizer/tk_tokenizer \
-				tokenizer/tk_utils \
-				tokenizer/tk_wordsplit \
-				tokenizer/tk_name_tokens \
-				tokenizer/tk_expander \
-				tokenizer/tk_remove_quotes \
+COMMANDS	= cd echo env exit export pwd unset
+TOKENIZER	= tokenizer utils wordsplit name_tokens expander remove_quotes
+OBJ			= main utils signals heredoc \
+				$(addprefix commands/ms_, ${COMMANDS}) \
+				$(addprefix tokenizer/tk_, ${TOKENIZER}) \
+				ms_line_executer ft_list_x_to_array \
 				environment/ev_sort_alfa \
 				environment/ev_init_env \
 				environment/ev_add_env \

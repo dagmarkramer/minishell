@@ -10,6 +10,20 @@ void	perror_handling(char *err_msg)
 	error_handling(err_msg);
 }
 
+// this is a real free 2d array!
+// void	free2darr(void **arrays)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (arrays[i])
+// 	{
+// 		free (arrays[i]);
+// 		i++;
+// 	}
+// 	free (arrays);
+// }
+
 void	free2darr(t_mini *mini)
 {
 	int	i;
@@ -32,8 +46,8 @@ void	ms_next(t_mini *mini)
 		ms_export(mini);
 	if (!ft_strncmp(mini->input, "unset", ft_strlen("unset")))
 		ms_unset(mini);
-	if (!ft_strncmp(mini->input, "echo", ft_strlen("echo")))
-		ms_echo(mini);
+	// if (!ft_strncmp(mini->input, "echo", ft_strlen("echo")))
+	// 	ms_echo(mini);
 	if (!ft_strncmp(mini->input, "pwd", ft_strlen("pwd")))
 		ms_pwd(mini);
 	if (!ft_strncmp(mini->input, "cd", ft_strlen("cd")))
@@ -63,7 +77,7 @@ int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 	return (0);
 }
 
-void	ms_exit(t_mini *mini)
+void	ms_exit_cleanup(t_mini *mini)
 {
 	ft_lstclear(&mini->env, ev_del_keyval);
 	rl_clear_history();
@@ -88,6 +102,6 @@ int	main(int argc, char **argv, char **newenv)
 			ms_next(&mini);
 		}
 	}
-	ms_exit(&mini);
+	ms_exit_cleanup(&mini);
 	return (0);
 }
