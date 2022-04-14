@@ -27,6 +27,7 @@ void	ft_execute_relative(t_execute *exe_info, t_list *envlst)
 {
 	char	**paths;
 	char	*pathjoined;
+	char	*tmp;
 	int		i;
 
 	i = 0;
@@ -35,10 +36,11 @@ void	ft_execute_relative(t_execute *exe_info, t_list *envlst)
 		exit(127);
 	while (paths[i] != NULL)
 	{
-		pathjoined = ft_strjoin(paths[i], "/");		//strjoin leaks ?
+		tmp = ft_strjoin(paths[i], "/");
 		ft_malloc_fail_check(pathjoined);
-		pathjoined = ft_strjoin(pathjoined, exe_info->arg[0]);
+		pathjoined = ft_strjoin(tmp, exe_info->arg[0]);
 		ft_malloc_fail_check(pathjoined);
+		free(tmp);	// not needed actually because execve wil free everything or exit will do it later
 		execve(pathjoined, exe_info->arg, exe_info->env);	// run execve without envp?
 		i++;
 	}
@@ -47,8 +49,22 @@ void	ft_execute_relative(t_execute *exe_info, t_list *envlst)
 
 void	ft_execute_absolute(t_execute *exe_info)
 {
-	execve(exe_info->arg[0], exe_info->arg, exe_info->env)	// run execve without envp?
+	execve(exe_info->arg[0], exe_info->arg, exe_info->env);	// run execve without envp?
 	exit(127);
+}
+
+int	exe_fork(t_execute *info)
+{
+	pid_t	pid;
+	int		status;
+
+	pid = fork();
+	if (pid == -1)
+		ft_disruptive_exit("fork failed", 43);
+	if (pid == 0)
+		exe_child_process();
+	waitpid(pid, &status, 0);
+	return(WEXITSTATUS(status));
 }
 
 // arg is al gezet
@@ -56,7 +72,9 @@ void	ft_execute_absolute(t_execute *exe_info)
 // fd input en output zijn al gezet
 void	exe_pre_fork(t_execute *exe_info)
 {
-	// pipes are handled before this by the pipe fuctions, if there are redirecitons the pipe gets overwrittten but first closed.
+	// pipes are handled before this by the pipe fuctions, if there are redirecitons the pipe gets overwritten but first closed.
 	// strip args of redirections and overwrite the i/o fds
-	// then call the funciton where we fork and call the exec funciton!
+
+	// then call the funciton where we fork and call the exec function!
+	return (exe_fork(exe_info));
 }
