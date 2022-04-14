@@ -10,7 +10,6 @@ int	ms_parser(t_list **tokens, t_mini *mini)
 	pipes = 0;
 	mini->pipe_before = 0;
 	mini->pipe_after = 0;
-	// mini->tokenarr = malloc(sizeof(char *) * (10 + 1));
 	if (mini->pipes > 0)
 		mini->pipe_after = 1;
 	new = get_args_exec((*tokens));
@@ -33,7 +32,6 @@ int	ms_parser(t_list **tokens, t_mini *mini)
 		mini->pipe_after = 0;
 		(*tokens) = (*tokens)->next;
 	}
-	// ft_printpipes(pipes);
 	return (0);
 }
 
