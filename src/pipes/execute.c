@@ -17,7 +17,7 @@ char	**get_path_options(t_list *envlst)
 	if (unsplit == NULL)
 		return (NULL); // exception
 	paths = ft_split(unsplit, ':');
-	ft_malloc_fail_check(path);
+	ft_malloc_fail_check(paths);
 	return (paths);
 }
 
@@ -39,7 +39,7 @@ void	ft_execute_relative(t_execute *exe_info, t_list *envlst)
 		ft_malloc_fail_check(pathjoined);
 		pathjoined = ft_strjoin(pathjoined, exe_info->arg[0]);
 		ft_malloc_fail_check(pathjoined);
-		execve(pathjoined, exe_info->arg, exe_info->env);
+		execve(pathjoined, exe_info->arg, exe_info->env);	// run execve without envp?
 		i++;
 	}
 	exit(127);
@@ -47,7 +47,8 @@ void	ft_execute_relative(t_execute *exe_info, t_list *envlst)
 
 void	ft_execute_absolute(t_execute *exe_info)
 {
-	execve(exe_info->arg[0], exe_info->arg, exe_info->env)
+	execve(exe_info->arg[0], exe_info->arg, exe_info->env)	// run execve without envp?
+	exit(127);
 }
 
 // arg is al gezet
@@ -55,5 +56,7 @@ void	ft_execute_absolute(t_execute *exe_info)
 // fd input en output zijn al gezet
 void	exe_pre_fork(t_execute *exe_info)
 {
-	if (pipe(pipefd))
+	// pipes are handled before this by the pipe fuctions, if there are redirecitons the pipe gets overwrittten but first closed.
+	// strip args of redirections and overwrite the i/o fds
+	// then call the funciton where we fork and call the exec funciton!
 }
