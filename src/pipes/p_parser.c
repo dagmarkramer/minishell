@@ -9,7 +9,7 @@ t_list	*ms_parser(t_list **tokens, t_mini *mini)
 	i = 0;
 	pipes = 0;
 	mini->pipe_before = 0;
-	mini->pipe_after = 0; // changed to 1 from 0 for stdout instead of stdin
+	mini->pipe_after = 0;
 	// mini->tokenarr = malloc(sizeof(char *) * (10 + 1));
 	if (mini->pipes > 0)
 		mini->pipe_after = 1;
