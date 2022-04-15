@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+<<<<<<< HEAD
 // void	find_redirects(char **new, t_mini *mini)
 // {
 // 	(void)mini;
@@ -17,6 +18,9 @@
 
 
 int ms_parser(t_list **tokens, t_mini *mini)
+=======
+t_list	*ms_parser(t_list **tokens, t_mini *mini)
+>>>>>>> c75b4e502017c5e6c01df71a3a9939c0fb30828b
 {
 	t_list *pipes;
 	int     i;
@@ -25,7 +29,12 @@ int ms_parser(t_list **tokens, t_mini *mini)
 	i = 0;
 	pipes = 0;
 	mini->pipe_before = 0;
+<<<<<<< HEAD
 	mini->pipe_after = 0;
+=======
+	mini->pipe_after = 0; // changed to 1 from 0 for stdout instead of stdin
+	// mini->tokenarr = malloc(sizeof(char *) * (10 + 1));
+>>>>>>> c75b4e502017c5e6c01df71a3a9939c0fb30828b
 	if (mini->pipes > 0)
 		mini->pipe_after = 1;
 	
@@ -52,8 +61,13 @@ int ms_parser(t_list **tokens, t_mini *mini)
 		mini->pipe_after = 0;
 		(*tokens) = (*tokens)->next;
 	}
+<<<<<<< HEAD
 	ft_printpipes(pipes);
 	return (0);
+=======
+	// ft_printpipes(pipes);
+	return (pipes);
+>>>>>>> c75b4e502017c5e6c01df71a3a9939c0fb30828b
 }
 
 void	ms_count(t_list *tokens, t_mini *mini)

@@ -72,7 +72,11 @@ int	ms_lstadd_pipe(t_list **pipes, t_mini *mini, char **tokenarr)
 	pipe = malloc(sizeof(t_pipe));
 	if (pipe == NULL)
 		ft_disruptive_exit("malloc fail", 333);
+<<<<<<< HEAD
 	parser_init(pipe, mini, tokenarr);
+=======
+	parser_init(&pipe, mini, tokenarr); // we can spit this up by calling this after lstaddpipe so this funciton does not need t_mini
+>>>>>>> c75b4e502017c5e6c01df71a3a9939c0fb30828b
 	new = ft_lstnew((void *)pipe);
 	if (new == NULL)
 	{
