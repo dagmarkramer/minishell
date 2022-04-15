@@ -43,7 +43,7 @@ typedef struct s_mini
 	char 	**environ;
 	t_list	*env;
 	int		pipes;
-	int		tokens;
+	// int		tokens;
 	int		saveplace;
 	bool	pipe_before;
 	bool	pipe_after;
