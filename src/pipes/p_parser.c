@@ -36,7 +36,7 @@ t_list	*ms_parser(t_list **tokens, t_mini *mini)
 		(*tokens) = (*tokens)->next;
 	}
 	ft_printpipes(pipes);
-	return (0);
+	return (pipes);
 }
 
 void	ms_count(t_list *tokens, t_mini *mini)
