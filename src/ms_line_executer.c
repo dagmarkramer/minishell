@@ -16,6 +16,7 @@ void	ms_print_word(void *ptr)
 void	ms_line_executer(t_mini *data)
 {
 	t_list	*tokens;
+	t_list	*pipes;
 
 	data->input = tk_expander(data->input, data->env);
 	tokens = ms_tokenizer(data->input, data->env);
@@ -33,7 +34,7 @@ void	ms_line_executer(t_mini *data)
 	ms_count(tokens, data);
 	// if (data->pipes == 0)
 	// 	ex_nopipes();
-	ms_parser(&tokens, data);
+	pipes = ms_parser(&tokens, data);
 	// go to execution
 	// free everything in the linked token list
 	ft_lstclear(&tokens, ms_del_token);

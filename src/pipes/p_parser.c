@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	ms_parser(t_list **tokens, t_mini *mini)
+t_list	*ms_parser(t_list **tokens, t_mini *mini)
 {
 	t_list *pipes;
 	int		i;
@@ -9,7 +9,7 @@ int	ms_parser(t_list **tokens, t_mini *mini)
 	i = 0;
 	pipes = 0;
 	mini->pipe_before = 0;
-	mini->pipe_after = 0;
+	mini->pipe_after = 0; // changed to 1 from 0 for stdout instead of stdin
 	// mini->tokenarr = malloc(sizeof(char *) * (10 + 1));
 	if (mini->pipes > 0)
 		mini->pipe_after = 1;
@@ -28,13 +28,13 @@ int	ms_parser(t_list **tokens, t_mini *mini)
 			new = get_args_exec((*tokens));
 			if (!new)
 				ft_disruptive_exit("malloc fail", 333);
-			ms_lstadd_pipe(&pipes, mini, new); // maybe return the pipes somewhere, how do i access them after this function is done?
+			ms_lstadd_pipe(&pipes, mini, new);
 		}
 		mini->pipe_after = 0;
 		(*tokens) = (*tokens)->next;
 	}
 	// ft_printpipes(pipes);
-	return (0);
+	return (pipes);
 }
 
 // int	ms_parser(t_list **tokens, t_mini *mini)

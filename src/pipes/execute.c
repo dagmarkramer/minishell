@@ -9,6 +9,8 @@ typedef struct	s_execute
 	int			fd_output;
 }				t_execute;
 
+typedef t_pipe t_execute;
+
 char	**get_path_options(t_list *envlst)
 {
 	char	**paths;
@@ -24,7 +26,7 @@ char	**get_path_options(t_list *envlst)
 
 // this takes place in a child function (forked)
 // only for non buildins that do not have an absolute path
-void	ft_execute_relative(t_execute *exe_info, t_list *envlst)
+void	execute_relative(t_execute *exe_info, t_list *envlst)
 {
 	char	**paths;
 	char	*pathjoined;
@@ -47,7 +49,7 @@ void	ft_execute_relative(t_execute *exe_info, t_list *envlst)
 	exit(127);
 }
 
-void	ft_execute_absolute(t_execute *exe_info)
+void	execute_absolute(t_execute *exe_info)
 {
 	execve(exe_info->arg[0], exe_info->arg, exe_info->env);	// run execve without envp?
 	exit(127);
@@ -58,9 +60,9 @@ void	exe_child_process(t_execute *info)
 	dup2(0, info->fd_input);
 	dup2(1, info->fd_output);
 	if(info->arg[0][0] == '/' || info->arg[0][0] == '.')
-		ft_execute_absolute(info);
+		execute_absolute(info);
 	else
-		ft_execute_relative(info, info->envlst);	
+		execute_relative(info, info->envlst);	
 }
 
 int	exe_fork(t_execute *info)
