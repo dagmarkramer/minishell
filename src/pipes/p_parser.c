@@ -28,7 +28,7 @@ int	ms_parser(t_list **tokens, t_mini *mini)
 			new = get_args_exec((*tokens));
 			if (!new)
 				ft_disruptive_exit("malloc fail", 333);
-			ms_lstadd_pipe(&pipes, mini, new);
+			ms_lstadd_pipe(&pipes, mini, new); // maybe return the pipes somewhere, how do i access them after this function is done?
 		}
 		mini->pipe_after = 0;
 		(*tokens) = (*tokens)->next;

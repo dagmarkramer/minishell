@@ -4,6 +4,7 @@ typedef struct	s_execute
 {
 	char		**arg;
 	char		**env;
+	t_list		*envlst;
 	int			fd_input;
 	int			fd_output;
 }				t_execute;
@@ -13,9 +14,9 @@ char	**get_path_options(t_list *envlst)
 	char	**paths;
 	char	*unsplit;
 
-	unsplit = ev_getenv("PATH", envlst); // malloced in linked list so do not need to free
+	unsplit = ev_getenv("PATH", envlst);
 	if (unsplit == NULL)
-		return (NULL); // exception
+		return (NULL);
 	paths = ft_split(unsplit, ':');
 	ft_malloc_fail_check(paths);
 	return (paths);
@@ -40,7 +41,6 @@ void	ft_execute_relative(t_execute *exe_info, t_list *envlst)
 		ft_malloc_fail_check(pathjoined);
 		pathjoined = ft_strjoin(tmp, exe_info->arg[0]);
 		ft_malloc_fail_check(pathjoined);
-		free(tmp);	// not needed actually because execve wil free everything or exit will do it later
 		execve(pathjoined, exe_info->arg, exe_info->env);	// run execve without envp?
 		i++;
 	}
@@ -53,6 +53,16 @@ void	ft_execute_absolute(t_execute *exe_info)
 	exit(127);
 }
 
+void	exe_child_process(t_execute *info)
+{
+	dup2(0, info->fd_input);
+	dup2(1, info->fd_output);
+	if(info->arg[0][0] == '/' || info->arg[0][0] == '.')
+		ft_execute_absolute(info);
+	else
+		ft_execute_relative(info, info->envlst);	
+}
+
 int	exe_fork(t_execute *info)
 {
 	pid_t	pid;
@@ -62,7 +72,7 @@ int	exe_fork(t_execute *info)
 	if (pid == -1)
 		ft_disruptive_exit("fork failed", 43);
 	if (pid == 0)
-		exe_child_process();
+		exe_child_process(info);
 	waitpid(pid, &status, 0);
 	return(WEXITSTATUS(status));
 }

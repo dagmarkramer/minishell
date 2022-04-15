@@ -31,3 +31,37 @@ void	fd_open_and_replace(int *to_replace, char *filename)
 	if (new_fd != -1)
 		*to_replace = new_fd;
 }
+
+void	fd_redirect(t_execute *info, int index)
+{
+	if (ft_strncmp(info->arg[index], "<<", 2))
+	{
+		// heredoc
+	}
+	else if (ft_strncmp(info->arg[index], ">>", 2))
+	{
+		// append mode
+	}
+	else if (ft_strncmp(info->arg[index], ">", 1))
+	{
+		// overwrite (write to)
+	}
+	else
+	{
+		// read mode
+	}
+}
+
+char	**fd_redirections(t_execute *info)
+{
+	int	i;
+
+	i = 0;
+	while (info->arg[i] != NULL)
+	{
+		if (info->arg[i][0] == '<' || info->arg[i][0] == '>')
+			fd_redirect(info, i)
+		i++;
+	}
+	return (info->arg);
+}
