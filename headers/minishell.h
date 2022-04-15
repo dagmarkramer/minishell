@@ -28,6 +28,8 @@ typedef	struct s_keyval
 	char	*value;
 }				t_keyval;
 
+typedef t_keyval t_dictionary;
+
 typedef struct s_mini
 {
 	char	**split;
@@ -58,6 +60,7 @@ void	ft_strcpy(char *dst, char *src);
 int		ft_strclen(char *str, char c);
 int		ft_strslen(char *str, char *check);
 char	*ft_strcdup(const char *s1, char c);
+char	*ft_stradd(char *str1, char *str2); // in heredoc.c
 
 //	buildins
 void	ms_cd(char **array);

@@ -52,16 +52,16 @@ char	**get_args_exec(t_list *tokens)
 	return (new);
 }
 
-void	parser_init(t_pipe **pipe, t_mini *mini, char **tokenarr)
+void	parser_init(t_pipe *pipe, t_mini *mini, char **tokenarr)
 {
 	int	i;
 	int	a;
 
 	i = 0;
 	a = 0;
-	(*pipe)->pipe_before = mini->pipe_before;
-	(*pipe)->pipe_after = mini->pipe_after;
-	(*pipe)->tokens = tokenarr;
+	(pipe)->pipe_before = mini->pipe_before;
+	(pipe)->pipe_after = mini->pipe_after;
+	(pipe)->tokens = tokenarr;
 }
 
 int	ms_lstadd_pipe(t_list **pipes, t_mini *mini, char **tokenarr)
@@ -72,7 +72,7 @@ int	ms_lstadd_pipe(t_list **pipes, t_mini *mini, char **tokenarr)
 	pipe = malloc(sizeof(t_pipe));
 	if (pipe == NULL)
 		ft_disruptive_exit("malloc fail", 333);
-	parser_init(&pipe, mini, tokenarr);
+	parser_init(pipe, mini, tokenarr);
 	new = ft_lstnew((void *)pipe);
 	if (new == NULL)
 	{
