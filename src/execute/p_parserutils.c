@@ -59,9 +59,12 @@ void	parser_init(t_pipe *pipe, t_mini *mini, char **tokenarr)
 
 	i = 0;
 	a = 0;
-	(pipe)->pipe_before = mini->pipe_before;
-	(pipe)->pipe_after = mini->pipe_after;
-	(pipe)->tokens = tokenarr;
+	pipe->pipe_before = mini->pipe_before;
+	pipe->pipe_after = mini->pipe_after;
+	pipe->tokens = tokenarr;
+	pipe->output_fd = STDOUT_FILENO;
+	pipe->input_fd = STDIN_FILENO;
+
 }
 
 int	ms_lstadd_pipe(t_list **pipes, t_mini *mini, char **tokenarr)
