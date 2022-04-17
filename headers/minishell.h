@@ -20,7 +20,7 @@
 #  include "tokenizer.h"
 #  include "ms_environ.h"
 #  include <stdbool.h>
-#  include "lexer.h"
+#  include "execution.h"
 
 typedef	struct s_keyval
 {

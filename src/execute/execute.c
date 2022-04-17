@@ -1,31 +1,5 @@
 #include "minishell.h"
 
-typedef struct	s_execute
-{
-	char		**arg;
-	char		**env;
-	t_list		*envlst;
-	int			fd_input;
-	int			fd_output;
-}				t_execute;
-
-typedef t_pipe t_execute;
-
-char	**get_path_options(t_list *envlst)
-{
-	char	**paths;
-	char	*unsplit;
-
-	unsplit = ev_getenv("PATH", envlst);
-	if (unsplit == NULL)
-		return (NULL);
-	paths = ft_split(unsplit, ':');
-	ft_malloc_fail_check(paths);
-	return (paths);
-}
-
-// this takes place in a child function (forked)
-// only for non buildins that do not have an absolute path
 void	execute_relative(t_execute *exe_info, t_list *envlst)
 {
 	char	**paths;
@@ -79,14 +53,11 @@ int	exe_fork(t_execute *info)
 	return(WEXITSTATUS(status));
 }
 
-// arg is al gezet
-// env wordt hier gezet (in de child functie?)
-// fd input en output zijn al gezet
-void	exe_pre_fork(t_execute *exe_info)
+int	exe_pre_fork(t_pipe *pipe, t_mini *data)
 {
-	// pipes are handled before this by the pipe fuctions, if there are redirecitons the pipe gets overwritten but first closed.
-	// strip args of redirections and overwrite the i/o fds
+	t_execute	info;
 
-	// then call the funciton where we fork and call the exec function!
-	return (exe_fork(exe_info));
+	exe_pipe_to_execute(pipe, &info, data);
+	info.arg = fd_redirections(&info);
+	return (exe_fork(&info));
 }

@@ -2,15 +2,15 @@ NAME		= minishell
 COMMANDS	= cd echo env exit export pwd unset
 TOKENIZER	= tokenizer utils wordsplit name_tokens expander remove_quotes
 ENVIRONMENT	= sort_alfa init_env add_env get_env
+EXECUTE		= p_parser p_parserutils exe_utils execute fd_redir
 OBJ			= main utils signals heredoc \
 				$(addprefix commands/ms_, ${COMMANDS}) \
 				$(addprefix tokenizer/tk_, ${TOKENIZER}) \
 				$(addprefix environment/ev_, ${ENVIRONMENT}) \
+				$(addprefix execute/, ${EXECUTE}) \
 				lexer/lexer \
-				pipes/p_parser \
 				ms_line_executer \
-				ft_list_x_to_array \
-				pipes/p_parserutils
+				ft_list_x_to_array
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f
