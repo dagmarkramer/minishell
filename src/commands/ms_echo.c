@@ -40,5 +40,5 @@ void	ms_echo(char **array)
 	}
 	else
 		eo_printarray(&array[2]);
-	free(array); // do not need to free the arrays inside because they are still available through linked list and will be freed there
+	// free(array); // do not need to free the arrays inside because they are still available through linked list and will be freed there
 }
