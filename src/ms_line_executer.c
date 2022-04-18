@@ -8,6 +8,20 @@ void	ms_print_word(void *ptr)
 	printf("%s\n", token->word);
 }
 
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	return(ft_strncmp(s1, s2, 1 + (size_t)ft_strlen(s2)));
+}
+
+// echo cd pwd export unset env exit
+int	is_buildin(char *command)
+{
+	return (ft_strcmp(command, "echo") || ft_strcmp(command, "cd")
+		|| ft_strcmp(command, "pwd") || ft_strcmp(command, "export")
+		|| ft_strcmp(command, "unset") || ft_strcmp(command, "env")
+		|| ft_strcmp(command, "exit"));
+}
+
 int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 {
 	int	pipefd[2];
@@ -42,7 +56,6 @@ void	ms_line_executer(t_mini *data)
 	// tk_expand_all(tokens, data->env);
 	ft_lstiter(tokens, tk_remove_quotes);
 	// ft_lstiter(tokens, ms_print_word);
-	
 	if (ms_lexer(tokens) == 0)
 	{
 		ft_lstclear(&tokens, ms_del_token);

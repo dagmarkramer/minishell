@@ -50,7 +50,10 @@ void	child_process(int writefd, char *delimiter)
 		if (gnl_return == -1)
 			exit(1);
 		if (ft_strncmp(line, delimiter, (size_t)ft_strlen(delimiter) + 1) == 0)
+		{
+			ft_putstr_fd(final_product, writefd);
 			exit(0);
+		}
 		tmp = final_product;
 		final_product = ft_stradd_with_newline(final_product, line);
 		ft_malloc_fail_check(final_product);
@@ -67,6 +70,7 @@ int	ms_heredoc(char *delimiter)
 	pid_t	pid;
 	int		status;
 
+	printf("heredoc\n");
 	if (pipe(pipefd))
 		ft_disruptive_exit("pipefd failed", 42);
 	pid = fork();

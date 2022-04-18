@@ -31,12 +31,14 @@ void	fd_redirect(t_execute *info, int index)
 		fd_open_and_replace(&info->fd_input, info->arg[index + 1], O_RDONLY);
 	free(info->arg[index]);
 	free(info->arg[index + 1]);
+	info->arg[index] = NULL;
+	info->arg[index + 1] = NULL;
 	while (info->arg[index + 2] != NULL)
 	{
 		info->arg[index] = info->arg[index + 2];
+		info->arg[index + 1] = NULL;
 		index++;
 	}
-	info->arg[index] = info->arg[index + 2];
 }
 
 char	**fd_redirections(t_execute *info)
