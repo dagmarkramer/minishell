@@ -16,7 +16,7 @@ t_list	*ms_parser(t_list **tokens, t_mini *mini)
 	if (!new)
 		ft_disruptive_exit("malloc fail", 333);
 	ms_lstadd_pipe(&pipes, mini, new);
-	printf("pipes%d\n", mini->pipe_after);
+	// printf("pipes%d\n", mini->pipe_after);
 	// find_redirects(new, mini);
 	while ((*tokens) && (*tokens)->next)
 	{
@@ -35,7 +35,7 @@ t_list	*ms_parser(t_list **tokens, t_mini *mini)
 		mini->pipe_after = 0;
 		(*tokens) = (*tokens)->next;
 	}
-	ft_printpipes(pipes);
+	// ft_printpipes(pipes);
 	return (pipes);
 }
 

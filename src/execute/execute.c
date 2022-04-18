@@ -14,7 +14,7 @@ void	execute_relative(t_execute *exe_info, t_list *envlst)
 	while (paths[i] != NULL)
 	{
 		tmp = ft_strjoin(paths[i], "/");
-		ft_malloc_fail_check(pathjoined);
+		ft_malloc_fail_check(tmp);
 		pathjoined = ft_strjoin(tmp, exe_info->arg[0]);
 		ft_malloc_fail_check(pathjoined);
 		execve(pathjoined, exe_info->arg, exe_info->env);	// run execve without envp?
@@ -50,6 +50,7 @@ int	exe_fork(t_execute *info)
 	if (pid == 0)
 		exe_child_process(info);
 	waitpid(pid, &status, 0);
+	
 	return(WEXITSTATUS(status));
 }
 
