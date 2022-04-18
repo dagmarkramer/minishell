@@ -16,16 +16,21 @@ int	ft_strcmp(const char *s1, const char *s2)
 // echo cd pwd export unset env exit
 int	is_buildin(char *command)
 {
-	return (ft_strcmp(command, "echo") || ft_strcmp(command, "cd")
-		|| ft_strcmp(command, "pwd") || ft_strcmp(command, "export")
-		|| ft_strcmp(command, "unset") || ft_strcmp(command, "env")
-		|| ft_strcmp(command, "exit"));
+	return (!ft_strcmp(command, "echo") || !ft_strcmp(command, "cd")
+		|| !ft_strcmp(command, "pwd") || !ft_strcmp(command, "export")
+		|| !ft_strcmp(command, "unset") || !ft_strcmp(command, "env")
+		|| !ft_strcmp(command, "exit"));
 }
 
 // link the buildin functions with if statements
 int	exe_buildin(t_execute *info)
 {
+	if (ft_strcmp(info->arg[0], "echo") == 0)
+		ms_echo(info->arg);
+	
 
+
+	return (0);
 }
 
 int	exe_pre_buildin(t_pipe *pipe, t_mini *data)
@@ -42,8 +47,8 @@ int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 	int	pipefd[2];
 	int	child_exit;
 
-	// if (pipes->next == NULL && is_buildin(((t_pipe *)pipes->content)->tokens[0]))
-	// 	return (exe_pre_buildin());
+	if (pipes->next == NULL && is_buildin(((t_pipe *)pipes->content)->tokens[0]))
+		return (exe_pre_buildin((t_pipe *)pipes->content, data));
 	while(pipes->next != NULL)
 	{
 		if (pipe(pipefd) == -1)
