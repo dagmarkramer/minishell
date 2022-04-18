@@ -22,13 +22,28 @@ int	is_buildin(char *command)
 		|| ft_strcmp(command, "exit"));
 }
 
+// link the buildin functions with if statements
+int	exe_buildin(t_execute *info)
+{
+
+}
+
+int	exe_pre_buildin(t_pipe *pipe, t_mini *data)
+{
+	t_execute	info;
+
+	exe_pipe_to_execute(pipe, &info, data);
+	info.arg = fd_redirections(&info);
+	return (exe_buildin(&info));
+}
+
 int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 {
 	int	pipefd[2];
 	int	child_exit;
 
 	// if (pipes->next == NULL && is_buildin(((t_pipe *)pipes->content)->tokens[0]))
-	// 	exe_single_execution();
+	// 	return (exe_pre_buildin());
 	while(pipes->next != NULL)
 	{
 		if (pipe(pipefd) == -1)
