@@ -8,7 +8,7 @@ void	eo_printarray(char **array)
 	while (array[i] != NULL)
 	{
 		write(1, array[i], ft_strlen(array[i]));
-		if (array[i +1] != NULL)
+		if (array[i + 1] != NULL)
 			write(1, " ", 1);
 		i++;
 	}
@@ -40,5 +40,4 @@ void	ms_echo(char **array)
 	}
 	else
 		eo_printarray(&array[2]);
-	// free(array); // do not need to free the arrays inside because they are still available through linked list and will be freed there
 }

@@ -21,14 +21,14 @@ void	fd_open_and_replace(int *to_replace, char *filename, int openflags)
 
 void	fd_redirect(t_execute *info, int index)
 {
-	if (ft_strncmp(info->arg[index], "<<", 2))
-		fd_replacer(&info->fd_input, ms_heredoc(info->arg[index + 1]));
-	else if (ft_strncmp(info->arg[index], ">>", 2))
-		fd_open_and_replace(&info->fd_output, info->arg[index + 1], O_APPEND);
-	else if (ft_strncmp(info->arg[index], ">", 1))
-		fd_open_and_replace(&info->fd_output, info->arg[index + 1], O_WRONLY);
+	if (ft_strncmp(info->arg[index], "<<", 2) == 0)
+		fd_replacer(&(info->fd_input), ms_heredoc(info->arg[index + 1]));
+	else if (ft_strncmp(info->arg[index], ">>", 2) == 0)
+		fd_open_and_replace(&(info->fd_output), info->arg[index + 1], O_APPEND);
+	else if (ft_strncmp(info->arg[index], ">", 1) == 0)
+		fd_open_and_replace(&(info->fd_output), info->arg[index + 1], O_WRONLY);
 	else
-		fd_open_and_replace(&info->fd_input, info->arg[index + 1], O_RDONLY);
+		fd_open_and_replace(&(info->fd_input), info->arg[index + 1], O_RDONLY);
 	free(info->arg[index]);
 	free(info->arg[index + 1]);
 	info->arg[index] = NULL;
@@ -36,9 +36,9 @@ void	fd_redirect(t_execute *info, int index)
 	while (info->arg[index + 2] != NULL)
 	{
 		info->arg[index] = info->arg[index + 2];
-		info->arg[index + 1] = NULL;
 		index++;
 	}
+	info->arg[index] = NULL;
 }
 
 char	**fd_redirections(t_execute *info)

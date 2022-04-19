@@ -9,14 +9,14 @@ int		count_words(t_list *tokens)
 		tokens = tokens->next;
 	while (tokens)
 	{
-		if (((t_token *)tokens->content)->id == Pipe)
-			break ;
-		if (((t_token *)tokens->content)->id == Heredoc || ((t_token *)tokens->content)->id == Write || ((t_token *)tokens->content)->id == Read || ((t_token *)tokens->content)->id == Append)
-		{
-			tokens = tokens->next;
-			if (tokens->next)
-				tokens = tokens->next;
-		}
+		// if (((t_token *)tokens->content)->id == Pipe)
+		// 	break ;
+		// if (((t_token *)tokens->content)->id == Heredoc || ((t_token *)tokens->content)->id == Write || ((t_token *)tokens->content)->id == Read || ((t_token *)tokens->content)->id == Append)
+		// {
+		// 	tokens = tokens->next;
+		// 	if (tokens->next)
+		// 		tokens = tokens->next;
+		// }
 		words++;
 		tokens = tokens->next;
 	}
@@ -36,12 +36,12 @@ char	**get_args_exec(t_list *tokens)
 	{
 		if (((t_token *)tokens->content)->id == Pipe)
 			break ;
-		if (((t_token *)tokens->content)->id == Heredoc || ((t_token *)tokens->content)->id == Write || ((t_token *)tokens->content)->id == Read || ((t_token *)tokens->content)->id == Append)
-		{
-			tokens = tokens->next;
-			if (tokens->next)
-				tokens = tokens->next;
-		}
+		// if (((t_token *)tokens->content)->id == Heredoc || ((t_token *)tokens->content)->id == Write || ((t_token *)tokens->content)->id == Read || ((t_token *)tokens->content)->id == Append)
+		// {
+		// 	tokens = tokens->next;
+		// 	if (tokens->next)
+		// 		tokens = tokens->next;
+		// }
 		new[i] = ft_strdup(((t_token *)tokens->content)->word);
 		if (!new[i])
 			ft_disruptive_exit("malloc fail", 333);

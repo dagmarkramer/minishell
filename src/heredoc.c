@@ -33,7 +33,7 @@ char	*ft_stradd_with_newline(char *str1, char *str2)
 	return (ret);
 }
 
-void	child_process(int writefd, char *delimiter)
+static void	child_process(int writefd, char *delimiter)
 {
 	char	*line;
 	char	*final_product;
@@ -70,7 +70,7 @@ int	ms_heredoc(char *delimiter)
 	pid_t	pid;
 	int		status;
 
-	printf("heredoc\n");
+	// printf("heredoc\n");
 	if (pipe(pipefd))
 		ft_disruptive_exit("pipefd failed", 42);
 	pid = fork();
