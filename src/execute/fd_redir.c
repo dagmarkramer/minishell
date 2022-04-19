@@ -29,7 +29,7 @@ void	fd_redirect(t_execute *info, int index)
 	if (ft_strncmp(info->arg[index], "<<", 2) == 0)
 		fd_replacer(&(info->fd_input), ms_heredoc(info->arg[index + 1]));
 	else if (ft_strncmp(info->arg[index], ">>", 2) == 0)
-		fd_open_and_replace(&(info->fd_output), info->arg[index + 1], O_APPEND | O_CREAT);
+		fd_open_and_replace(&(info->fd_output), info->arg[index + 1], O_WRONLY | O_APPEND | O_CREAT);
 	else if (ft_strncmp(info->arg[index], ">", 1) == 0)
 		fd_open_and_replace(&(info->fd_output), info->arg[index + 1], O_WRONLY | O_CREAT);
 	else
