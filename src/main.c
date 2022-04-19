@@ -14,6 +14,8 @@ int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 	if (mini->env == NULL)
 		return (1);
 	ms_signals();
+	mini->save_in = dup(0);
+	mini->save_out = dup(1);
 	return (0);
 }
 

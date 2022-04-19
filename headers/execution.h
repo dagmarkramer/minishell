@@ -31,6 +31,7 @@ char	*ft_stradd(char *str1, char *str2);
 
 // FD_REDIRECTION
 char	**fd_redirections(t_execute *info);
+void	fd_close(int fd);
 void	fd_replacer(int *to_replace, int new_fd);
 
 // EXE_UTILS

@@ -42,14 +42,14 @@ typedef struct s_mini
 	char	**args;
 	char 	**environ;
 	t_list	*env;
+	int		save_out;
+	int		save_in;
 	int		pipes;
-	// int		tokens;
 	int		saveplace;
 	bool	pipe_before;
 	bool	pipe_after;
 	int		input_fd;
 	int		output_fd;
-	// char	**tokenarr;
 	int		pipe_fd[2];
 }				t_mini;
 

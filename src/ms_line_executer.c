@@ -52,6 +52,9 @@ int	exe_pre_buildin(t_pipe *pipe, t_mini *data)
 	dup2(info.fd_input, 0);
 	dup2(info.fd_output, 1);
 	tmp = exe_buildin(&info, data);
+	fd_close(info.fd_output);
+	dup2(data->save_in, 0);
+	dup2(data->save_out, 1);
 	return (tmp);
 }
 
