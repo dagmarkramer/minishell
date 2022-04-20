@@ -61,6 +61,7 @@ int		ft_strclen(char *str, char c);
 int		ft_strslen(char *str, char *check);
 char	*ft_strcdup(const char *s1, char c);
 char	*ft_stradd(char *str1, char *str2); // in heredoc.c
+int		ft_strcmp(const char *s1, const char *s2);
 
 //	buildins
 void	ms_cd(char **array);

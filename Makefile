@@ -2,7 +2,7 @@ NAME		= minishell
 COMMANDS	= cd echo env exit export pwd unset
 TOKENIZER	= tokenizer utils wordsplit name_tokens expander remove_quotes
 ENVIRONMENT	= sort_alfa init_env add_env get_env
-EXECUTE		= p_parser p_parserutils exe_utils execute fd_redir
+EXECUTE		= p_parser p_parserutils exe_utils execute fd_redir exe_buildin
 OBJ			= main utils signals heredoc \
 				$(addprefix commands/ms_, ${COMMANDS}) \
 				$(addprefix tokenizer/tk_, ${TOKENIZER}) \

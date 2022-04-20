@@ -1,5 +1,10 @@
 #include "minishell.h"
 
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	return(ft_strncmp(s1, s2, 1 + (size_t)ft_strlen(s2)));
+}
+
 void	ft_print2darr(char **array)
 {
 	int	i;

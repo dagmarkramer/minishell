@@ -31,10 +31,13 @@ void	execute_absolute(t_execute *exe_info)
 
 void	exe_child_process(t_execute *info)
 {
-	if(info->arg[0][0] == '/' || info->arg[0][0] == '.')
+	if (is_buildin(info->arg[0]))
+		exe_buildin(info, NULL);
+	else if(info->arg[0][0] == '/' || info->arg[0][0] == '.')
 		execute_absolute(info);
 	else
-		execute_relative(info, info->envlst);	
+		execute_relative(info, info->envlst);
+	exit(0);
 }
 
 int	exe_fork(t_execute *info)

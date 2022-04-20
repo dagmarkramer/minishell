@@ -39,6 +39,11 @@ void	fd_cleanup(t_mini *data);
 t_execute	*exe_pipe_to_execute(t_pipe *pipe, t_execute *exe, t_mini *data);
 char		**get_path_options(t_list *envlst);
 
+// EXE_BUILDIN
+int	is_buildin(char *command);
+int	exe_buildin(t_execute *info, t_mini *data);
+int	exe_pre_buildin(t_pipe *pipe, t_mini *data);
+
 // EXECUTE
 int	exe_pre_fork(t_pipe *pipe, t_mini *data);
 
