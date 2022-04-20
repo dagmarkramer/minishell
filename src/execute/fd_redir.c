@@ -6,6 +6,13 @@ void	fd_replacer(int *to_replace, int new_fd)
 	*to_replace = new_fd;
 }
 
+
+void	fd_cleanup(t_mini *data)
+{
+	dup2(data->save_in, 0);
+	dup2(data->save_out, 1);
+}
+
 // O_RDWR O_RDONLY O_WRONLY O_APPEND
 void	fd_open_and_replace(int *to_replace, char *filename, int openflags)
 {
@@ -14,7 +21,7 @@ void	fd_open_and_replace(int *to_replace, char *filename, int openflags)
 	new_fd = open(filename, openflags, 0666);
 	if (new_fd == -1)
 		return ;
-	dup2(new_fd, *to_replace);
+	// dup2(new_fd, *to_replace);
 	*to_replace = new_fd;
 }
 

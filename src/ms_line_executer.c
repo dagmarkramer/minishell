@@ -57,10 +57,10 @@ int	exe_pre_buildin(t_pipe *pipe, t_mini *data)
 	return (tmp);
 }
 
+
 int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 {
 	int	pipefd[2];
-	int	child_exit;
 
 	if (pipes->next == NULL && is_buildin(((t_pipe *)pipes->content)->tokens[0]))
 		return (exe_pre_buildin((t_pipe *)pipes->content, data));
@@ -73,10 +73,7 @@ int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 		exe_pre_fork((t_pipe *)pipes->content, data);
 		pipes = pipes->next;
 	}
-	// make the last pipe go brrrrr with last pipe read end 
-	// needs NULL pointer protection?
-	child_exit = exe_pre_fork((t_pipe *)pipes->content, data);
-	return (child_exit);
+	return (exe_pre_fork((t_pipe *)pipes->content, data));
 }
 
 void	ms_line_executer(t_mini *data)
@@ -101,9 +98,8 @@ void	ms_line_executer(t_mini *data)
 	// 	ex_nopipes();
 	pipes = ms_parser(&tokens, data);
 	exe_pipe_and_run(pipes, data);
+	// fd_cleanup(data);
 	// reset i/o
-	dup2(data->save_in, 0);
-	dup2(data->save_out, 1);
 	// go to execution
 	// free everything in the linked token list
 	ft_lstclear(&tokens, ms_del_token);

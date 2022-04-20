@@ -33,6 +33,7 @@ char	*ft_stradd(char *str1, char *str2);
 char	**fd_redirections(t_execute *info);
 void	fd_close(int fd);
 void	fd_replacer(int *to_replace, int new_fd);
+void	fd_cleanup(t_mini *data);
 
 // EXE_UTILS
 t_execute	*exe_pipe_to_execute(t_pipe *pipe, t_execute *exe, t_mini *data);
