@@ -37,7 +37,7 @@ void	ms_line_executer(t_mini *data)
 		return ;
 	// tk_expand_all(tokens, data->env);
 	ft_lstiter(tokens, tk_remove_quotes);
-	// ft_lstiter(tokens, ms_print_word);
+	ft_lstiter(tokens, ms_print_word);
 	if (ms_lexer(tokens) == 0)
 	{
 		ft_lstclear(&tokens, ms_del_token);
