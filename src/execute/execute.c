@@ -31,6 +31,8 @@ void	execute_absolute(t_execute *exe_info)
 
 void	exe_child_process(t_execute *info)
 {
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (is_buildin(info->arg[0]))
 		exe_buildin(info, NULL);
 	else if(info->arg[0][0] == '/' || info->arg[0][0] == '.')
