@@ -16,10 +16,14 @@ int	ft_strcmp(const char *s1, const char *s2)
 // echo cd pwd export unset env exit
 int	is_buildin(char *command)
 {
-	return (!ft_strcmp(command, "echo") || !ft_strcmp(command, "cd")
+	// if(!ft_strcmp(command, "echo"))
+	// 	return (1);
+	if (!ft_strcmp(command, "echo") || !ft_strcmp(command, "cd")
 		|| !ft_strcmp(command, "pwd") || !ft_strcmp(command, "export")
 		|| !ft_strcmp(command, "unset") || !ft_strcmp(command, "env")
-		|| !ft_strcmp(command, "exit"));
+		|| !ft_strcmp(command, "exit"))
+		return (1);
+	return (0);
 }
 
 // link the buildin functions with if statements
@@ -49,12 +53,7 @@ int	exe_pre_buildin(t_pipe *pipe, t_mini *data)
 
 	exe_pipe_to_execute(pipe, &info, data);
 	info.arg = fd_redirections(&info);
-	dup2(info.fd_input, 0);
-	dup2(info.fd_output, 1);
 	tmp = exe_buildin(&info, data);
-	fd_close(info.fd_output);
-	dup2(data->save_in, 0);
-	dup2(data->save_out, 1);
 	return (tmp);
 }
 
@@ -102,6 +101,9 @@ void	ms_line_executer(t_mini *data)
 	// 	ex_nopipes();
 	pipes = ms_parser(&tokens, data);
 	exe_pipe_and_run(pipes, data);
+	// reset i/o
+	dup2(data->save_in, 0);
+	dup2(data->save_out, 1);
 	// go to execution
 	// free everything in the linked token list
 	ft_lstclear(&tokens, ms_del_token);

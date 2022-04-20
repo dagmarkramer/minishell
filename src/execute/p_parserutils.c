@@ -32,7 +32,7 @@ char	**get_args_exec(t_list *tokens)
 	new = malloc(sizeof(char *) * (count_words(tokens) + 1));
 	if (((t_token *)tokens->content)->id == Pipe)
 		tokens = tokens->next;
-	while (new[i] && tokens)
+	while (tokens)
 	{
 		if (((t_token *)tokens->content)->id == Pipe)
 			break ;

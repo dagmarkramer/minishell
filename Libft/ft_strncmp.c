@@ -6,7 +6,7 @@
 /*   By: dkramer <dkramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/31 11:28:33 by dkramer       #+#    #+#                 */
-/*   Updated: 2021/02/26 20:08:28 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/04/20 13:21:48 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	{
 		if (str1[i] != str2[i])
 			return (str1[i] - str2[i]);
+		if (str1[i] == '\0' && str2[i] == '\0')
+			return (0);
 		i++;
 		n--;
 	}

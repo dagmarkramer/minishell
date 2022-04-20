@@ -41,6 +41,7 @@ int	main(int argc, char **argv, char **newenv)
 		{
 			add_history(mini.input);
 			ms_line_executer(&mini);
+			// system("leaks minishell");
 		}
 	}
 	ms_exit_cleanup(&mini);

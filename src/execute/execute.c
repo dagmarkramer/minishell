@@ -31,8 +31,6 @@ void	execute_absolute(t_execute *exe_info)
 
 void	exe_child_process(t_execute *info)
 {
-	dup2(info->fd_input, 0);
-	dup2(info->fd_output, 1);
 	if(info->arg[0][0] == '/' || info->arg[0][0] == '.')
 		execute_absolute(info);
 	else
@@ -60,6 +58,6 @@ int	exe_pre_fork(t_pipe *pipe, t_mini *data)
 
 	exe_pipe_to_execute(pipe, &info, data);
 	info.arg = fd_redirections(&info);
-	printf("out: %i in: %i\n", info.fd_output, info.fd_input);
+	// printf("out: %i in: %i\n", info.fd_output, info.fd_input);
 	return (exe_fork(&info));
 }

@@ -10,8 +10,8 @@ t_list	*ms_parser(t_list **tokens, t_mini *mini)
 	pipes = 0;
 	mini->pipe_before = 0;
 	mini->pipe_after = 0;
-	if (mini->pipes > 0)
-		mini->pipe_after = 1;
+	// if (mini->pipes > 0)
+	// 	mini->pipe_after = 1;
 	new = get_args_exec((*tokens));
 	if (!new)
 		ft_disruptive_exit("malloc fail", 333);
@@ -23,9 +23,9 @@ t_list	*ms_parser(t_list **tokens, t_mini *mini)
 		if (((t_token *)(*tokens)->content)->id == Pipe)
 		{
 			i++;
-			if (mini->pipes - i > 0)
-				mini->pipe_after = 1;
-			mini->pipe_before = 1;
+			// if (mini->pipes - i > 0)
+			// 	mini->pipe_after = 1;
+			// mini->pipe_before = 1;
 			new = get_args_exec((*tokens));
 			if (!new)
 				ft_disruptive_exit("malloc fail", 333);
@@ -35,7 +35,6 @@ t_list	*ms_parser(t_list **tokens, t_mini *mini)
 		mini->pipe_after = 0;
 		(*tokens) = (*tokens)->next;
 	}
-	// ft_printpipes(pipes);
 	return (pipes);
 }
 

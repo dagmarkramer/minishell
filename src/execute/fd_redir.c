@@ -1,14 +1,8 @@
 #include "minishell.h"
 
-void	fd_close(int fd)
-{
-	if (fd > 2)
-		close(fd);
-}
-
 void	fd_replacer(int *to_replace, int new_fd)
 {
-	fd_close(*to_replace);
+	dup2(new_fd, *to_replace);
 	*to_replace = new_fd;
 }
 
@@ -18,10 +12,10 @@ void	fd_open_and_replace(int *to_replace, char *filename, int openflags)
 	int	new_fd;
 
 	new_fd = open(filename, openflags, 0666);
-	if (*to_replace > 2)
-		close(*to_replace);
-	if (new_fd != -1)
-		*to_replace = new_fd;
+	if (new_fd == -1)
+		return ;
+	dup2(new_fd, *to_replace);
+	*to_replace = new_fd;
 }
 
 void	fd_redirect(t_execute *info, int index)
