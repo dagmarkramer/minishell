@@ -32,7 +32,7 @@ void	fd_redirect(t_execute *info, int index)
 	else if (ft_strncmp(info->arg[index], ">>", 2) == 0)
 		fd_open_and_replace(&(info->fd_output), info->arg[index + 1], O_WRONLY | O_APPEND | O_CREAT);
 	else if (ft_strncmp(info->arg[index], ">", 1) == 0)
-		fd_open_and_replace(&(info->fd_output), info->arg[index + 1], O_WRONLY | O_CREAT);
+		fd_open_and_replace(&(info->fd_output), info->arg[index + 1], O_WRONLY | O_CREAT);// in dit geval
 	else
 		fd_open_and_replace(&(info->fd_input), info->arg[index + 1], O_RDONLY);
 	free(info->arg[index]);
