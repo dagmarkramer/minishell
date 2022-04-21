@@ -6,7 +6,7 @@
 /*   By: dkramer <dkramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/31 12:39:04 by dkramer       #+#    #+#                 */
-/*   Updated: 2022/04/21 13:57:56 by obult         ########   odam.nl         */
+/*   Updated: 2022/04/21 15:49:00 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 
-// is xxxx
+// is xxxxx
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);

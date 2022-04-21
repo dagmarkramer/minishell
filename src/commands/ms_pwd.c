@@ -1,15 +1,5 @@
 #include "minishell.h"
 
-// void	ms_pwd(t_mini *mini)
-// {
-// 	char buf[PATH_MAX];
-
-// 	(void)mini;
-// 	getcwd(buf, sizeof(buf));
-// 	printf("%s\n", buf);
-// 	free2darr(mini);
-// }
-
 void	ms_pwd(char **array)
 {
 	char buf[PATH_MAX];

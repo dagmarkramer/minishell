@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	eo_printarray(char **array)
+static void	eo_printarray(char **array)
 {
 	int	i;
 
