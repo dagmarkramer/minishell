@@ -1,17 +1,8 @@
-/*
- * find out if the array of tokens is invalid
- * go through the linked list of pipes and see if it is alowed
- */
-
-/*
- *
- */
-
  #include "minishell.h"
 
 /*
  *	int		tk_lexer(t_list *tokens);
- *	return value is NULL on succes
+ *	return value is ZERO on succes
  *	and 1 on succes
  *	error message is written inside this function
  */
@@ -26,7 +17,6 @@ int	lx_error(char *token)
 
 int	ms_lexer(t_list *tokens)
 {
-	// ft_printtokens(tokens);
 	if (((t_token *)tokens->content)->id == Pipe)
 		return(lx_error("|"));
 	while (tokens && tokens->next)

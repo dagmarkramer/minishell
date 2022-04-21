@@ -5,29 +5,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return(ft_strncmp(s1, s2, 1 + (size_t)ft_strlen(s2)));
 }
 
-// used in ms_env
-void    ft_printlst(t_list *lst, char *env)
-{
-    while (lst)
-    {
-		if (!ft_strncmp("export", env, 1 + ft_strlen("export")))
-		{
-			printf("%s", "declare -x ");
-        	printf("%s", (char *)((t_keyval *)lst->content)->key);
-			printf("%s", "=\"");
-        	printf("%s", (char *)((t_keyval *)lst->content)->value);
-			printf("%s\n", "\"");
-		}
-		if (!ft_strncmp("env", env, ft_strlen("env")))
-		{
-			printf("%s", (char *)((t_keyval *)lst->content)->key);
-			printf("%s", "=");
-        	printf("%s\n", (char *)((t_keyval *)lst->content)->value);
-		}
-        lst = lst->next;
-    }
-}
-
 void	ft_strcpy(char *dst, char *src)
 {
 	int	i;
@@ -40,6 +17,12 @@ void	ft_strcpy(char *dst, char *src)
 	}
 	dst[i] = '\0';
 }
+
+/*
+ *	strlen variation which will return the shortest len from
+ *	@param	str		to either 
+ *	@param	c		or the NULL terminating byte '\0' at the end
+ */
 
 int	ft_strclen(char *str, char c)
 {

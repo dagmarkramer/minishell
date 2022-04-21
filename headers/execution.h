@@ -47,4 +47,7 @@ int	exe_pre_buildin(t_pipe *pipe, t_mini *data);
 // EXECUTE
 int	exe_pre_fork(t_pipe *pipe, t_mini *data);
 
+// PARSER (duplicate declaration in minishell.h)
+t_list	*ms_parser(t_list **tokens, t_mini *mini);
+
 #endif

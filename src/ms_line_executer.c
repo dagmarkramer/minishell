@@ -41,7 +41,7 @@ void	ms_line_executer(t_mini *data)
 		ft_lstclear(&tokens, ms_del_token);
 		return ;
 	}
-	ms_count(tokens, data);
+	// ms_count(tokens, data);
 	pipes = ms_parser(&tokens, data);
 	exe_pipe_and_run(pipes, data);
 	ft_lstclear(&tokens, ms_del_token);
