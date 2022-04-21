@@ -56,7 +56,8 @@ char	**fd_redirections(t_execute *info)
 	{
 		if (info->arg[i][0] == '<' || info->arg[i][0] == '>')
 			fd_redirect(info, i);
-		i++;
+		else
+			i++;
 	}
 	return (info->arg);
 }
