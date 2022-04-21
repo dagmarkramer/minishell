@@ -21,9 +21,9 @@ char	*ft_stradd(char *str1, char *str2)
 	if (str1 == NULL && str2 == NULL)
 		return (NULL);
 	if (str1 == NULL)
-		return (ft_strdup(str2);
+		return (ft_strdup(str2));
 	if (str2 == NULL)
-		return (ft_strdup(str1);
+		return (ft_strdup(str1));
 	return (ft_strjoin(str1, str2));
 }
 

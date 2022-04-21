@@ -3,8 +3,6 @@
 
 # define READ 0
 # define WRITE 1
-#  include "readline/readline.h"
-#  include "readline/history.h"
 
 #  include <stdio.h>
 #  include <stdlib.h>
@@ -18,6 +16,9 @@
 #  include <unistd.h>
 #  include <sys/stat.h>
 #  include <stdbool.h>
+
+#  include "readline/readline.h"
+#  include "readline/history.h"
 
 #  include "libft.h"
 #  include "ms_environ.h"
@@ -45,7 +46,7 @@ typedef struct s_mini
 // MODULES
 int		ms_signals(void);
 int		ms_lexer(t_list *tokens);
-t_list	*ms_parser(t_list **tokens, t_mini *mini);
+t_list	*ms_parser(t_list **tokens);
 void	ms_line_executer(t_mini *data);
 int		ms_heredoc(char *delimiter);
 

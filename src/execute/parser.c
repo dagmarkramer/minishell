@@ -47,7 +47,7 @@ void	parser_init(t_pipe *pipe, char **tokenarr)
 	pipe->input_fd = STDIN_FILENO;
 }
 
-int	ms_lstadd_pipe(t_list **pipes, t_mini *mini, char **tokenarr)
+int	ms_lstadd_pipe(t_list **pipes, char **tokenarr)
 {
 	t_list	*new;
 	t_pipe	*pipe;
@@ -66,7 +66,7 @@ int	ms_lstadd_pipe(t_list **pipes, t_mini *mini, char **tokenarr)
 	return (0);
 }
 
-t_list	*ms_parser(t_list **tokens, t_mini *mini)
+t_list	*ms_parser(t_list **tokens)
 {
 	t_list	*pipes;
 	int		i;
@@ -77,7 +77,7 @@ t_list	*ms_parser(t_list **tokens, t_mini *mini)
 	new = get_args_exec((*tokens));
 	if (!new)
 		ft_disruptive_exit("malloc fail", 333);
-	ms_lstadd_pipe(&pipes, mini, new);
+	ms_lstadd_pipe(&pipes, new);
 	while ((*tokens) && (*tokens)->next)
 	{
 		if (((t_token *)(*tokens)->content)->id == Pipe)
@@ -86,7 +86,7 @@ t_list	*ms_parser(t_list **tokens, t_mini *mini)
 			new = get_args_exec((*tokens));
 			if (!new)
 				ft_disruptive_exit("malloc fail", 333);
-			ms_lstadd_pipe(&pipes, mini, new);
+			ms_lstadd_pipe(&pipes, new);
 		}
 		(*tokens) = (*tokens)->next;
 	}
