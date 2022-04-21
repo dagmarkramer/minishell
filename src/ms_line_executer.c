@@ -1,13 +1,5 @@
 #include "minishell.h"
 
-void	ms_print_word(void *ptr)
-{
-	t_token	*token;
-
-	token = (t_token *)ptr;
-	printf("%s\n", token->word);
-}
-
 int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 {
 	int	pipefd[2];

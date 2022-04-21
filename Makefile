@@ -9,8 +9,7 @@ OBJ			= main utils signals heredoc \
 				$(addprefix environment/ev_, ${ENVIRONMENT}) \
 				$(addprefix execute/, ${EXECUTE}) \
 				lexer/lexer \
-				ms_line_executer \
-				ft_list_x_to_array
+				ms_line_executer
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f

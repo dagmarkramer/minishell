@@ -15,16 +15,11 @@ char	**get_path_options(t_list *envlst)
 
 t_execute	*exe_pipe_to_execute(t_pipe *pipe, t_execute *exe, t_mini *data)
 {
-	t_list	*envlst;
-	char	**env;
-
-	envlst = data->env;
-	env = data->environ;
 	exe->fd_input = pipe->input_fd;
 	exe->fd_output = pipe->output_fd;
 	exe->arg = pipe->tokens;
-	exe->envlst = envlst;
-	exe->env = env;
+	exe->envlst = data->env;
+	exe->env = data->environ;
 	free(pipe);
 	return (exe);
 }
