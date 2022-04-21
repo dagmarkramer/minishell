@@ -3,14 +3,10 @@
 // echo cd pwd export unset env exit
 int	is_buildin(char *command)
 {
-	// if(!ft_strcmp(command, "echo"))
-	// 	return (1);
-	if (!ft_strcmp(command, "echo") || !ft_strcmp(command, "cd")
+	return (!ft_strcmp(command, "echo") || !ft_strcmp(command, "cd")
 		|| !ft_strcmp(command, "pwd") || !ft_strcmp(command, "export")
 		|| !ft_strcmp(command, "unset") || !ft_strcmp(command, "env")
-		|| !ft_strcmp(command, "exit"))
-		return (1);
-	return (0);
+		|| !ft_strcmp(command, "exit"));
 }
 
 // link the buildin functions with if statements

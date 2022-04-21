@@ -17,7 +17,7 @@ void	execute_relative(t_execute *exe_info, t_list *envlst)
 		ft_malloc_fail_check(tmp);
 		pathjoined = ft_strjoin(tmp, exe_info->arg[0]);
 		ft_malloc_fail_check(pathjoined);
-		execve(pathjoined, exe_info->arg, 0);	// run execve without envp? seems to work
+		execve(pathjoined, exe_info->arg, NULL);
 		i++;
 	}
 	exit(127);
@@ -25,7 +25,7 @@ void	execute_relative(t_execute *exe_info, t_list *envlst)
 
 void	execute_absolute(t_execute *exe_info)
 {
-	execve(exe_info->arg[0], exe_info->arg, 0);	// run execve without envp? exe_info->env
+	execve(exe_info->arg[0], exe_info->arg, NULL);
 	exit(127);
 }
 
@@ -53,7 +53,7 @@ int	exe_fork(t_execute *info)
 	if (pid == 0)
 		exe_child_process(info);
 	waitpid(pid, &status, 0);
-	
+	ms_signals();
 	return(WEXITSTATUS(status));
 }
 
