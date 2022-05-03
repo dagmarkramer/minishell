@@ -52,6 +52,7 @@ int	exe_fork(t_execute *info)
 		ft_disruptive_exit("fork failed", 43);
 	if (pid == 0)
 		exe_child_process(info);
+	ms_parenting_signals();
 	waitpid(pid, &status, 0);
 	ms_signals();
 	return(WEXITSTATUS(status));

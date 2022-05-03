@@ -47,6 +47,8 @@ static void	child_process(int writefd, char *delimiter)
 	char	*tmp;
 	int		gnl_return;
 	//  signal handling
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	//	ignore signals that need to be ignored
 
 	final_product = NULL;
@@ -90,7 +92,9 @@ int	ms_heredoc(char *delimiter)
 		child_process(pipefd[WRITE], delimiter);
 	}
 	close(pipefd[WRITE]);
+	ms_parenting_signals();
 	waitpid(pid, &status, 0);
+	ms_signals();
 	if(WIFSIGNALED(status))
 		close(pipefd[READ]);
 	if(WEXITSTATUS(status) == 1)

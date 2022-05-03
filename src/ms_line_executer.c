@@ -34,6 +34,6 @@ void	ms_line_executer(t_mini *data)
 		return ;
 	}
 	pipes = ms_parser(&tokens);
-	exe_pipe_and_run(pipes, data);
+	exe_pipe_and_run(pipes, data); // catch exitstatus
 	ft_lstclear(&tokens, ms_del_token);
 }

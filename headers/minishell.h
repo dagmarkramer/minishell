@@ -41,10 +41,12 @@ typedef struct s_mini
 	t_list	*env;
 	int		save_out;
 	int		save_in;
+	int		last_return;
 }				t_mini;
 
 // MODULES
-int		ms_signals(void);
+void	ms_signals(void);
+void	ms_parenting_signals(void);
 int		ms_lexer(t_list *tokens);
 t_list	*ms_parser(t_list **tokens);
 void	ms_line_executer(t_mini *data);
