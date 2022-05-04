@@ -5,6 +5,7 @@
 char	*ev_getenv(char *key, t_list *envlst);
 int		ev_rem_env(char *key, t_list **envlst);
 int		ev_add_env(char *key, char *value, t_list **envlst);
+int		ev_change_env(char *key, char *value, t_list **envlst);
 
 // utility functions used under the hood in envlst and used for init
 t_list	*ev_init_env(char **environ);

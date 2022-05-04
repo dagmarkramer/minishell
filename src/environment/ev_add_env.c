@@ -21,7 +21,8 @@ int		ev_rem_env(char *key, t_list **env)
 	t_list	*tmp;
 	while (env && *env)
 	{
-		if (!ft_strncmp((char *)((t_keyval *)(*env)->content)->key, key, ft_strlen((char *)((t_keyval *)(*env)->content)->key)))
+		if (!ft_strncmp((char *)((t_keyval *)(*env)->content)->key, key,
+				1 + ft_strlen((char *)((t_keyval *)(*env)->content)->key)))
 		{
 			tmp = *env;
 			*env = (*env)->next;
@@ -32,4 +33,10 @@ int		ev_rem_env(char *key, t_list **env)
 		env = &((*env)->next);
 	}
 	return (1);
+}
+
+int		ev_change_env(char *key, char *value, t_list **envlst)
+{
+	ev_rem_env(key, envlst);
+	return (ev_add_env(key, value, envlst));
 }
