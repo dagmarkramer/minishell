@@ -44,5 +44,6 @@ int	exe_pre_buildin(t_pipe *pipe, t_mini *data)
 	close(info.fd_input);
 	close(info.fd_output);
 	fd_cleanup(data);
+
 	return (tmp);
 }

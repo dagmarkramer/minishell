@@ -7,6 +7,7 @@ int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 
 	if (pipes->next == NULL && is_buildin(((t_pipe *)pipes->content)->tokens[0]))
 		return (exe_pre_buildin((t_pipe *)pipes->content, data));
+		// sleep(5);
 	while(pipes->next != NULL)
 	{
 		if (pipe(pipefd) == -1)
@@ -77,4 +78,5 @@ void	ms_line_executer(t_mini *data)
 	pipes = ms_parser(&tokens);
 	ft_lstclear(&tokens, ms_del_token);
 	data->last_return = exe_pipe_and_run(pipes, data);
+	ft_lstclear(&pipes, NULL);
 }
