@@ -74,7 +74,7 @@ t_list	*ms_parser(t_list **tokens)
 
 	i = 0;
 	pipes = 0;
-	new = get_args_exec((*tokens));
+	new = get_args_exec(*tokens);
 	if (!new)
 		ft_disruptive_exit("malloc fail", 333);
 	ms_lstadd_pipe(&pipes, new);
@@ -83,12 +83,12 @@ t_list	*ms_parser(t_list **tokens)
 		if (((t_token *)(*tokens)->content)->id == Pipe)
 		{
 			i++;
-			new = get_args_exec((*tokens));
+			new = get_args_exec(*tokens);
 			if (!new)
 				ft_disruptive_exit("malloc fail", 333);
 			ms_lstadd_pipe(&pipes, new);
 		}
-		(*tokens) = (*tokens)->next;
+		tokens = &((*tokens)->next);
 	}
 	return (pipes);
 }

@@ -8,8 +8,8 @@ typedef struct s_mini	t_mini;
 
 typedef struct	s_pipe
 {
-	bool	pipe_before;
-	bool	pipe_after;
+	bool	pipe_before;	// using this ?
+	bool	pipe_after;		// using this ?
 	int		input_fd; // 0
 	int		output_fd; // 1
 	char	**tokens;

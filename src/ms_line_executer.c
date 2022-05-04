@@ -29,6 +29,7 @@ void	ms_line_executer(t_mini *data)
 	// dagmars $? function
 	data->input = tk_expander(data->input, data->env);
 	tokens = ms_tokenizer(data->input, data->env);
+	free(data->input);
 	if (tokens == NULL)
 		return ;
 	ft_lstiter(tokens, tk_remove_quotes);
@@ -38,6 +39,6 @@ void	ms_line_executer(t_mini *data)
 		return ;
 	}
 	pipes = ms_parser(&tokens);
-	data->last_return = exe_pipe_and_run(pipes, data);
 	ft_lstclear(&tokens, ms_del_token);
+	data->last_return = exe_pipe_and_run(pipes, data);
 }
