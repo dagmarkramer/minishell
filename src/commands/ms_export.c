@@ -2,14 +2,17 @@
 
 void	ms_export(t_mini *mini, char **array)
 {
-	char **exportvar;
+	char	**exportvar;
+	int		i;
 
+	i = 1;
 	ev_sort_alfa(mini->env);
-	if (array[1])
+	while (array[i] != NULL)
 	{
-		exportvar = ft_split(array[1], '=');
+		exportvar = ft_split(array[i], '=');
 		ev_change_env(exportvar[0], exportvar[1], &mini->env);
+		i++;
 	}
-	else
+	if (array[1] == NULL)
 		ft_printlst(mini->env, "export");
 }

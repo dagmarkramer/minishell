@@ -10,7 +10,7 @@ void	ms_env(t_mini *mini, char **array);
 void	ms_exit(char **array);
 void	ms_export(t_mini *mini, char **array);
 void	ms_pwd(char **array);
-void	ms_unset(t_mini *mini);
+void	ms_unset(char **args, t_mini *mini);
 
 // Utils
 void    ft_printlst(t_list *lst, char *env);

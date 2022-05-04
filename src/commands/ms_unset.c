@@ -1,14 +1,13 @@
 #include "minishell.h"
 
-void	ms_unset(t_mini *mini)
+void	ms_unset(char **args, t_mini *mini)
 {
-	char **split;
-	char **exportvar;
+	int	i;
 
-	split = ft_split(mini->input, ' ');
-	if (split[1])
+	i = 1;
+	while (args[i] != NULL)
 	{
-		exportvar = ft_split(split[1], '=');
-		ev_rem_env(exportvar[0], &mini->env);
+		ev_rem_env(args[i], &mini->env);
+		i++;
 	}
 }

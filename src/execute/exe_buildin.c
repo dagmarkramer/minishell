@@ -25,7 +25,7 @@ int	exe_buildin(t_execute *info, t_mini *data)
 	if (ft_strcmp(info->arg[0], "pwd") == 0)
 		ms_pwd(info->arg);
 	if (ft_strcmp(info->arg[0], "unset") == 0)
-		ms_unset(data);
+		ms_unset(info->arg, data);
 	return (0);
 }
 
