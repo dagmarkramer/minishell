@@ -69,6 +69,8 @@ int	exe_pre_fork(t_pipe *pipe, t_mini *data)
 	dup2(info.fd_input, 0);
 	dup2(info.fd_output, 1);
 	ret = exe_fork(&info);
+	if (ret == 127)
+		printf("OGS: %s: command not found\n", info.arg[0]);
 	close(info.fd_input);
 	close(info.fd_output);
 	fd_cleanup(data);
