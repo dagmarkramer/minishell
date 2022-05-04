@@ -35,7 +35,7 @@ int	main(int argc, char **argv, char **newenv)
 	while (1)
 	{
 		mini.input = readline("\033[38:5:208mOud Getrouwd Shell : \033[0;0m");
-		if (mini.input == 0 || !ft_strncmp(mini.input, "exit", 5))
+		if (mini.input == 0)
 			break ;
 		if (mini.input[0] != 0)
 		{
