@@ -11,6 +11,6 @@ int		ev_change_env(char *key, char *value, t_list **envlst);
 t_list	*ev_init_env(char **environ);
 void	ev_del_keyval(void *in);
 t_list	*ev_keyval_lst_add(char *key, char *value);
-void    ev_sort_alfa(t_list *env);
+void	ev_sort_alfa(t_list *env);
 
 #endif

@@ -3,7 +3,7 @@
 
 # include "libft.h"
 
-typedef enum 	e_token_id
+typedef enum e_token_id
 {
 	Pipe,
 	Str,
@@ -13,7 +13,7 @@ typedef enum 	e_token_id
 	Append
 }				t_token_id;
 
-typedef struct	s_token
+typedef struct s_token
 {
 	t_token_id	id;
 	char		*word;

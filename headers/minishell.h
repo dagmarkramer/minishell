@@ -4,40 +4,40 @@
 # define READ 0
 # define WRITE 1
 
-#  include <stdio.h>
-#  include <stdlib.h>
-#  include <fcntl.h>
-#  include <limits.h>
-#  include <dirent.h>
-#  include <termios.h>
-#  include <curses.h>
-#  include <term.h>
-#  include <signal.h>
-#  include <unistd.h>
-#  include <sys/stat.h>
-#  include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <dirent.h>
+# include <termios.h>
+# include <curses.h>
+# include <term.h>
+# include <signal.h>
+# include <unistd.h>
+# include <sys/stat.h>
+# include <stdbool.h>
 
-#  include "readline/readline.h"
-#  include "readline/history.h"
+# include "readline/readline.h"
+# include "readline/history.h"
 
-#  include "libft.h"
-#  include "ms_environ.h"
-#  include "tokenizer.h"
-#  include "execution.h"
-#  include "commands.h"
+# include "libft.h"
+# include "ms_environ.h"
+# include "tokenizer.h"
+# include "execution.h"
+# include "commands.h"
 
-typedef	struct s_keyval
+typedef struct s_keyval
 {
 	char	*key;
 	char	*value;
 }				t_keyval;
 
-typedef t_keyval t_dictionary;
+typedef t_keyval	t_dictionary;
 
 typedef struct s_mini
 {
 	char	*input;
-	char 	**environ;
+	char	**environ;
 	t_list	*env;
 	int		save_out;
 	int		save_in;
