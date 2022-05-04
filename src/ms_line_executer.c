@@ -21,40 +21,39 @@ int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 	return (exe_pre_fork((t_pipe *)pipes->content, data));
 }
 
-void	replaceexitstatus(t_mini *data)
+void    replaceexitstatus(t_mini *data)
 {
-	char *newinput;
-	int	i;
-	int	a;
-	int	j;
-	char *exitstatus;
-
-	i = 0;
-	a = 0;
-	j = 0;
-	exitstatus = ft_itoa(data->last_return);
-	newinput = malloc(sizeof(char) * (ft_strlen(data->input) - 2 + ft_strlen(exitstatus) + 1));
-	while (data->input[i] && newinput[a])
-	{
-		if (data->input[i] == '$' && data->input[i + 1] == '?')
-		{
-			while (exitstatus[j] && newinput[a])
-			{
-				newinput[a] = exitstatus[j];
-				a++;
-				j++;
-			}
-			i += 2;
-		}
-		newinput[a] = data->input[i];
-		if (newinput[a])
-			a++;
-		if (data->input[i])
-			i++;
-	}
-	newinput[a] = '\0';
-	free (data->input);
-	data->input = newinput;
+    char *newinput;
+    int i;
+    int a;
+    int j;
+    char *exitstatus;
+    i = 0;
+    a = 0;
+    j = 0;
+    exitstatus = ft_itoa(data->last_return);
+    newinput = malloc(sizeof(char) * (ft_strlen(data->input) - 2 + ft_strlen(exitstatus) + 1));
+    while (data->input[i])
+    {
+        if (data->input[i] == '$' && data->input[i + 1] == '?')
+        {
+            while (exitstatus[j])
+            {
+                newinput[a] = exitstatus[j];
+                a++;
+                j++;
+            }
+            i += 2;
+        }
+        newinput[a] = data->input[i];
+        if (newinput[a])
+            a++;
+        if (data->input[i])
+            i++;
+    }
+    newinput[a] = '\0';
+    free (data->input);
+    data->input = newinput;
 }
 
 void	ms_line_executer(t_mini *data)
