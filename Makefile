@@ -3,7 +3,7 @@ COMMANDS	= cd echo env exit export pwd unset utils
 TOKENIZER	= tokenizer utils wordsplit name_tokens expander remove_quotes
 ENVIRONMENT	= sort_alfa init_env add_env get_env
 EXECUTE		= parser execute exe_buildin exe_utils fd_redir
-OBJ			= main utils signals heredoc \
+OBJ			= main utils signals heredoc lst_to_array\
 				$(addprefix commands/ms_, ${COMMANDS}) \
 				$(addprefix tokenizer/tk_, ${TOKENIZER}) \
 				$(addprefix environment/ev_, ${ENVIRONMENT}) \
@@ -15,7 +15,7 @@ CC			= gcc
 RM			= rm -f
 HEADER		= -I headers/ 
 RL_I		= -I $$HOME/.brew/opt/readline/include
-CFLAGS		= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 LFLAGS		= -lreadline -lncurses -L $$HOME/.brew/opt/readline/lib
 LIBFT		= Libft/libft.a
 

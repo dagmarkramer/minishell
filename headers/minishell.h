@@ -61,4 +61,7 @@ int		ft_strslen(char *str, char *check);
 char	*ft_strcdup(const char *s1, char c);
 int		ft_strcmp(const char *s1, const char *s2);
 
+char	**ft_lst_to_array(t_list *lst, void (*turn)(void *, char **));
+void	ev_turn_envlist(void *content, char **dst);
+
 #endif

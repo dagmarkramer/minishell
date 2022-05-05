@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	execute_relative(t_execute *exe_info, t_list *envlst)
+void	execute_relative(t_execute *info, t_list *env)
 {
 	char	**paths;
 	char	*pathjoined;
@@ -8,41 +8,42 @@ void	execute_relative(t_execute *exe_info, t_list *envlst)
 	int		i;
 
 	i = 0;
-	paths = get_path_options(envlst);
+	paths = get_path_options(env);
 	if (paths == NULL)
 		exit(127);
 	while (paths[i] != NULL)
 	{
 		tmp = ft_strjoin(paths[i], "/");
 		ft_malloc_fail_check(tmp);
-		pathjoined = ft_strjoin(tmp, exe_info->arg[0]);
+		pathjoined = ft_strjoin(tmp, info->arg[0]);
 		ft_malloc_fail_check(pathjoined);
-		execve(pathjoined, exe_info->arg, NULL);
+		execve(pathjoined, info->arg, ft_lst_to_array(env, ev_turn_envlist));
 		i++;
 	}
 	exit(127);
 }
 
-void	execute_absolute(t_execute *exe_info)
+void	execute_absolute(t_execute *info, t_list *env)
 {
-	execve(exe_info->arg[0], exe_info->arg, NULL);
+	// (void)env;
+	execve(info->arg[0], info->arg, ft_lst_to_array(env, ev_turn_envlist)); //ft_lst_to_array(env, ev_turn_envlist)
 	exit(127);
 }
 
-void	exe_child_process(t_execute *info)
+void	exe_child_process(t_execute *info, t_mini *data)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	if (is_buildin(info->arg[0]))
-		exe_buildin(info, NULL);
+		exe_buildin(info, data);
 	else if(info->arg[0][0] == '/' || info->arg[0][0] == '.')
-		execute_absolute(info);
+		execute_absolute(info, info->envlst);
 	else
 		execute_relative(info, info->envlst);
 	exit(0);
 }
 
-int	exe_fork(t_execute *info)
+int	exe_fork(t_execute *info, t_mini *data)
 {
 	pid_t	pid;
 	int		status;
@@ -51,7 +52,7 @@ int	exe_fork(t_execute *info)
 	if (pid == -1)
 		ft_disruptive_exit("fork failed", 43);
 	if (pid == 0)
-		exe_child_process(info);
+		exe_child_process(info, data);
 	ms_parenting_signals();
 	waitpid(pid, &status, 0);
 	ms_signals();
@@ -67,7 +68,7 @@ int	exe_pre_fork(t_pipe *pipe, t_mini *data)
 	info.arg = fd_redirections(&info);
 	dup2(info.fd_input, 0);
 	dup2(info.fd_output, 1);
-	ret = exe_fork(&info);
+	ret = exe_fork(&info, data);
 	if (ret == 127)
 		printf("OGS: %s: command not found\n", info.arg[0]);
 	free_string_array(info.arg);
