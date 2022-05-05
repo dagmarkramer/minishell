@@ -56,6 +56,8 @@ int	exe_fork(t_execute *info, t_mini *data)
 	ms_parenting_signals();
 	waitpid(pid, &status, 0);
 	ms_signals();
+	if (WIFSIGNALED(status))
+		return (130);
 	return(WEXITSTATUS(status));
 }
 
