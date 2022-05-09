@@ -36,7 +36,6 @@ int	exe_pre_buildin(t_pipe *pipe, t_mini *data)
 
 	exe_pipe_to_execute(pipe, &info, data);
 	info.arg = fd_redirections(&info);
-
 	dup2(info.fd_input, 0);
 	dup2(info.fd_output, 1);
 	tmp = exe_buildin(&info, data);
@@ -44,6 +43,5 @@ int	exe_pre_buildin(t_pipe *pipe, t_mini *data)
 	close(info.fd_input);
 	close(info.fd_output);
 	fd_cleanup(data);
-
 	return (tmp);
 }

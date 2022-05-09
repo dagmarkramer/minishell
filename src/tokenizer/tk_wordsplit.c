@@ -35,7 +35,7 @@ char	*ms_claim_word(char *input, int start, int size)
 	new_word[size] = 0;
 	if (size == 0)
 		return (new_word);
-	return(ft_memcpy(new_word, &input[start], size));
+	return (ft_memcpy(new_word, &input[start], size));
 }
 
 int	ms_add_tokens(t_list **tokens, char *input)
@@ -59,7 +59,7 @@ int	ms_add_tokens(t_list **tokens, char *input)
 		new_word = ms_claim_word(input, start, i - start);
 		if (new_word == NULL)
 			return (1);
-		if(ms_lstadd_token(tokens, new_word))
+		if (ms_lstadd_token(tokens, new_word))
 			return (1);
 		start = i;
 	}

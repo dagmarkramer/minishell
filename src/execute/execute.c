@@ -25,8 +25,7 @@ void	execute_relative(t_execute *info, t_list *env)
 
 void	execute_absolute(t_execute *info, t_list *env)
 {
-	// (void)env;
-	execve(info->arg[0], info->arg, ft_lst_to_array(env, ev_turn_envlist)); //ft_lst_to_array(env, ev_turn_envlist)
+	execve(info->arg[0], info->arg, ft_lst_to_array(env, ev_turn_envlist));
 	exit(127);
 }
 
@@ -36,7 +35,7 @@ void	exe_child_process(t_execute *info, t_mini *data)
 	signal(SIGQUIT, SIG_DFL);
 	if (is_buildin(info->arg[0]))
 		exe_buildin(info, data);
-	else if(info->arg[0][0] == '/' || info->arg[0][0] == '.')
+	else if (info->arg[0][0] == '/' || info->arg[0][0] == '.')
 		execute_absolute(info, info->envlst);
 	else
 		execute_relative(info, info->envlst);
@@ -58,7 +57,7 @@ int	exe_fork(t_execute *info, t_mini *data)
 	ms_signals();
 	if (WIFSIGNALED(status))
 		return (130);
-	return(WEXITSTATUS(status));
+	return (WEXITSTATUS(status));
 }
 
 int	exe_pre_fork(t_pipe *pipe, t_mini *data)

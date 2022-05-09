@@ -95,9 +95,9 @@ int	ms_heredoc(char *delimiter)
 	ms_parenting_signals();
 	waitpid(pid, &status, 0);
 	ms_signals();
-	if(WIFSIGNALED(status))
+	if (WIFSIGNALED(status))
 		close(pipefd[READ]);
-	if(WEXITSTATUS(status) == 1)
+	if (WEXITSTATUS(status) == 1)
 		ft_disruptive_exit("gnl failed", 44);
 	return (pipefd[READ]);
 }

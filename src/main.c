@@ -1,5 +1,17 @@
 #include "minishell.h"
 
+void	ft_disruptive_exit(char *exit_status, int exit_int)
+{
+	ft_putendl_fd(exit_status, 2);
+	exit(exit_int);
+}
+
+void	ft_malloc_fail_check(void *status)
+{
+	if (status == NULL)
+		ft_disruptive_exit("malloc fail", 333);
+}
+
 int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 {
 	(void)argv;
@@ -39,7 +51,6 @@ int	main(int argc, char **argv, char **newenv)
 		{
 			add_history(mini.input);
 			ms_line_executer(&mini);
-			// system("leaks minishell");
 		}
 	}
 	ms_exit_cleanup(&mini);
