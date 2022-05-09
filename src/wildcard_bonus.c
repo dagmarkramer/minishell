@@ -54,7 +54,7 @@ void	wildcard_single_expander(t_list **wild)
 	struct dirent *dir;
 
 	original = *wild;
-	*wild = (*wild)->next;
+	wild = &(*wild)->next;
     d = opendir(".");
 	if (d)
 	{
@@ -67,18 +67,29 @@ void	wildcard_single_expander(t_list **wild)
 		}
 		closedir(d);
 	}
-	ms_del_token((void *)original);
 }
 
 void	wildcards_expander(t_list **tokens)
 {
 	t_token	*tmp;
+	t_list	*next;
+	int		lstlen;
 
 	while (*tokens != NULL)
 	{
 		tmp = (t_token *)(*tokens)->content;
 		if (tmp->word[ft_strclen(tmp->word, '*')] == '*')
+		{
+			lstlen = ft_lstsize(*tokens);
 			wildcard_single_expander(tokens);
+			if (lstlen < ft_lstsize(*tokens))
+			{
+				next = (*tokens)->next;
+				ms_del_token((*tokens)->content);
+				free(*tokens);
+				*tokens = next;
+			}
+		}
 		tokens = &((*tokens)->next);
 	}
 }
