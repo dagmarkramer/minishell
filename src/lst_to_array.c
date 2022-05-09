@@ -30,8 +30,8 @@ char	**ft_lst_to_array(t_list *lst, void (*turn)(void *, char **))
 void	ev_turn_envlist(void *content, char **dst)
 {
 	t_dictionary	*current;
-	char		*tmp;
-	char		*product;
+	char			*tmp;
+	char			*product;
 
 	current = (t_dictionary *)content;
 	tmp = ft_stradd(current->key, "=");
@@ -41,6 +41,6 @@ void	ev_turn_envlist(void *content, char **dst)
 		return ;
 	}
 	product = ft_stradd(tmp, current->value);
-	free(tmp);
-	*dst = product;	
+	free (tmp);
+	*dst = product;
 }

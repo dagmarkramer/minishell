@@ -19,7 +19,7 @@ typedef struct s_token
 	char		*word;
 }				t_token;
 
-t_list	*ms_tokenizer(char *input, t_list *env);
+t_list	*ms_tokenizer(char *input);
 
 void	ms_del_token(void *incomming);
 int		ms_lstadd_token(t_list **tokens, char *word);

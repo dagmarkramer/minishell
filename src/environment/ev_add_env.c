@@ -4,7 +4,7 @@
  *	the functions in this file return 0 on succes and 1 on failure
  */
 
-int		ev_add_env(char *key, char *value, t_list **envlst)
+int	ev_add_env(char *key, char *value, t_list **envlst)
 {
 	t_list	*new;
 
@@ -16,9 +16,10 @@ int		ev_add_env(char *key, char *value, t_list **envlst)
 	return (0);
 }
 
-int		ev_rem_env(char *key, t_list **env)
+int	ev_rem_env(char *key, t_list **env)
 {
 	t_list	*tmp;
+
 	while (env && *env)
 	{
 		if (!ft_strncmp((char *)((t_keyval *)(*env)->content)->key, key,
@@ -35,7 +36,7 @@ int		ev_rem_env(char *key, t_list **env)
 	return (1);
 }
 
-int		ev_change_env(char *key, char *value, t_list **envlst)
+int	ev_change_env(char *key, char *value, t_list **envlst)
 {
 	ev_rem_env(key, envlst);
 	return (ev_add_env(key, value, envlst));

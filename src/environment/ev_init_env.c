@@ -35,15 +35,14 @@ t_list	*ev_single_env_to_lst(char *env)
 
 	i = 0;
 	key = ft_strcdup(env, '=');
-	if (key == NULL)
-		return (NULL);
+	ft_malloc_fail_check(key);
 	while (env[i] && env[i] != '=')
 		i++;
 	value = ft_strcdup(&env[i + 1], 0);
 	if (value == NULL)
 	{
 		free(key);
-		return (NULL);
+		ft_malloc_fail_check(value);
 	}
 	return (ev_keyval_lst_add(key, value));
 }

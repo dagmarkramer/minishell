@@ -2,7 +2,7 @@
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
-	return(ft_strncmp(s1, s2, 1 + (size_t)ft_strlen(s2)));
+	return (ft_strncmp(s1, s2, 1 + (size_t)ft_strlen(s2)));
 }
 
 void	ft_strcpy(char *dst, char *src)
@@ -26,7 +26,7 @@ void	ft_strcpy(char *dst, char *src)
 
 int	ft_strclen(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] && str[i] != c)
@@ -36,7 +36,7 @@ int	ft_strclen(char *str, char c)
 
 int	ft_strslen(char *str, char *check)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ft_strchr(check, str[i]) == 0 && str[i] != '\0')
@@ -62,16 +62,4 @@ char	*ft_strcdup(const char *s1, char c)
 	}
 	copy[i] = '\0';
 	return (copy);
-}
-
-void	ft_disruptive_exit(char *exit_status, int exit_int)
-{
-	ft_putendl_fd(exit_status, 2);
-	exit(exit_int);
-}
-
-void	ft_malloc_fail_check(void *status)
-{
-	if (status == NULL)
-		ft_disruptive_exit("malloc fail", 333);
 }
