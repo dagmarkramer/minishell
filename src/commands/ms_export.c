@@ -10,7 +10,10 @@ void	ms_export(t_mini *mini, char **array)
 	while (array[i] != NULL)
 	{
 		exportvar = ft_split(array[i], '=');
-		ev_change_env(exportvar[0], exportvar[1], &mini->env);
+		if (!exportvar)
+			ft_disruptive_exit("malloc fail", 333);
+		if (ev_change_env(exportvar[0], exportvar[1], &mini->env))
+			ft_disruptive_exit("malloc fail", 333);
 		i++;
 	}
 	if (array[1] == NULL)

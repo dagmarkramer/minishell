@@ -38,9 +38,10 @@ void	ev_turn_envlist(void *content, char **dst)
 	if (tmp == NULL)
 	{
 		*dst = NULL;
-		return ;
+		ft_malloc_fail_check(tmp);
 	}
 	product = ft_stradd(tmp, current->value);
+	ft_malloc_fail_check(product);
 	free (tmp);
 	*dst = product;
 }

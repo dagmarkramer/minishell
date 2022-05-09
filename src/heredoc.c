@@ -36,6 +36,8 @@ char	*ft_stradd_with_newline(char *str1, char *str2)
 	if (tmp == NULL)
 		return (NULL);
 	ret = ft_stradd(tmp, "\n");
+	if (ret == NULL)
+		return (NULL);
 	free(tmp);
 	return (ret);
 }
@@ -57,7 +59,7 @@ static void	child_process(int writefd, char *delimiter)
 	{
 		gnl_return = get_next_line(0, &line);
 		if (gnl_return == -1)
-			exit(1);
+			ft_disruptive_exit("malloc fail", 333);
 		if (ft_strncmp(line, delimiter, (size_t)ft_strlen(delimiter) + 1) == 0)
 		{
 			ft_putstr_fd(final_product, writefd);

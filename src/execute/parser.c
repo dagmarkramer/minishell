@@ -24,6 +24,7 @@ char	**get_args_exec(t_list *tokens)
 
 	i = 0;
 	new = malloc(sizeof(char *) * (count_words(tokens) + 1));
+	ft_malloc_fail_check(new);
 	if (((t_token *)tokens->content)->id == Pipe)
 		tokens = tokens->next;
 	while (tokens)

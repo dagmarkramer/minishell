@@ -23,6 +23,8 @@ int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
 		return (1);
 	}
 	mini->env = ev_init_env(newenv);
+	if (!mini->env)
+		ft_disruptive_exit("malloc fail", 333);
 	ms_signals();
 	mini->save_in = dup(0);
 	mini->save_out = dup(1);
