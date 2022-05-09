@@ -6,13 +6,13 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:57 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:47:57 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/10 00:34:25 by oswin         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ms_exit(char **array)
+int	ms_exit(char **array)
 {
 	int	exitcode;
 	int	errorcode;
@@ -23,7 +23,7 @@ void	ms_exit(char **array)
 	if (arraylen > 2)
 	{
 		printf("OGS: exit: too many arguments\n");
-		return ;
+		return (1);
 	}
 	if (arraylen == 1)
 		exit(0);
@@ -34,4 +34,5 @@ void	ms_exit(char **array)
 		exit(255);
 	}
 	exit(exitcode);
+	return (0);
 }

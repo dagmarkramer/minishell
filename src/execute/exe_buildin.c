@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:07 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:47:08 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/10 00:38:11 by oswin         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	exe_buildin(t_execute *info, t_mini *data)
 	if (ft_strcmp(info->arg[0], "echo") == 0)
 		ms_echo(info->arg);
 	if (ft_strcmp(info->arg[0], "cd") == 0)
-		ms_cd(info->arg);
+		return (ms_cd(info->arg));
 	if (ft_strcmp(info->arg[0], "env") == 0)
 		ms_env(data, info->arg);
 	if (ft_strcmp(info->arg[0], "exit") == 0)
-		ms_exit(info->arg);
+		return (ms_exit(info->arg));
 	if (ft_strcmp(info->arg[0], "export") == 0)
 		ms_export(data, info->arg);
 	if (ft_strcmp(info->arg[0], "pwd") == 0)

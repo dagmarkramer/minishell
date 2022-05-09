@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:41:53 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 23:06:31 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/10 00:35:10 by oswin         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int		ms_cd(char **array);
 void	ms_echo(char **array);
 void	ms_env(t_mini *mini, char **array);
-void	ms_exit(char **array);
+int		ms_exit(char **array);
 void	ms_export(t_mini *mini, char **array);
 void	ms_pwd(char **array);
 void	ms_unset(char **args, t_mini *mini);
