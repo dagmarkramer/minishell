@@ -75,6 +75,8 @@ void	ms_line_executer(t_mini *data)
 		replaceexitstatus(data);
 	data->input = tk_expander(data->input, data->env);
 	tokens = ms_tokenizer(data->input);
+	if (!tokens)
+		ft_disruptive_exit("malloc fail", 333);
 	free(data->input);
 	if (tokens == NULL)
 		return ;
