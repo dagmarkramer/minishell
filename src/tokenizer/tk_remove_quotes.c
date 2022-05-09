@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   tk_remove_quotes.c                                 :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: oswin <oswin@student.codam.nl>               +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/09 22:45:59 by oswin         #+#    #+#                 */
+/*   Updated: 2022/05/09 22:46:00 by oswin         ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
  * Removes the quotes from a tokenized word.
  * This function can be called in lstiter for a linked list

@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   commands.h                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: oswin <oswin@student.codam.nl>               +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/09 22:41:53 by oswin         #+#    #+#                 */
+/*   Updated: 2022/05/09 23:06:31 by oswin         ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef COMMANDS_H
 # define COMMANDS_H
 
 # include "minishell.h"
+# include <errno.h>
 
 //	buildins
-void	ms_cd(char **array);
+int		ms_cd(char **array);
 void	ms_echo(char **array);
 void	ms_env(t_mini *mini, char **array);
 void	ms_exit(char **array);

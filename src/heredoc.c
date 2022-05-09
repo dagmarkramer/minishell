@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   heredoc.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: oswin <oswin@student.codam.nl>               +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/09 22:43:02 by oswin         #+#    #+#                 */
+/*   Updated: 2022/05/09 22:44:40 by oswin         ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 /*
@@ -15,6 +27,7 @@
  *	and in the case of one valid pointer a ft_strdup will be returned
  *	in the case of two NULL pointers NULL will be returned
  */
+
 
 char	*ft_stradd(char *str1, char *str2)
 {
