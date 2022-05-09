@@ -3,31 +3,35 @@
 
 int	ft_strrcmp(char *haystack, char *needle)
 {
-    int hl;
-    int nl;
+	int	hl;
+	int	nl;
 
-    hl = ft_strclen(haystack, '\0');    // use ft_strlen here instead
-    nl = ft_strclen(needle, '\0');
-    while (hl >= 0 && nl >= 0)
-    {
-        if (haystack[hl] != needle[nl])
-            return (1);
-        hl--;
-        nl--;
-    }
-    return (nl + 1);
+	hl = ft_strlen(haystack);
+	nl = ft_strlen(needle);
+	while (hl >= 0 && nl >= 0)
+	{
+		if (haystack[hl] != needle[nl])
+			return (1);
+		hl--;
+		nl--;
+	}
+	return (nl + 1);
 }
 
 int	wildcard_compare(char *name, char *wildcard)
 {
-    int wci;
+	int	wci;
 
-    wci = ft_strclen(wildcard, '*');
-    if (wildcard[wci] == '\0')
-        return (0);
-    if (!ft_strncmp(name, wildcard, wci) && !ft_strrcmp(&name[wci], &wildcard[wci + 1]))
-        return (1);
-    return (0);
+	if ((*name == '.' && *wildcard != '.')
+		|| (*name != '.' && *wildcard == '.'))
+		return (0);
+	wci = ft_strclen(wildcard, '*');
+	if (wildcard[wci] == '\0')
+		return (0);
+	if (!ft_strncmp(name, wildcard, wci)
+		&& !ft_strrcmp(&name[wci], &wildcard[wci + 1]))
+		return (1);
+	return (0);
 }
 
 t_list	**insert_wildcard_token(t_list **wild, char *word)
@@ -49,21 +53,24 @@ t_list	**insert_wildcard_token(t_list **wild, char *word)
 
 void	wildcard_single_expander(t_list **wild)
 {
-	t_list	*original;
-	DIR *d;
-	struct dirent *dir;
+	t_list			*original;
+	DIR				*d;
+	struct dirent	*dir;
 
 	original = *wild;
 	wild = &(*wild)->next;
-    d = opendir(".");
+	d = opendir(".");
 	if (d)
 	{
-		while ((dir = readdir(d)) != NULL)
+		dir = readdir(d);
+		while (dir != NULL)
 		{
-			if (wildcard_compare(dir->d_name, ((t_token *)original->content)->word))
+			if (wildcard_compare(dir->d_name,
+					((t_token *)original->content)->word))
 			{
 				wild = insert_wildcard_token(wild, dir->d_name);
 			}
+			dir = readdir(d);
 		}
 		closedir(d);
 	}
