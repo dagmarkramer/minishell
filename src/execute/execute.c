@@ -33,6 +33,8 @@ void	exe_child_process(t_execute *info, t_mini *data)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+	dup2(info->fd_input, 0);
+	dup2(info->fd_output, 1);
 	if (is_buildin(info->arg[0]))
 		exe_buildin(info, data);
 	else if (info->arg[0][0] == '/' || info->arg[0][0] == '.')
@@ -67,8 +69,6 @@ int	exe_pre_fork(t_pipe *pipe, t_mini *data)
 
 	exe_pipe_to_execute(pipe, &info, data);
 	info.arg = fd_redirections(&info);
-	dup2(info.fd_input, 0);
-	dup2(info.fd_output, 1);
 	ret = exe_fork(&info, data);
 	if (ret == 127)
 		printf("OGS: %s: command not found\n", info.arg[0]);

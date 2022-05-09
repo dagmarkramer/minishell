@@ -12,8 +12,8 @@ int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 	{
 		if (pipe(pipefd) == -1)
 			ft_disruptive_exit("pipe failed", 42);
-		fd_replacer(&((t_pipe *)pipes->content)->output_fd, pipefd[1]);
-		fd_replacer(&((t_pipe *)pipes->next->content)->input_fd, pipefd[0]);
+		((t_pipe *)pipes->content)->output_fd = pipefd[1];
+		((t_pipe *)pipes->next->content)->input_fd = pipefd[0];
 		errorcode = exe_pre_fork((t_pipe *)pipes->content, data);
 		if (errorcode)
 			return (errorcode);
