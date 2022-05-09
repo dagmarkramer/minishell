@@ -56,6 +56,8 @@ void    replaceexitstatus(t_mini *data)
     data->input = newinput;
 }
 
+void	wildcards_expander(t_list **tokens);
+
 void	ms_line_executer(t_mini *data)
 {
 	t_list	*tokens;
@@ -69,6 +71,7 @@ void	ms_line_executer(t_mini *data)
 	if (tokens == NULL)
 		return ;
 	ft_lstiter(tokens, tk_remove_quotes);
+	wildcards_expander(&tokens);
 	if (ms_lexer(tokens) == 0)
 	{
 		ft_lstclear(&tokens, ms_del_token);
