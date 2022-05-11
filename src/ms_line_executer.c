@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:09 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 14:10:17 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/11 15:22:06 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ void	replaceexitstatus(t_mini *data)
 	free (exitstatus);
 	data->input = newinput;
 }
-
-void	wildcards_expander(t_list **tokens);
 
 void	ms_line_executer(t_mini *data)
 {

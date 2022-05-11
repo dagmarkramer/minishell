@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:12 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:46:13 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 15:34:31 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,4 @@ char	*tk_expander(char *word, t_list *env)
 		i++;
 	}
 	return (word);
-}
-
-void	tk_expand_env(void *in, t_list *env)
-{
-	t_token	*token;
-
-	token = (t_token *)in;
-	token->word = tk_expander(token->word, env);
-}
-
-void	tk_expand_all(t_list *tokens, t_list *env)
-{
-	while (tokens != NULL)
-	{
-		tk_expand_env(tokens->content, env);
-		tokens = tokens->next;
-	}
 }

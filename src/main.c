@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:02 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:45:03 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 15:34:14 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ void	ft_malloc_fail_check(void *status)
 		ft_disruptive_exit("malloc fail", 333);
 }
 
-int	ms_init(t_mini *mini, int argc, char **argv, char **newenv)
+int	ms_init(t_mini *mini, int argc, char **newenv)
 {
-	(void)argv;
 	mini->input = NULL;
 	mini->environ = newenv;
 	if (argc != 1)
@@ -54,7 +53,8 @@ int	main(int argc, char **argv, char **newenv)
 {
 	t_mini	mini;
 
-	if (ms_init(&mini, argc, argv, newenv))
+	(void)argv;
+	if (ms_init(&mini, argc, newenv))
 		return (1);
 	while (1)
 	{
