@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:57 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/10 00:34:25 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 18:07:00 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,4 @@ int	ms_exit(char **array)
 		exit(255);
 	}
 	exit(exitcode);
-	return (0);
 }

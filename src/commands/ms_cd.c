@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:42 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 12:23:04 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/11 18:05:01 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  *	to many arguments OR invalid directory as an argument results in failure
  */
 
-int	ms_cd(char **array)
+int	ms_cd(char **array, t_list *env)
 {
 	if (ft_arraylen(array) > 2)
 	{
@@ -27,6 +27,15 @@ int	ms_cd(char **array)
 	}
 	if (ft_strncmp(array[0], "cd", 3) != 0)
 		return (1);
+	if (array[1] == NULL)
+	{
+		if (chdir(ev_getenv("HOME", env)))
+		{
+			perror(array[1]);
+			return (1);
+		}
+		return (0);
+	}
 	if (chdir(array[1]))
 	{
 		perror(array[1]);

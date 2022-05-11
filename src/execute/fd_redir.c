@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:47 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:46:48 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 18:31:13 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	fd_open_and_replace(int *to_replace, char *filename, int openflags)
 	new_fd = open(filename, openflags, 0666);
 	if (new_fd == -1)
 		return ;
+	close(*to_replace);
 	*to_replace = new_fd;
 }
 

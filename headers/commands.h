@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:41:53 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 12:04:51 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/11 18:02:15 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <errno.h>
 
 //	buildins
-int		ms_cd(char **array);
+int		ms_cd(char **array, t_list *env);
 void	ms_echo(char **array);
 void	ms_env(t_mini *mini, char **array);
 int		ms_exit(char **array);
