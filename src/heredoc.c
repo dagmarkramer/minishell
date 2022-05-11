@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:43:02 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:44:40 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 14:24:13 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@
 
 /*
  *	return the open fd to read from from pipe!
- *	if the heredoc is disrupted the fd will be closed and nothing will be available to read
+ *	if the heredoc is disrupted the fd will be closed
+ *	and nothing will be available to read
  */
 
 /*
- *	ft_stradd is a strjoin version which can be passed one or multiple NUll pointers
+ *	ft_stradd is a strjoin version which can be passed
+ *	one or multiple NUll pointers.
  *	where in the case of two valid pointers strjoin is performed
  *	and in the case of one valid pointer a ft_strdup will be returned
  *	in the case of two NULL pointers NULL will be returned
  */
-
 
 char	*ft_stradd(char *str1, char *str2)
 {
@@ -55,17 +56,21 @@ char	*ft_stradd_with_newline(char *str1, char *str2)
 	return (ret);
 }
 
+static void	exit_and_putstr(char *write, int fd, int exitcode)
+{
+	ft_putstr_fd(write, fd);
+	exit(exitcode);
+}
+
 static void	child_process(int writefd, char *delimiter)
 {
 	char	*line;
 	char	*final_product;
 	char	*tmp;
 	int		gnl_return;
-	//  signal handling
+
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	//	ignore signals that need to be ignored
-
 	final_product = NULL;
 	gnl_return = 1;
 	while (gnl_return)
@@ -74,10 +79,7 @@ static void	child_process(int writefd, char *delimiter)
 		if (gnl_return == -1)
 			ft_disruptive_exit("malloc fail", 333);
 		if (ft_strncmp(line, delimiter, (size_t)ft_strlen(delimiter) + 1) == 0)
-		{
-			ft_putstr_fd(final_product, writefd);
-			exit(0);
-		}
+			exit_and_putstr(final_product, writefd, 0);
 		tmp = final_product;
 		final_product = ft_stradd_with_newline(final_product, line);
 		free(line);
@@ -85,8 +87,7 @@ static void	child_process(int writefd, char *delimiter)
 		if (tmp != NULL)
 			free(tmp);
 	}
-	ft_putstr_fd(final_product, writefd);
-	exit(0);
+	exit_and_putstr(final_product, writefd, 0);
 }
 
 int	ms_heredoc(char *delimiter)
@@ -95,7 +96,6 @@ int	ms_heredoc(char *delimiter)
 	pid_t	pid;
 	int		status;
 
-	// printf("heredoc\n");
 	if (pipe(pipefd))
 		ft_disruptive_exit("pipefd failed", 42);
 	pid = fork();
@@ -116,4 +116,3 @@ int	ms_heredoc(char *delimiter)
 		ft_disruptive_exit("gnl failed", 44);
 	return (pipefd[READ]);
 }
- 
