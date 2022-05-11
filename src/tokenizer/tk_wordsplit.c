@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:41 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:45:42 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 15:24:01 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ms_add_tokens(t_list **tokens, char *input)
 	i = 0;
 	while (input[i])
 	{
-		start = ms_skip_chars(input, " \t\n", i);
+		start = ms_skip_chars(input, " \t\n\f\r\v", i);
 		if (ft_strchr("<>", input[start]) && input[start] == input[start + 1])
 			i = start + 2;
 		else if (ft_strchr("|<>", input[start]))

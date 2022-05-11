@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:42:27 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 23:06:18 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 15:22:04 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,8 @@ int		ft_strcmp(const char *s1, const char *s2);
 
 char	**ft_lst_to_array(t_list *lst, void (*turn)(void *, char **));
 void	ev_turn_envlist(void *content, char **dst);
+
+// Wildcards bonus
+void	wildcards_expander(t_list **tokens);
 
 #endif
