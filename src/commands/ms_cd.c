@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:42 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 23:07:23 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 12:23:04 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ms_cd(char **array)
 		return (1);
 	if (chdir(array[1]))
 	{
-		perror(strerror(errno));
+		perror(array[1]);
 		return (1);
 	}
 	return (0);

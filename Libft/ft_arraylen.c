@@ -6,14 +6,14 @@
 /*   By: dkramer <dkramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 20:04:50 by dkramer       #+#    #+#                 */
-/*   Updated: 2022/05/04 20:04:52 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/11 12:05:41 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdlib.h>
 
-int	ft_arraylen(void **arr)
+int	ft_arraylen(char **arr)
 {
 	int	i;
 
