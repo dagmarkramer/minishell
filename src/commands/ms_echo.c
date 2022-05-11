@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:49 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 12:21:26 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/11 14:17:11 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	eo_dash_n_count(char **array)
 		count++;
 	}
 	return (count);
- }
+}
 
 /*
  *	Replication of the BASH echo command.
