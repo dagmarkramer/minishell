@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:53 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:46:54 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 13:50:12 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ int	exe_fork(t_execute *info, t_mini *data)
 	if (pid == 0)
 		exe_child_process(info, data);
 	ms_parenting_signals();
+	close(info->fd_input);
+	close(info->fd_output);
+	fd_cleanup(data);
 	waitpid(pid, &status, 0);
 	ms_signals();
 	if (WIFSIGNALED(status))
@@ -85,8 +88,5 @@ int	exe_pre_fork(t_pipe *pipe, t_mini *data)
 	if (ret == 127)
 		printf("OGS: %s: command not found\n", info.arg[0]);
 	free_string_array(info.arg);
-	close(info.fd_input);
-	close(info.fd_output);
-	fd_cleanup(data);
 	return (ret);
 }

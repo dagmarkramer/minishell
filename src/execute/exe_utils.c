@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:00 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:47:01 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 14:08:12 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ t_execute	*exe_pipe_to_execute(t_pipe *pipe, t_execute *exe, t_mini *data)
 	exe->arg = pipe->tokens;
 	exe->envlst = data->env;
 	exe->env = data->environ;
-	free(pipe);
+	pipe->tokens = NULL;
 	return (exe);
 }

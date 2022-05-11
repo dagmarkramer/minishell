@@ -6,11 +6,21 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:09 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:45:10 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/11 14:10:17 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	del_pipe(void *content)
+{
+	t_pipe	*pipe;
+
+	pipe = (t_pipe *)content;
+	if (pipe->tokens != NULL)
+		free_string_array(pipe->tokens);
+	free(pipe);
+}
 
 int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 {
@@ -104,5 +114,5 @@ void	ms_line_executer(t_mini *data)
 	pipes = ms_parser(&tokens);
 	ft_lstclear(&tokens, ms_del_token);
 	data->last_return = exe_pipe_and_run(pipes, data);
-	ft_lstclear(&pipes, NULL);
+	ft_lstclear(&pipes, del_pipe);
 }
