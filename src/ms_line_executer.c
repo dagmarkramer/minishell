@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:09 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 15:22:06 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/13 11:49:21 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,10 @@ void	ms_line_executer(t_mini *data)
 		return ;
 	ft_lstiter(tokens, tk_remove_quotes);
 	wildcards_expander(&tokens);
-	if (ms_lexer(tokens) == 0)
+	if (ms_lexer(tokens) != 0)
 	{
 		ft_lstclear(&tokens, ms_del_token);
+		data->last_return = 258;
 		return ;
 	}
 	pipes = ms_parser(&tokens);

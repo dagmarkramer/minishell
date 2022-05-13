@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:21 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:46:33 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/13 11:48:33 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	lx_error(char *token)
 		ft_strlen("syntax error near unexpected token `"));
 	write(2, token, ft_strlen(token));
 	write(2, "'\n", 2);
-	return (0);
+	return (258);
 }
 
 int	ms_lexer(t_list *tokens)
@@ -53,5 +53,5 @@ int	ms_lexer(t_list *tokens)
 	}
 	if (((t_token *)tokens->content)->id != Str)
 		return (lx_error("newline"));
-	return (1);
+	return (0);
 }
