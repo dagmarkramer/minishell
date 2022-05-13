@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:43:02 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 14:24:13 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/13 15:56:19 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	child_process(int writefd, char *delimiter)
 	{
 		gnl_return = get_next_line(0, &line);
 		if (gnl_return == -1)
-			ft_disruptive_exit("malloc fail", 333);
+			ft_disruptive_exit("malloc fail", 1);
 		if (ft_strncmp(line, delimiter, (size_t)ft_strlen(delimiter) + 1) == 0)
 			exit_and_putstr(final_product, writefd, 0);
 		tmp = final_product;

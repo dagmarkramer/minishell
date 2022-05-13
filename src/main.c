@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:02 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 15:34:14 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/13 15:56:18 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_disruptive_exit(char *exit_status, int exit_int)
 void	ft_malloc_fail_check(void *status)
 {
 	if (status == NULL)
-		ft_disruptive_exit("malloc fail", 333);
+		ft_disruptive_exit("malloc fail", 1);
 }
 
 int	ms_init(t_mini *mini, int argc, char **newenv)
@@ -35,7 +35,7 @@ int	ms_init(t_mini *mini, int argc, char **newenv)
 	}
 	mini->env = ev_init_env(newenv);
 	if (!mini->env)
-		ft_disruptive_exit("malloc fail", 333);
+		ft_disruptive_exit("malloc fail", 1);
 	ms_signals();
 	mini->save_in = dup(0);
 	mini->save_out = dup(1);
