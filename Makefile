@@ -9,7 +9,7 @@ OBJ			= main utils signals heredoc lst_to_array wildcard_bonus \
 				$(addprefix environment/ev_, ${ENVIRONMENT}) \
 				$(addprefix execute/, ${EXECUTE}) \
 				lexer/lexer \
-				ms_line_executer
+				ms_line_executer exit_expansion
 OBJS		= $(addsuffix .o, $(addprefix obj/, ${OBJ}))
 CC			= gcc
 RM			= rm -f

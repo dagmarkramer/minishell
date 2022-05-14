@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:09 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/13 15:56:16 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/14 14:15:02 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,50 +42,6 @@ int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 		pipes = pipes->next;
 	}
 	return (exe_pre_fork((t_pipe *)pipes->content, data));
-}
-
-void	fillnewinput(t_mini *data, char *exitstatus, char **newinput)
-{
-	int		i;
-	int		a;
-
-	i = 0;
-	a = 0;
-	while (data->input[i])
-	{
-		if (data->input[i] == '$' && data->input[i + 1] == '?')
-		{
-			while (*exitstatus)
-			{
-				(*newinput)[a] = *exitstatus;
-				a++;
-				exitstatus++;
-			}
-			i += 2;
-		}
-		(*newinput)[a] = data->input[i];
-		if ((*newinput)[a])
-			a++;
-		if (data->input[i])
-			i++;
-	}
-	(*newinput)[a] = '\0';
-}
-
-void	replaceexitstatus(t_mini *data)
-{
-	char	*newinput;
-	char	*exitstatus;
-
-	exitstatus = ft_itoa(data->last_return);
-	ft_malloc_fail_check(exitstatus);
-	newinput = malloc(sizeof(char) * (ft_strlen(data->input) - 2
-				+ ft_strlen(exitstatus) + 1));
-	ft_malloc_fail_check(newinput);
-	fillnewinput(data, exitstatus, &newinput);
-	free (data->input);
-	free (exitstatus);
-	data->input = newinput;
 }
 
 void	ms_line_executer(t_mini *data)

@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:42:27 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 15:22:04 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/14 14:16:45 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		ms_lexer(t_list *tokens);
 t_list	*ms_parser(t_list **tokens);
 void	ms_line_executer(t_mini *data);
 int		ms_heredoc(char *delimiter);
+void	replaceexitstatus(t_mini *data);
 
 // UTILS
 void	ft_disruptive_exit(char *exit_status, int exit_int);
