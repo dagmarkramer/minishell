@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:09 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/13 15:56:16 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/14 18:11:48 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,42 @@ void	del_pipe(void *content)
 	free(pipe);
 }
 
+int	wait_for_children(int number_of_children)
+{
+	int	status;
+
+	while (number_of_children)
+	{
+		wait(&status);
+		number_of_children--;
+	}
+	ms_signals();
+	if (WIFSIGNALED(status))
+		return (130);
+	return (WEXITSTATUS(status));
+}
+
 int	exe_pipe_and_run(t_list *pipes, t_mini *data)
 {
 	int	pipefd[2];
-	int	errorcode;
+	int	nbr_of_pipes;
 
 	if (pipes->next == NULL
 		&& is_buildin(((t_pipe *)pipes->content)->tokens[0]))
 		return (exe_pre_buildin((t_pipe *)pipes->content, data));
+	nbr_of_pipes = ft_lstsize(pipes);
 	while (pipes->next != NULL)
 	{
 		if (pipe(pipefd) == -1)
 			ft_disruptive_exit("pipe failed", 42);
 		((t_pipe *)pipes->content)->output_fd = pipefd[1];
 		((t_pipe *)pipes->next->content)->input_fd = pipefd[0];
-		errorcode = exe_pre_fork((t_pipe *)pipes->content, data);
-		if (errorcode)
-			return (errorcode);
+		exe_pre_fork((t_pipe *)pipes->content, data);
 		pipes = pipes->next;
 	}
-	return (exe_pre_fork((t_pipe *)pipes->content, data));
+	exe_pre_fork((t_pipe *)pipes->content, data);
+	fd_cleanup(data);
+	return (wait_for_children(nbr_of_pipes));
 }
 
 void	fillnewinput(t_mini *data, char *exitstatus, char **newinput)

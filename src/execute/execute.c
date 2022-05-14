@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:53 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 13:50:12 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/14 17:54:03 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exe_child_process(t_execute *info, t_mini *data)
 int	exe_fork(t_execute *info, t_mini *data)
 {
 	pid_t	pid;
-	int		status;
+	// int		status;
 
 	pid = fork();
 	if (pid == -1)
@@ -70,11 +70,7 @@ int	exe_fork(t_execute *info, t_mini *data)
 	close(info->fd_input);
 	close(info->fd_output);
 	fd_cleanup(data);
-	waitpid(pid, &status, 0);
-	ms_signals();
-	if (WIFSIGNALED(status))
-		return (130);
-	return (WEXITSTATUS(status));
+	return (0);
 }
 
 int	exe_pre_fork(t_pipe *pipe, t_mini *data)
