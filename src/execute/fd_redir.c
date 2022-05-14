@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:47 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 18:31:13 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/14 15:27:54 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	fd_redirect(t_execute *info, int index)
 			O_WRONLY | O_APPEND | O_CREAT);
 	else if (ft_strncmp(info->arg[index], ">", 1) == 0)
 		fd_open_and_replace(&(info->fd_output), info->arg[index + 1],
-			O_WRONLY | O_CREAT);
+			O_WRONLY | O_CREAT | O_TRUNC);
 	else
 		fd_open_and_replace(&(info->fd_input), info->arg[index + 1], O_RDONLY);
 	free(info->arg[index]);
