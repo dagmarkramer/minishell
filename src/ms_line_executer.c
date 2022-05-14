@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:09 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/14 14:15:02 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/14 15:33:00 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	ms_line_executer(t_mini *data)
 		replaceexitstatus(data);
 	data->input = tk_expander(data->input, data->env);
 	tokens = ms_tokenizer(data->input);
-	if (!tokens)
-		ft_disruptive_exit("malloc fail", 1);
 	free(data->input);
 	if (tokens == NULL)
 		return ;
