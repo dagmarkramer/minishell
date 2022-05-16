@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:02 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/14 18:54:48 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/16 13:59:16 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int argc, char **argv, char **newenv)
 	while (1)
 	{
 		mini.input
-			= readline("\01\033[01;38:5:208mOud Getrouwd Shell : \033[0;0m\02");
+			= readline("\1\033[01;38:5:208m\2Oud Getrouwd Shell : \1\033[0;0m\2");
 		if (mini.input == 0)
 			break ;
 		if (mini.input[0] != 0)

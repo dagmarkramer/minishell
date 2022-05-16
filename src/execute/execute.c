@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:53 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/16 13:47:47 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/16 14:11:59 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	execute_relative(t_execute *info, t_list *env)
 	char	**paths;
 	char	*pathjoined;
 	char	*tmp;
+	char	*s;
 	int		i;
 
 	i = 0;
@@ -32,12 +33,20 @@ void	execute_relative(t_execute *info, t_list *env)
 		execve(pathjoined, info->arg, ft_lst_to_array(env, ev_turn_envlist));
 		i++;
 	}
+	s = ft_strjoin(info->arg[0], ": command not found");
+	ft_malloc_fail_check(s);
+	ft_putendl_fd(s, 2);
 	exit(127);
 }
 
 void	execute_absolute(t_execute *info, t_list *env)
 {
+	char	*s;
+
 	execve(info->arg[0], info->arg, ft_lst_to_array(env, ev_turn_envlist));
+	s = ft_strjoin(info->arg[0], ": command not found");
+	ft_malloc_fail_check(s);
+	ft_putendl_fd(s, 2);
 	exit(127);
 }
 
@@ -77,16 +86,10 @@ int	exe_pre_fork(t_pipe *pipe, t_mini *data)
 {
 	t_execute	info;
 	int			ret;
-	char		*s;
 
 	exe_pipe_to_execute(pipe, &info, data);
 	info.arg = fd_redirections(&info);
 	ret = exe_fork(&info, data);
-	if (ret == 127)
-	{
-		s = ft_strjoin(info.arg[0], ": command not found");
-		ft_putendl_fd(s, 2);
-	}
 	free_string_array(info.arg);
 	return (ret);
 }
