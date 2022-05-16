@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:53 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/14 17:54:03 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/16 13:47:47 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,16 @@ int	exe_pre_fork(t_pipe *pipe, t_mini *data)
 {
 	t_execute	info;
 	int			ret;
+	char		*s;
 
 	exe_pipe_to_execute(pipe, &info, data);
 	info.arg = fd_redirections(&info);
 	ret = exe_fork(&info, data);
 	if (ret == 127)
-		printf("OGS: %s: command not found\n", info.arg[0]);
+	{
+		s = ft_strjoin(info.arg[0], ": command not found");
+		ft_putendl_fd(s, 2);
+	}
 	free_string_array(info.arg);
 	return (ret);
 }
