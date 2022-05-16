@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:53 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/16 14:11:59 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/16 16:32:50 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	execute_relative(t_execute *info, t_list *env)
 	char	**paths;
 	char	*pathjoined;
 	char	*tmp;
-	char	*s;
 	int		i;
 
 	i = 0;
@@ -33,9 +32,7 @@ void	execute_relative(t_execute *info, t_list *env)
 		execve(pathjoined, info->arg, ft_lst_to_array(env, ev_turn_envlist));
 		i++;
 	}
-	s = ft_strjoin(info->arg[0], ": command not found");
-	ft_malloc_fail_check(s);
-	ft_putendl_fd(s, 2);
+	ft_putstringtostderror(info->arg[0], ": command not found");
 	exit(127);
 }
 
@@ -68,7 +65,6 @@ void	exe_child_process(t_execute *info, t_mini *data)
 int	exe_fork(t_execute *info, t_mini *data)
 {
 	pid_t	pid;
-	// int		status;
 
 	pid = fork();
 	if (pid == -1)

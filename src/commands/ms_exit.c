@@ -6,13 +6,13 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:57 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/11 18:07:00 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/16 14:26:34 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ms_exit(char **array)
+int	ms_exit(char **array, int last_return)
 {
 	int	exitcode;
 	int	errorcode;
@@ -26,7 +26,7 @@ int	ms_exit(char **array)
 		return (1);
 	}
 	if (arraylen == 1)
-		exit(0);
+		exit(last_return);
 	exitcode = ph_atoi(array[1], &errorcode);
 	if (errorcode != 0)
 	{
