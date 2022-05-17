@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:48:13 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/16 15:22:13 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/17 15:50:26 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_printlst(t_list *lst, char *env)
 {
 	while (lst)
 	{
-		if (!ft_strncmp("export", env, 1 + ft_strlen("export")))
+		if (!ft_strcmp("export", env))
 		{
 			printf("declare -x ");
 			printf("%s", (char *)((t_keyval *)lst->content)->key);
@@ -40,12 +40,15 @@ void	ft_printlst(t_list *lst, char *env)
 			else
 				printf("\n");
 		}
-		if (!ft_strncmp("env", env, 1 + ft_strlen("env")))
+		if (!ft_strcmp("env", env))
 		{
 			if (((t_keyval *)lst->content)->value)
 			{
-				printf("%s=", (char *)((t_keyval *)lst->content)->key);
-				printf("%s\n", (char *)((t_keyval *)lst->content)->value);
+				if ((char)((t_keyval *)lst->content)->value[0] != '\0')
+				{
+					printf("%s=", (char *)((t_keyval *)lst->content)->key);
+					printf("%s\n", (char *)((t_keyval *)lst->content)->value);
+				}
 			}
 		}
 		lst = lst->next;
