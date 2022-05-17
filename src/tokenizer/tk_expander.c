@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:12 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/17 14:48:08 by obult         ########   odam.nl         */
+/*   Updated: 2022/05/17 14:50:52 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*tk_replace_env(char *word, int dollar, t_list *env)
 
 	zero = '\0';
 	key = ft_substr(word, dollar + 1, ft_strslen(&word[dollar + 1],
-			" \t\n\"\'$|*"));
+			" \t\n\"\'$|*<>"));
 	ft_malloc_fail_check(key);
 	value = ev_getenv(key, env);
 	if (value == NULL)
@@ -32,7 +32,7 @@ char	*tk_replace_env(char *word, int dollar, t_list *env)
 	ft_memcpy(result, word, dollar);
 	ft_memcpy(&result[dollar], value, ft_strlen(value));
 	ft_strcpy(&result[dollar + ft_strlen(value)],
-		&word[dollar + 1 + ft_strslen(&word[dollar + 1], " \t\n\"\'$|*")]);
+		&word[dollar + 1 + ft_strslen(&word[dollar + 1], " \t\n\"\'$|*<>")]);
 	free(key);
 	free(word);
 	return (result);
