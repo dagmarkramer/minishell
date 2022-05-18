@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:29 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:47:30 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/18 12:33:34 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ t_list	*ev_keyval_lst_add(char *key, char *value)
 	new->content = keyval;
 	new->next = NULL;
 	keyval->key = key;
-	keyval->value = value;
+	if (value)
+		keyval->value = value;
 	return (new);
 }
 
