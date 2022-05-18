@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:48:00 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/18 16:43:41 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/18 16:52:42 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ms_export(t_mini *mini, char **array)
 	int		i;
 
 	i = 1;
-	ev_sort_alfa(mini->env);
 	key = NULL;
 	value = NULL;
 	while (array[i] != NULL)
@@ -40,6 +39,4 @@ void	ms_export(t_mini *mini, char **array)
 		}
 		i++;
 	}
-	if (array[1] == NULL)
-		ft_printlst(mini->env, "export");
 }

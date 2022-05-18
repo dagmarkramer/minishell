@@ -6,11 +6,18 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:29 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/18 16:30:16 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/18 16:59:52 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*freekeyvalue(char *key, char *value)
+{
+	free(key);
+	free(value);
+	return (NULL);
+}
 
 t_list	*ev_keyval_lst_add(char *key, char *value)
 {
@@ -19,18 +26,12 @@ t_list	*ev_keyval_lst_add(char *key, char *value)
 
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
-	{
-		free(key);
-		free(value);
-		return (NULL);
-	}
+		return (freekeyvalue(key, value));
 	keyval = malloc(sizeof(t_keyval));
 	if (keyval == NULL)
 	{
-		free(key);
-		free(value);
 		free(new);
-		return (NULL);
+		return (freekeyvalue(key, value));
 	}
 	new->content = keyval;
 	new->next = NULL;
@@ -38,10 +39,8 @@ t_list	*ev_keyval_lst_add(char *key, char *value)
 	if (value)
 		keyval->value = value;
 	else
-	{
 		keyval->value = ft_strdup("");
-		ft_malloc_fail_check(keyval->value);
-	}
+	ft_malloc_fail_check(keyval->value);
 	return (new);
 }
 
