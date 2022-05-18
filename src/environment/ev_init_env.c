@@ -6,13 +6,13 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:29 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/18 16:59:52 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/18 17:07:43 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*freekeyvalue(char *key, char *value)
+t_list	*freekeyvalue(char *key, char *value)
 {
 	free(key);
 	free(value);

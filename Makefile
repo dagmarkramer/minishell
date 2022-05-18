@@ -15,7 +15,7 @@ CC			= gcc
 RM			= rm -f
 HEADER		= -I headers/ 
 RL_I		= -I $$HOME/.brew/opt/readline/include
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 LFLAGS		= -lreadline -lncurses -L $$HOME/.brew/opt/readline/lib
 LIBFT		= Libft/libft.a
 
