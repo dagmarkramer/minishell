@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:18 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/18 13:45:59 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/18 16:31:08 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,21 @@ int	ev_add_env(char *key, char *value, t_list **envlst)
 	return (0);
 }
 
-int	ev_rem_env(char *key, char *value, t_list **env)
+int	ev_rem_env(char *key, t_list **env)
 {
 	t_list	*tmp;
 
 	while (env && *env)
 	{
 		if (!ft_strncmp((char *)((t_keyval *)(*env)->content)->key, key,
-				1 + ft_strlen((char *)((t_keyval *)(*env)->content)->key)) && value)
+				1 + ft_strlen((char *)((t_keyval *)(*env)->content)->key)))
 		{
 			tmp = *env;
 			*env = (*env)->next;
 			ev_del_keyval(tmp->content);
 			free(tmp);
-			return (0);
-		}
-		if (!ft_strncmp((char *)((t_keyval *)(*env)->content)->key, key,
-				1 + ft_strlen((char *)((t_keyval *)(*env)->content)->key)) && !value)
 			return (1);
+		}
 		env = &((*env)->next);
 	}
 	return (0);
@@ -56,7 +53,10 @@ int	ev_change_env(char *key, char *value, t_list **envlst)
 	int	ret;
 
 	ret = 0;
-	if (value && !ev_rem_env(key, value, envlst))
-		ret = ev_add_env(key, value, envlst);
+
+	if (ev_getenv(key, *envlst) && !value)
+		return (0);
+	ev_rem_env(key, envlst);
+	ret = ev_add_env(key, value, envlst);
 	return (ret);
 }

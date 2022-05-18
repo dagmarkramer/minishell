@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:29 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/18 12:33:34 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/18 16:30:16 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ t_list	*ev_keyval_lst_add(char *key, char *value)
 	keyval->key = key;
 	if (value)
 		keyval->value = value;
+	else
+	{
+		keyval->value = ft_strdup("");
+		ft_malloc_fail_check(keyval->value);
+	}
 	return (new);
 }
 

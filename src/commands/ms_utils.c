@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:48:13 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/18 12:50:57 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/18 16:29:16 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_printlst(t_list *lst, char *env)
 		{
 			printf("declare -x ");
 			printf("%s", (char *)((t_keyval *)lst->content)->key);
-			if (((t_keyval *)lst->content)->value)
+			if ((char)((t_keyval *)lst->content)->value[0] != '\0')
 				printf("=\"%s\"\n", (char *)((t_keyval *)lst->content)->value);
 			else
 				printf("\n");
