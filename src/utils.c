@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:45:19 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:45:21 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/18 16:38:05 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ char	*ft_strcdup(const char *s1, char c)
 	i = 0;
 	copy = (char *)malloc(sizeof(*s1) * (ft_strclen((char *)s1, c) + 1));
 	if (copy == NULL)
-	{
 		return (NULL);
-	}
 	while (s1[i] != '\0' && s1[i] != c)
 	{
 		copy[i] = s1[i];

@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:47:18 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/18 16:31:08 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/18 16:42:29 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ int	ev_change_env(char *key, char *value, t_list **envlst)
 	int	ret;
 
 	ret = 0;
-
 	if (ev_getenv(key, *envlst) && !value)
+	{
+		free(key);
 		return (0);
+	}
 	ev_rem_env(key, envlst);
 	ret = ev_add_env(key, value, envlst);
 	return (ret);

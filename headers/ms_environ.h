@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:42:37 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/18 16:11:48 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/18 16:35:00 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // interact with our envlst
 char	*ev_getenv(char *key, t_list *envlst);
-int     ev_rem_env(char *key, t_list **env);
+int		ev_rem_env(char *key, t_list **env);
 int		ev_add_env(char *key, char *value, t_list **envlst);
 int		ev_change_env(char *key, char *value, t_list **envlst);
 

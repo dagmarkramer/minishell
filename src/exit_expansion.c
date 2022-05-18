@@ -6,7 +6,7 @@
 /*   By: dkramer <dkramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/14 14:14:49 by dkramer       #+#    #+#                 */
-/*   Updated: 2022/05/16 16:41:45 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/18 16:44:11 by dkramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_putstringtostderror(char *s1, char *s2)
 	s = ft_strjoin(s1, s2);
 	ft_malloc_fail_check(s);
 	ft_putendl_fd(s, 2);
+	free(s);
 }
 
 void	fillnewinput(t_mini *data, char *exitstatus, char **newinput, int c)
