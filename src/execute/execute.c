@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:46:53 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/16 16:32:50 by dkramer       ########   odam.nl         */
+/*   Updated: 2022/05/18 17:26:53 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,23 @@ void	execute_relative(t_execute *info, t_list *env)
 	char	**paths;
 	char	*pathjoined;
 	char	*tmp;
+	char	**env_array;
 	int		i;
 
 	i = 0;
 	paths = get_path_options(env);
 	if (paths == NULL)
 		exit(127);
+	env_array = ft_lst_to_array(env, ev_turn_envlist);
+	ft_malloc_fail_check(env_array);
 	while (paths[i] != NULL)
 	{
 		tmp = ft_strjoin(paths[i], "/");
 		ft_malloc_fail_check(tmp);
 		pathjoined = ft_strjoin(tmp, info->arg[0]);
+		free(tmp);
 		ft_malloc_fail_check(pathjoined);
-		execve(pathjoined, info->arg, ft_lst_to_array(env, ev_turn_envlist));
+		execve(pathjoined, info->arg, env_array);
 		i++;
 	}
 	ft_putstringtostderror(info->arg[0], ": command not found");
@@ -39,8 +43,11 @@ void	execute_relative(t_execute *info, t_list *env)
 void	execute_absolute(t_execute *info, t_list *env)
 {
 	char	*s;
+	char	**env_array;
 
-	execve(info->arg[0], info->arg, ft_lst_to_array(env, ev_turn_envlist));
+	env_array = ft_lst_to_array(env, ev_turn_envlist);
+	ft_malloc_fail_check(env_array);
+	execve(info->arg[0], info->arg, env_array);
 	s = ft_strjoin(info->arg[0], ": command not found");
 	ft_malloc_fail_check(s);
 	ft_putendl_fd(s, 2);

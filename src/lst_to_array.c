@@ -6,7 +6,7 @@
 /*   By: oswin <oswin@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/09 22:44:55 by oswin         #+#    #+#                 */
-/*   Updated: 2022/05/09 22:44:57 by oswin         ########   odam.nl         */
+/*   Updated: 2022/05/18 17:24:25 by obult         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**ft_lst_to_array(t_list *lst, void (*turn)(void *, char **))
 	array = malloc(sizeof(char *) * (lst_len + 1));
 	if (array == NULL)
 		return (NULL);
-	array[lst_len] = 0;
+	array[lst_len] = NULL;
 	while (lst != NULL)
 	{
 		turn(lst->content, &array[i]);
