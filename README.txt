@@ -9,4 +9,4 @@ UTILISATION
 ------------
 
 run 'make' to make the library
-run './minishell'to enter the shell
+run './minishell' to enter the shell
