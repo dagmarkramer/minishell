@@ -14,3 +14,5 @@ UTILISATION
 run 'make' to make the library
 
 run './minishell' to enter the shell
+
+enter any bash commands
