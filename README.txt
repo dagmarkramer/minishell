@@ -13,7 +13,7 @@ UTILISATION
 
 (install readline if you don't have it yet)
 
-run 'make' to make the library
+run 'make'
 
 run './minishell' to enter the shell
 
